@@ -58,12 +58,7 @@ class Hairpin:
         return self.__str__()
 
     def can_exist(self, second_hairpin):
-
-        for i in self.stem_indexes:
-            for j in second_hairpin.stem_indexes:
-                if max(i[0], j[0]) <= min(i[1], j[1]):
-                    return False
-        return True
+        return max(self.start, second_hairpin.start) > min(self.end, second_hairpin.end)
 
     def print_data(self):
         print(self.start, self.end, self.length, self.palindrome, self.spacer_index)
