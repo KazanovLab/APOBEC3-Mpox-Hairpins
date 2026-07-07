@@ -1,0 +1,26 @@
+structure_type  selection_type  mut_cnt_APOBEC  mut_cnt_APOBEC_ext    hits  frac_targets_%         p_value       -log10(p)
+--------------------------------------------------------------------------------------------------------------------------
+hairpin         most_stable         56        59      20          0.2820        0.135975          0.8665
+hairpin         greedy              56        59      26          0.3364        0.031850          1.4969
+hairpin         max_cov             56        59      24          0.3846        0.292596          0.5337
+hairpin         min_cov             56        59      20          0.2796        0.127258          0.8953
+hairpin         all                 56        59      29          0.4596        0.229125          0.6399
+
+spacer          most_stable         56        59       6          0.0774        0.264636          0.5774
+spacer          greedy              56        59       8          0.0993        0.187970          0.7259
+spacer          max_cov             56        59       8          0.1402        0.535546          0.2712
+spacer          min_cov             56        59       5          0.0796        0.463546          0.3339
+spacer          all                 56        59      13          0.1924        0.271660          0.5660
+
+ct_end          most_stable         56        59       3          0.0166        0.066688          1.1760
+ct_end          greedy              56        59       3          0.0206        0.108875          0.9631
+ct_end          max_cov             56        59       3          0.0231        0.139781          0.8546
+ct_end          min_cov             56        59       2          0.0172        0.249945          0.6022
+ct_end          all                 56        59       5          0.0392        0.067826          1.1686
+
+c_end           most_stable         56        59       3          0.0207        0.123880          0.9070
+c_end           greedy              56        59       3          0.0252        0.186301          0.7298
+c_end           max_cov             56        59       3          0.0252        0.186757          0.7287
+c_end           min_cov             56        59       2          0.0216        0.364168          0.4387
+c_end           all                 56        59       5          0.0438        0.115970          0.9357
+

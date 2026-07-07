@@ -1,0 +1,681 @@
+IQ-TREE version 3.0.1 for MacOS ARM 64-bit built May  5 2025
+Developed by Bui Quang Minh, Thomas Wong, Nhan Ly-Trong, Huaiyan Ren
+Contributed by Lam-Tung Nguyen, Dominik Schrempf, Chris Bielow,
+Olga Chernomor, Michael Woodhams, Diep Thi Hoang, Heiko Schmidt
+
+Host:    MacBook-Pro-4 (SSE4.2, 128 GB RAM)
+Command: /Applications/BIOTOOLS/iqtree-3.0.1/bin/iqtree3 -s dataset2_west_africa.aln -asr -nt AUTO
+Seed:    534840 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Sun May 24 04:10:23 2026
+Kernel:  SSE2 - auto-detect threads (16 CPU cores detected)
+
+Reading alignment file dataset2_west_africa.aln ... Fasta format detected
+Reading fasta file: done in 0.31919 secs using 91.49% CPU
+Alignment most likely contains DNA/RNA sequences
+Constructing alignment: done in 0.206031 secs using 69.42% CPU
+WARNING: 631 sites contain only gaps or ambiguous characters.
+Alignment has 196 sequences with 201223 columns, 5673 distinct patterns
+765 parsimony-informative, 1133 singleton sites, 199325 constant sites
+                                                           Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.000290871 secs using 755.3% CPU
+   1  NC_063383.1                                                  1.99%    passed     99.95%
+   2  KJ642617_CladeIIb_Nigeria_SouthEast_1971_04_Abia             1.83%    passed     99.96%
+   3  PP860029_CladeIIb_Cameroon_NorthWest_2022_11                 2.05%    passed     99.25%
+   4  PP860025_CladeIIb_Cameroon_NorthWest_2022_11                 2.05%    passed     99.17%
+   5  PP860033_CladeIIb_Cameroon_SouthWest_2022                    2.06%    passed     99.12%
+   6  PP860027_CladeIIb_Cameroon_SouthWest_2022_10                 2.06%    passed     99.02%
+   7  PP860030_CladeIIb_Cameroon_SouthWest_2022_09                 2.07%    passed     98.24%
+   8  PP852990_CladeIIb_Nigeria_SouthSouth_2022_09_Akwalbom        2.10%    passed     98.46%
+   9  PP852957_CladeIIb_Nigeria_SouthSouth_2022_01_Akwalbom        2.06%    passed     98.83%
+  10  PP860031_CladeIIb_Cameroon_Centre_2021_07                    2.06%    passed     99.56%
+  11  PP860026_CladeIIb_Cameroon_NorthWest_2018_05                 2.04%    passed     99.86%
+  12  PP860028_CladeIIb_Cameroon_SouthWest_2022_10                 2.06%    passed     99.62%
+  13  PP860032_CladeIIb_Cameroon_SouthWest_2022                    2.06%    passed     99.62%
+  14  PP852949__CladeIIb_Nigeria_SouthEast_2022_12_Abia            2.00%    passed     99.88%
+  15  PP852947_CladeIIb_Nigeria_SouthEast_2022_01_Abia             2.00%    passed     99.86%
+  16  OP535335_CladeIIb_Nigeria_SouthSouth_2017_10_Bayelsa         1.94%    passed     99.82%
+  17  OP535323_CladeIIb_Nigeria_SouthSouth_2017_10_Bayelsa         1.94%    passed     99.82%
+  18  OP612677_CladeIIb_Nigeria_SouthSouth_2019_03_Rivers          2.43%    passed     96.98%
+  19  PP852993_CladeIIb_Nigeria_SouthEast_2022_Ebonyi              2.04%    passed    100.00%
+  20  PP852954_CladeIIb_Nigeria_SouthEast_2023_01_Abia             2.01%    passed    100.00%
+  21  PP852953_CladeIIb_Nigeria_SouthEast_2022_Imo                 2.00%    passed    100.00%
+  22  PP853038_CladeIIb_Nigeria_SouthSouth_2022_09_Delta           2.18%    passed     99.98%
+  23  PP853054_CladeIIb_Nigeria_SouthWest_2022_09_Ogun             2.86%    passed     99.94%
+  24  OP413718_CladeIIb_Nigeria_NorthCentral_2022_08_unknown       1.99%    passed     99.96%
+  25  PP853003_CladeIIb_Nigeria_SouthWest_2022_09_Ogun             2.11%    passed     99.98%
+  26  PP852985_CladeIIb_Nigeria_SouthEast_2022_Ebonyi              2.02%    passed    100.00%
+  27  PP852984_CladeIIb_Nigeria_SouthEast_2022_10_Imo              2.36%    passed     99.94%
+  28  MK783033_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers          2.43%    passed     99.99%
+  29  MK783032_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers          1.82%    passed     99.75%
+  30  OP535320_CladeIIb_Nigeria_SouthEast_2017_11_Abia             1.83%    passed     99.78%
+  31  OP535313_CladeIIb_Nigeria_SouthSouth_2018_01_unknown         2.02%    passed     99.86%
+  32  OP612690_CladeIIb_Nigeria_SouthEast_2019_12_Imo              1.93%    passed     99.62%
+  33  OP612691_CladeIIb_Nigeria_SouthSouth_2020_01_unknown         1.92%    passed     99.85%
+  34  ON674051_CladeIIb_Nigeria_SouthEast_2022_05_unknown          2.02%    passed    100.00%
+  35  EPIISL13953610_CladeIIb_Nigeria_SouthEast_2022_07_unknown    2.04%    passed     99.99%
+  36  OP331335_CladeIIb_Nigeria_SouthEast_2022_06_unknown          1.99%    passed    100.00%
+  37  OP605572_CladeIIb_Nigeria_SouthEast_2022_07                  3.89%    passed     57.35%
+  38  PP853026_CladeIIb_Nigeria_NorthCentral_2022_09_Kogi          2.58%    passed     99.88%
+  39  PP852991_CladeIIb_Nigeria_SouthEast_2022_09_Abia             2.87%    passed     99.38%
+  40  PP852975_CladeIIb_Nigeria_SouthEast_2022_09_Abia             2.05%    passed    100.00%
+  41  PP853001_CladeIIb_Nigeria_NorthCentral_2022_09_FCT           2.06%    passed    100.00%
+  42  PP852948_CladeIIb_Nigeria_SouthEast_2023_01_Abia             2.00%    passed     99.98%
+  43  PP853009_CladeIIb_Nigeria_SouthSouth_2022_10_Rivers          2.04%    passed     99.99%
+  44  PP852997_CladeIIb_Nigeria_SouthSouth_2022_11_Edo             2.07%    passed     99.95%
+  45  PP852982_CladeIIb_Nigeria_SouthEast_2022_09_Abia             3.72%    passed     99.95%
+  46  PP853055_CladeIIb_Nigeria_SouthEast_2022_09_Anambra          2.19%    passed     99.99%
+  47  PP853005_CladeIIb_Nigeria_SouthEast_2022_10_Imo              2.02%    passed    100.00%
+  48  PP853021_CladeIIb_Nigeria_SouthEast_2022_09_Anambra          2.04%    passed     99.99%
+  49  PP852958_CladeIIb_Nigeria_SouthSouth_2022_Edo                2.00%    passed     99.98%
+  50  PP853047_CladeIIb_Nigeria_SouthSouth_2022_10_Akwalbom        2.04%    passed     99.99%
+  51  PP853041_CladeIIb_Nigeria_SouthSouth_2022_10_Akwalbom        2.05%    passed    100.00%
+  52  PP852974_CladeIIb_Nigeria_SouthEast_2022_09_Anambra          2.34%    passed     99.83%
+  53  PP852966_CladeIIb_Nigeria_SouthSouth_2023_03_Rivers          2.48%    passed     99.17%
+  54  PP852963_CladeIIb_Nigeria_SouthSouth_2023_03_Rivers          2.00%    passed     99.99%
+  55  PP852968_CladeIIb_Nigeria_SouthEast_2023_03_Enugu            2.00%    passed     99.98%
+  56  PP852960_CladeIIb_Nigeria_SouthEast_2023_02_Enugu            2.00%    passed     99.98%
+  57  PP852952_CladeIIb_Nigeria_NorthEast_2022_01_Borno            2.00%    passed     99.98%
+  58  PP853048_CladeIIb_Nigeria_SouthEast_2022_10_Imo              2.06%    passed    100.00%
+  59  PP852988_CladeIIb_Nigeria_SouthEast_2022_09_Anambra          2.06%    passed    100.00%
+  60  PP853036_CladeIIb_Nigeria_SouthWest_2022_09_Lagos            2.86%    passed     99.98%
+  61  PP852967_CladeIIb_Nigeria_SouthEast_2023_03_Abia             2.00%    passed     99.99%
+  62  PP852970_CladeIIb_Nigeria_SouthSouth_2023_05_Rivers          2.00%    passed     99.98%
+  63  PP852969_CladeIIb_Nigeria_SouthEast_2023_04_Imo              2.00%    passed     99.99%
+  64  PP852961_CladeIIb_Nigeria_SouthSouth_2023_02_CrossRiver      2.00%    passed     99.99%
+  65  PP852959_CladeIIb_Nigeria_SouthSouth_2023_02_Akwalbom        2.00%    passed     99.98%
+  66  PP852962_CladeIIb_Nigeria_SouthSouth_2023_03_Rivers          2.00%    passed     99.99%
+  67  PP852981_CladeIIb_Nigeria_SouthEast_2022_09_Imo              2.04%    passed    100.00%
+  68  PP852973_CladeIIb_Nigeria_SouthSouth_2022_09_Rivers          2.04%    passed    100.00%
+  69  PP853027_CladeIIb_Nigeria_SouthSouth_2022_09_Akwalbom        2.04%    passed     99.99%
+  70  PP852980_CladeIIb_Nigeria_NorthCentral_2022_09_FCT           2.12%    passed    100.00%
+  71  PP853035_CladeIIb_Nigeria_NorthWest_2022_10_Kaduna           2.62%    passed     99.05%
+  72  PP852950_CladeIIb_Nigeria_SouthSouth_2023_01_Akwalbom        2.00%    passed     99.98%
+  73  ON676707_CladeIIb_Nigeria_SouthSouth_2021_07_unknown         1.97%    passed     99.97%
+  74  PP852983_CladeIIb_Nigeria_SouthEast_2022_10_Enugu            2.03%    passed    100.00%
+  75  PP853051_CladeIIb_Nigeria_SouthWest_2022_09_Lagos            2.05%    passed    100.00%
+  76  PP852951_CladeIIb_Nigeria_NorthEast_2023_01_Borno            2.28%    passed     99.86%
+  77  PP852992_CladeIIb_Nigeria_SouthSouth_2022_10_Bayelsa         2.04%    passed    100.00%
+  78  PP853018_CladeIIb_Nigeria_SouthWest_2022_09_Lagos            2.13%    passed     99.92%
+  79  PP852946_CladeIIb_Nigeria_SouthSouth_2022_12_Bayelsa         2.00%    passed     99.99%
+  80  PP853008_CladeIIb_Nigeria_SouthWest_2022_09_Lagos            2.05%    passed    100.00%
+  81  PP852976_CladeIIb_Nigeria_SouthSouth_2022_10_Bayelsa         2.04%    passed    100.00%
+  82  PP852965_CladeIIb_Nigeria_SouthSouth_2023_03_Bayelsa         2.00%    passed     99.97%
+  83  PP853024_CladeIIb_Nigeria_SouthSouth_2022_10_Edo             2.07%    passed    100.00%
+  84  PP853046_CladeIIb_Nigeria_SouthWest_2022_09_Lagos            2.04%    passed    100.00%
+  85  PP853049_CladeIIb_Nigeria_SouthWest_2022_09_Lagos            2.03%    passed    100.00%
+  86  PP852964_CladeIIb_Nigeria_NorthCentral_2023_03_Niger         2.00%    passed     99.99%
+  87  PP853030_CladeIIb_Nigeria_SouthWest_2022_09_Lagos           12.45%    passed     79.15%
+  88  PP852995_CladeIIb_Nigeria_SouthSouth_2022_08_Delta           2.03%    passed     99.99%
+  89  PP853033_CladeIIb_Nigeria_SouthEast_2022_Ebonyi              2.47%    passed     99.74%
+  90  PP853044_CladeIIb_Nigeria_SouthSouth_2022_08_Delta           2.03%    passed    100.00%
+  91  PP853025_CladeIIb_Nigeria_SouthSouth_2022_10_Bayelsa         2.07%    passed    100.00%
+  92  PP852979_CladeIIb_Nigeria_SouthEast_2022_09_Anambra          2.79%    passed     99.35%
+  93  PP852996_CladeIIb_Nigeria_SouthEast_2022_09_Abia             2.99%    passed     97.72%
+  94  PP853040_CladeIIb_Nigeria_SouthWest_2022_09_Lagos            2.08%    passed     99.97%
+  95  PP853013_CladeIIb_Nigeria_SouthWest_2022_09_Lagos            2.03%    passed     99.99%
+  96  PP853031_CladeIIb_Nigeria_SouthSouth_2022_09_Delta           2.18%    passed     99.83%
+  97  PP853023_CladeIIb_Nigeria_SouthEast_2022_09_Imo              2.06%    passed     99.97%
+  98  PP853053_CladeIIb_Nigeria_SouthSouth_2022_10_Bayelsa         2.04%    passed     99.99%
+  99  PP853043_CladeIIb_Nigeria_NorthWest_2022_10_Kaduna           2.03%    passed    100.00%
+ 100  PP852978_CladeIIb_Nigeria_SouthWest_2022_09_Kwara            2.86%    passed     99.92%
+ 101  EPIISL15008577_CladeIIb_NorthCentral_2022_08_unknown         2.06%    passed    100.00%
+ 102  PP853037_CladeIIb_Nigeria_NorthCentral_2022_09_FCT           2.18%    passed     99.86%
+ 103  ON675438_CladeIIb_Nigeria_SouthSouth_2022_05_unknown         2.14%    passed     99.99%
+ 104  PP852956_CladeIIb_Nigeria_SouthSouth_2022_Edo                2.01%    passed     99.99%
+ 105  PP852955_CladeIIb_Nigeria_SouthSouth_2022_Edo                2.01%    passed     99.99%
+ 106  OP450997_CladeIIb_Nigeria_SouthSouth_2022_07_unknown         2.04%    passed    100.00%
+ 107  PP853016_CladeIIb_Nigeria_SouthWest_2022_09_Lagos            2.03%    passed     99.95%
+ 108  PP852977_CladeIIb_Nigeria_NorthCentral_2022_11_Nasarawa      2.03%    passed     99.97%
+ 109  OR113690_CladeIIb_Nigeria_SouthWest_2023_04                  6.12%    passed     99.63%
+ 110  PP853022_CladeIIb_Nigeria_SouthSouth_2022_10_Rivers          2.05%    passed     99.98%
+ 111  PP853029_CladeIIb_Nigeria_SouthSouth_2022_10_Bayelsa         3.21%    passed     99.77%
+ 112  PP853042_CladeIIb_Nigeria_SouthEast_2022_10_Anambra          4.86%    passed     99.08%
+ 113  OP331336_CladeIIb_Nigeria_SouthWest_2022_06_unknown          2.00%    passed     99.97%
+ 114  PP852999_CladeIIb_Nigeria_SouthEast_2022_10_Imo              5.22%    passed     96.10%
+ 115  PP852972_CladeIIb_Nigeria_NorthCentral_2023_05_FCT           2.01%    passed     99.99%
+ 116  PP852971_CladeIIb_Nigeria_NorthCentral_2023_05_FCT           2.01%    passed     99.99%
+ 117  PP853012_CladeIIb_Nigeria_SouthWest_2022_09_Rivers           2.01%    passed     99.97%
+ 118  PP852987_CladeIIb_Nigeria_SouthWest_2022_09_Lagos            2.24%    passed    100.00%
+ 119  PP853052_CladeIIb_Nigeria_NorthWest_2022_09_Kaduna           2.04%    passed    100.00%
+ 120  PP853019_CladeIIb_Nigeria_SouthSouth_2022_10_Rivers          2.12%    passed     99.99%
+ 121  EPIISL13983888_CladeIIb_SouthWest_2022_07_uknown             2.04%    passed    100.00%
+ 122  OP612689_CladeIIb_Nigeria_SouthSouth_2019_12_Rivers          2.26%    passed     99.73%
+ 123  PP853032_CladeIIb_Nigeria_SouthSouth_2022_09_Bayelsa         2.05%    passed     99.97%
+ 124  PP853028_CladeIIb_Nigeria_NorthCentral_2022_10_Nasarawa      2.07%    passed     99.97%
+ 125  PP853020_CladeIIb_Nigeria_NorthCentral_2022_10_Plateau       2.04%    passed    100.00%
+ 126  PP853004_CladeIIb_Nigeria_NorthEast_2022_10_Gombe            2.03%    passed     99.99%
+ 127  PP852994_CladeIIb_Nigeria_SouthWest_2022_09_Lagos            2.05%    passed    100.00%
+ 128  PP853010_CladeIIb_Nigeria_SouthWest_2022_10_Ondo             2.05%    passed     99.98%
+ 129  PP853000_CladeIIb_Nigeria_SouthEast_2022_10_Imo              2.06%    passed     99.99%
+ 130  PP853011_CladeIIb_Nigeria_SouthWest_2022_10_Ogun             2.24%    passed     99.97%
+ 131  PP853050_CladeIIb_Nigeria_NorthCentral_2022_09_Plateau       2.03%    passed     99.99%
+ 132  PP853007_CladeIIb_Nigeria_SouthEast_2022_09_Imo              2.04%    passed    100.00%
+ 133  PP853014_CladeIIb_Nigeria_SouthSouth_2022_10_Rivers          2.14%    passed     99.97%
+ 134  PP853002_CladeIIb_Nigeria_NorthCentral_2022_10_FCT           3.26%    passed     99.87%
+ 135  PP853015_CladeIIb_Nigeria_NorthWest_2022_11_Kano             2.14%    passed     99.93%
+ 136  PP853045_CladeIIb_Nigeria_SouthEast_2022_09_Anambra          2.15%    passed     99.99%
+ 137  PP852998_CladeIIb_Nigeria_SouthSouth_2022_09_Bayelsa         2.04%    passed     99.99%
+ 138  PP853017_CladeIIb_Nigeria_SouthSouth_2022_10_Edo             2.24%    passed     99.84%
+ 139  PP853006_CladeIIb_Nigeria_SouthSouth_2022_09_Bayelsa         2.07%    passed     99.99%
+ 140  OP535336_CladeIIb_Nigeria_SouthEast_2017_10_Enugu            1.95%    passed     99.89%
+ 141  OP535319_CladeIIb_Nigeria_SouthSouth_2017_12_CrossRiver      1.92%    passed     99.92%
+ 142  OP535339_CladeIIb_Nigeria_SouthEast_2017_10_Enugu            2.97%    passed     99.26%
+ 143  OP535341_CladeIIb_Nigeria_SouthSouth_2017_10_Bayelsa         1.95%    passed     99.88%
+ 144  MK783030_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers          1.82%    passed     99.74%
+ 145  OP535337_CladeIIb_Nigeria_SouthSouth_2017_10_Bayelsa         1.95%    passed     99.84%
+ 146  OP535322_CladeIIb_Nigeria_SouthSouth_2017_10_Edo             2.02%    passed     99.93%
+ 147  OP535338_CladeIIb_Nigeria_SouthSouth_2017_10_Akwalbom        5.34%    passed     86.01%
+ 148  OP612678_CladeIIb_Nigeria_SouthSouth_2019_11_Rivers          2.16%    passed     99.59%
+ 149  OP612675_CladeIIb_Nigeria_SouthSouth_2019_01_Bayelsa         2.57%    passed     99.79%
+ 150  OP612684_CladeIIb_Nigeria_SouthWest_2019_05_Lagos            1.84%    passed     98.81%
+ 151  OP612680_CladeIIb_Nigeria_SouthWest_2019_04_Lagos            2.05%    passed     99.48%
+ 152  OP535325_CladeIIb_Nigeria_SouthSouth_2018_06                 2.01%    passed     99.88%
+ 153  OP535327_CladeIIb_Nigeria_SouthSouth_2018_03_Rivers          2.01%    passed     99.94%
+ 154  OP535328_CladeIIb_Nigeria_SouthSouth_2018_03_Rivers          2.02%    passed     99.91%
+ 155  OP535329_CladeIIb_Nigeria_SouthSouth_2018_03_Rivers          1.99%    passed     99.98%
+ 156  OP612674_CladeIIb_Nigeria_SouthSouth_2019_01_Bayelsa         2.10%    passed     99.88%
+ 157  MT903341_CladeIIb_Nigeria_SouthSouth_2018_08_Bayelsa         7.91%    passed     95.47%
+ 158  OP612681_CladeIIb_Nigeria_SouthSouth_2019_04_Bayelsa         3.60%    passed     99.23%
+ 159  OP612683_CladeIIb_Nigeria_SouthSouth_2019_04_Delta           2.08%    passed    100.00%
+ 160  OL504741_CladeIIb_Nigeria_SouthSouth_2019_12_unknown         7.66%    passed     54.01%
+ 161  OP612685_CladeIIb_Nigeria_SouthSouth_2019_05_Delta           2.15%    passed     99.99%
+ 162  OP612682_CladeIIb_Nigeria_SouthSouth_2019_04_Bayelsa         2.07%    passed    100.00%
+ 163  OP612688_CladeIIb_Nigeria_SouthWest_2019_10_Oyo              2.06%    passed     99.99%
+ 164  MN648051_CladeIIb_Nigeria_SouthSouth_2018_10_unknown         1.89%    passed     99.88%
+ 165  OP612686_CladeIIb_Nigeria_SouthWest_2019_05_Lagos            2.03%    passed     99.99%
+ 166  PP852944_CladeIIb_Nigeria_SouthEast_2022_09_Anambra          2.08%    passed     99.94%
+ 167  PP852945_CladeIIb_Nigeria_SouthWest_2022_09_Lagos            2.33%    passed     99.99%
+ 168  ON563414_CladeIIb_Nigeria_SouthSouth_2022_05_unknown         2.00%    passed     99.81%
+ 169  PP852989_CladeIIb_Nigeria_NorthCentral_2022_09_kwara         2.06%    passed     99.89%
+ 170  ON676708_CladeIIb_Nigeria_SouthSouth_2021_11_unknown         2.02%    passed     99.95%
+ 171  OP612687_CladeIIb_Nigeria_SouthEast_2019_07_Enugu            2.40%    passed     99.95%
+ 172  MT903343_CladeIIb_Nigeria_SouthSouth_2018_09_unkwnon         2.03%    passed     99.93%
+ 173  MT903345_CladeIIb_Nigeria_SouthSouth_2018_09_unknown         2.00%    passed     99.99%
+ 174  MT903344_CladeIIb_Nigeria_SouthSouth_2018_09_unknown         1.99%    passed    100.00%
+ 175  OP612679_CladeIIb_Nigeria_SouthSouth_2019_03_Delta           4.90%    passed     99.93%
+ 176  MK783027_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers          2.31%    passed     99.86%
+ 177  MK783031_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers          1.82%    passed     99.80%
+ 178  MK783028_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers          1.82%    passed     99.82%
+ 179  MK783029_CladeIIb_Nigeria_SouthSouth_2017_12_Rivers          1.83%    passed     99.85%
+ 180  OP535340_CladeIIb_Nigeria_SouthSouth_2017_10_Akwalbom        1.95%    passed     99.91%
+ 181  OP535326_CladeIIb_Nigeria_SoythWest_2018_06_Oyo              2.78%    passed     97.52%
+ 182  MT903339_CladeIIb_Nigeria_SouthSouth_2018_Delta              1.82%    passed     99.82%
+ 183  OP535312_CladeIIb_Nigeria_SouthSouth_2018_02_Rivers          1.83%    passed     99.79%
+ 184  OP535314_CladeIIb_Nigeria_SouthSouth_2018_01_Rivers          2.63%    passed     99.94%
+ 185  OP535334_CladeIIb_Nigeria_SouthSouth_2018_02_Rivers          3.64%    passed     96.99%
+ 186  OP535318_CladeIIb_Nigeria_NorthCentral_2017_12_Benue         2.35%    passed     99.50%
+ 187  OP535315_CladeIIb_Nigeria_SouthEast_2018_02_Imo              2.39%    passed     99.99%
+ 188  OP535316_CladeIIb_Nigeria_SouthEast_2018_02_Imo              2.26%    passed    100.00%
+ 189  OP535330_CladeIIb_Nigeria_SouthEast_2018_02_Imo              2.47%    passed     99.02%
+ 190  OP535324_CladeIIb_Nigeria_SouthEast_2018_02_Imo              1.98%    passed     99.99%
+ 191  OP535317_CladeIIb_Nigeria_SouthWest_2018_01_Lagos            2.13%    passed     99.96%
+ 192  MT903338_CladeIIb_Nigeria_SouthWest_2018_Lagos               1.82%    passed     99.82%
+ 193  OP535331_CladeIIb_Nigeria_SouthWest_2018_01_Oyo              2.21%    passed     99.62%
+ 194  OP535333_CladeIIb_Nigeria_SouthWest_2018_01_Oyo              1.90%    passed     99.99%
+ 195  OP535332_CladeIIb_Nigeria_SouthWest_2018_01_Oyo              2.48%    passed     99.10%
+ 196  NC_063383_CladeIIb_Nigeria_SouthSouth_2018_08_Rivers         1.99%    passed     99.95%
+****  TOTAL                                                        2.34%  0 sequences failed composition chi2 test (p-value<5%; df=3)
+NOTE: minimal branch length is reduced to 0.000000496961 for long alignment
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.015 seconds
+Measuring multi-threading efficiency up to 16 CPU cores
+Increase to 10 rounds for branch lengths
+23 trees examined
+Threads: 1 / Time: 16.589 sec / Speedup: 1.000 / Efficiency: 100% / LogL: -335538
+Threads: 2 / Time: 11.737 sec / Speedup: 1.413 / Efficiency: 71% / LogL: -335538
+Threads: 3 / Time: 8.282 sec / Speedup: 2.003 / Efficiency: 67% / LogL: -335538
+Threads: 4 / Time: 7.102 sec / Speedup: 2.336 / Efficiency: 58% / LogL: -335538
+Threads: 5 / Time: 7.131 sec / Speedup: 2.326 / Efficiency: 47% / LogL: -335538
+Determining AUTO threadcount: done in 50.8518 secs using 181.4% CPU
+BEST NUMBER OF THREADS: 4
+
+Perform fast likelihood tree search using GTR+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Optimizing NNI: done in 0.700602 secs using 266.7% CPU
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -291831.268
+2. Current log-likelihood: -291829.586
+3. Current log-likelihood: -291828.259
+4. Current log-likelihood: -291826.922
+5. Current log-likelihood: -291825.639
+6. Current log-likelihood: -291824.249
+7. Current log-likelihood: -291822.875
+8. Current log-likelihood: -291821.530
+9. Current log-likelihood: -291820.195
+10. Current log-likelihood: -291818.872
+11. Current log-likelihood: -291817.546
+12. Current log-likelihood: -291816.232
+13. Current log-likelihood: -291814.917
+14. Current log-likelihood: -291813.574
+15. Current log-likelihood: -291812.269
+16. Current log-likelihood: -291810.921
+17. Current log-likelihood: -291809.576
+18. Current log-likelihood: -291808.268
+19. Current log-likelihood: -291806.944
+20. Current log-likelihood: -291805.610
+21. Current log-likelihood: -291804.272
+22. Current log-likelihood: -291802.942
+23. Current log-likelihood: -291801.617
+24. Current log-likelihood: -291800.294
+25. Current log-likelihood: -291798.910
+26. Current log-likelihood: -291797.493
+27. Current log-likelihood: -291796.104
+28. Current log-likelihood: -291794.543
+29. Current log-likelihood: -291793.096
+30. Current log-likelihood: -291791.698
+31. Current log-likelihood: -291790.314
+32. Current log-likelihood: -291788.939
+33. Current log-likelihood: -291787.550
+34. Current log-likelihood: -291786.128
+35. Current log-likelihood: -291784.727
+36. Current log-likelihood: -291783.344
+37. Current log-likelihood: -291781.894
+38. Current log-likelihood: -291780.483
+39. Current log-likelihood: -291779.088
+40. Current log-likelihood: -291777.664
+41. Current log-likelihood: -291776.199
+42. Current log-likelihood: -291774.713
+43. Current log-likelihood: -291773.274
+44. Current log-likelihood: -291771.837
+45. Current log-likelihood: -291770.398
+46. Current log-likelihood: -291768.952
+47. Current log-likelihood: -291767.459
+48. Current log-likelihood: -291765.995
+49. Current log-likelihood: -291764.532
+50. Current log-likelihood: -291763.047
+51. Current log-likelihood: -291761.581
+52. Current log-likelihood: -291760.105
+53. Current log-likelihood: -291758.624
+54. Current log-likelihood: -291757.133
+55. Current log-likelihood: -291755.629
+56. Current log-likelihood: -291754.090
+57. Current log-likelihood: -291752.372
+58. Current log-likelihood: -291750.782
+59. Current log-likelihood: -291749.214
+60. Current log-likelihood: -291747.668
+61. Current log-likelihood: -291746.125
+62. Current log-likelihood: -291744.570
+63. Current log-likelihood: -291743.015
+64. Current log-likelihood: -291741.462
+65. Current log-likelihood: -291739.891
+66. Current log-likelihood: -291738.272
+67. Current log-likelihood: -291736.676
+68. Current log-likelihood: -291735.090
+69. Current log-likelihood: -291733.473
+70. Current log-likelihood: -291731.835
+71. Current log-likelihood: -291730.227
+72. Current log-likelihood: -291728.625
+73. Current log-likelihood: -291727.013
+74. Current log-likelihood: -291725.371
+75. Current log-likelihood: -291723.738
+76. Current log-likelihood: -291722.096
+77. Current log-likelihood: -291720.462
+78. Current log-likelihood: -291718.817
+79. Current log-likelihood: -291717.169
+80. Current log-likelihood: -291715.509
+81. Current log-likelihood: -291713.678
+82. Current log-likelihood: -291711.897
+83. Current log-likelihood: -291710.189
+84. Current log-likelihood: -291708.486
+85. Current log-likelihood: -291706.773
+86. Current log-likelihood: -291705.071
+87. Current log-likelihood: -291703.370
+88. Current log-likelihood: -291701.632
+89. Current log-likelihood: -291699.879
+90. Current log-likelihood: -291698.128
+91. Current log-likelihood: -291696.380
+92. Current log-likelihood: -291694.622
+93. Current log-likelihood: -291692.853
+94. Current log-likelihood: -291691.088
+95. Current log-likelihood: -291689.323
+96. Current log-likelihood: -291687.537
+97. Current log-likelihood: -291685.773
+98. Current log-likelihood: -291683.969
+99. Current log-likelihood: -291682.171
+Optimal log-likelihood: -291682.171
+Rate parameters:  A-C: 1.01010  A-G: 5.37468  A-T: 1.23701  C-G: 0.85638  C-T: 5.30662  G-T: 1.00000
+Base frequencies:  A: 0.336  C: 0.165  G: 0.165  T: 0.334
+Proportion of invariable sites: 0.628
+Gamma shape alpha: 0.020
+Parameters optimization took 99 rounds (26.015 sec)
+Time for fast ML tree search: 27.875 seconds
+
+NOTE: ModelFinder requires 360 MB RAM!
+ModelFinder will test up to 968 DNA models (sample size: 201223 epsilon: 0.100) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+  1  JC            306232.741   389 613243.482   613244.993   617216.016
+  2  JC+I          304418.208   390 609616.416   609617.935   613599.162
+  3  JC+G4         305445.022   390 611670.045   611671.563   615652.791
+  4  JC+I+G4       304658.730   391 610099.460   610100.986   614092.418
+  5  JC+R2         305163.913   391 611109.826   611111.352   615102.784
+  6  JC+R3         304375.427   393 609536.854   609538.396   613550.236
+  7  JC+R4         304375.495   395 609540.991   609542.549   613574.798
+ 14  JC+I+R2       304416.179   392 609616.357   609617.892   613619.528
+ 15  JC+I+R3       304373.160   394 609534.320   609535.870   613557.915
++I+R4 reinitialized from +I+R3 with factor 0.500
++I+R4 reinitialized from +I+R3 with factor 0.250
+ 16  JC+I+R4       304373.192   396 609538.383   609539.949   613582.402
+ 28  JC+R3         304375.427   393 609536.854   609538.396   613550.236
+ 37  JC+I+R3       304373.160   394 609534.320   609535.870   613557.915
+ 50  F81+R3        304375.348   393 609536.696   609538.238   613550.078
+ 59  F81+I+R3      304373.092   394 609534.183   609535.733   613557.778
+ 72  F81+F+R3      291947.991   396 584687.982   584689.547   588732.001
+ 81  F81+F+I+R3    291944.876   397 584683.752   584685.326   588737.983
+ 94  K2P+R3        303723.349   394 608234.697   608236.247   612258.292
+103  K2P+I+R3      303721.006   395 608232.013   608233.571   612265.820
+116  K2P+R3        303723.349   394 608234.697   608236.247   612258.292
+125  K2P+I+R3      303721.006   395 608232.013   608233.571   612265.820
+138  HKY+R3        303723.328   394 608234.656   608236.206   612258.250
+147  HKY+I+R3      303720.993   395 608231.986   608233.544   612265.793
+160  HKY+F+R3      291254.336   397 583302.673   583304.247   587356.904
+169  HKY+F+I+R3    291249.490   398 583294.981   583296.562   587359.424
+182  TNe+R3        303723.358   395 608236.715   608238.273   612270.522
+191  TNe+I+R3      303720.981   396 608233.962   608235.528   612277.981
+204  TNe+R3        303723.358   395 608236.715   608238.273   612270.522
+213  TNe+I+R3      303720.981   396 608233.962   608235.528   612277.981
+226  TN+R3         303723.322   395 608236.644   608238.202   612270.451
+235  TN+I+R3       303720.973   396 608233.945   608235.511   612277.964
+248  TN+F+R3       291254.344   398 583304.688   583306.269   587369.131
+257  TN+F+I+R3     291249.464   399 583296.927   583298.517   587371.583
+270  K3P+R3        303712.535   395 608215.070   608216.627   612248.876
+279  K3P+I+R3      303710.337   396 608212.674   608214.240   612256.693
+292  K3P+R3        303712.535   395 608215.070   608216.627   612248.876
+301  K3P+I+R3      303710.337   396 608212.674   608214.240   612256.693
+314  K3Pu+R3       303712.508   395 608215.015   608216.573   612248.822
+323  K3Pu+I+R3     303710.148   396 608212.296   608213.861   612256.315
+336  K3Pu+F+R3     291249.400   398 583294.801   583296.382   587359.244
+345  K3Pu+F+I+R3   291244.883   399 583287.766   583289.356   587362.422
+358  TPM2+R3       303657.956   395 608105.912   608107.470   612139.719
+367  TPM2+I+R3     303656.110   396 608104.219   608105.785   612148.238
+380  TPM2+R3       303657.956   395 608105.912   608107.470   612139.719
+389  TPM2+I+R3     303656.110   396 608104.219   608105.785   612148.238
+402  TPM2u+R3      303657.948   395 608105.895   608107.453   612139.702
+411  TPM2u+I+R3    303656.104   396 608104.208   608105.773   612148.227
+424  TPM2u+F+R3    291243.672   398 583283.344   583284.925   587347.787
+433  TPM2u+F+I+R3  291239.192   399 583276.384   583277.973   587351.039
+446  TPM3+R3       303661.287   395 608112.573   608114.131   612146.380
+455  TPM3+I+R3     303659.337   396 608110.674   608112.240   612154.693
+468  TPM3+R3       303661.287   395 608112.573   608114.131   612146.380
+477  TPM3+I+R3     303659.337   396 608110.674   608112.240   612154.693
+490  TPM3u+R3      303661.218   395 608112.435   608113.993   612146.242
+499  TPM3u+I+R3    303659.267   396 608110.534   608112.099   612154.552
+512  TPM3u+F+R3    291245.065   398 583286.131   583287.712   587350.574
+521  TPM3u+F+I+R3  291240.241   399 583278.481   583280.071   587353.137
+534  TIMe+R3       303712.644   396 608217.287   608218.853   612261.306
+543  TIMe+I+R3     303710.237   397 608214.473   608216.047   612268.705
+556  TIMe+R3       303712.644   396 608217.287   608218.853   612261.306
+565  TIMe+I+R3     303710.237   397 608214.473   608216.047   612268.705
+578  TIM+R3        303712.460   396 608216.919   608218.485   612260.938
+587  TIM+I+R3      303710.121   397 608214.243   608215.816   612268.474
+600  TIM+F+R3      291249.410   399 583296.820   583298.410   587371.476
+609  TIM+F+I+R3    291244.805   400 583289.610   583291.207   587374.477
+622  TIM2e+R3      303658.793   396 608109.587   608111.153   612153.606
+631  TIM2e+I+R3    303656.780   397 608107.560   608109.133   612161.791
+644  TIM2e+R3      303658.793   396 608109.587   608111.152   612153.606
+653  TIM2e+I+R3    303656.780   397 608107.560   608109.133   612161.791
+666  TIM2+R3       303657.933   396 608107.865   608109.431   612151.884
+675  TIM2+I+R3     303656.096   397 608106.192   608107.766   612160.423
+688  TIM2+F+R3     291243.527   399 583285.055   583286.644   587359.710
+697  TIM2+F+I+R3   291239.114   400 583278.228   583279.825   587363.095
+710  TIM3e+R3      303661.001   396 608114.002   608115.568   612158.021
+719  TIM3e+I+R3    303659.160   397 608112.319   608113.893   612166.550
+732  TIM3e+R3      303661.001   396 608114.002   608115.568   612158.021
+741  TIM3e+I+R3    303659.160   397 608112.319   608113.893   612166.550
+754  TIM3+R3       303660.999   396 608113.999   608115.564   612158.018
+763  TIM3+I+R3     303659.135   397 608112.270   608113.843   612166.501
+776  TIM3+F+R3     291244.731   399 583287.462   583289.051   587362.117
+785  TIM3+F+I+R3   291240.164   400 583280.328   583281.926   587365.196
+798  TVMe+R3       303593.337   397 607980.675   607982.248   612034.906
+807  TVMe+I+R3     303591.906   398 607979.812   607981.394   612044.256
+820  TVMe+R3       303593.337   397 607980.675   607982.248   612034.906
+829  TVMe+I+R3     303591.906   398 607979.812   607981.394   612044.256
+842  TVM+R3        303593.303   397 607980.606   607982.179   612034.837
+851  TVM+I+R3      303591.726   398 607979.452   607981.033   612043.895
+864  TVM+F+R3      291233.428   400 583266.855   583268.453   587351.723
+873  TVM+F+I+R3    291229.340   401 583260.680   583262.286   587355.760
+886  SYM+R3        303593.245   398 607982.489   607984.071   612046.933
+895  SYM+I+R3      303591.682   399 607981.364   607982.954   612056.020
+908  SYM+R3        303593.245   398 607982.489   607984.071   612046.933
+917  SYM+I+R3      303591.682   399 607981.364   607982.954   612056.020
+930  GTR+R3        303593.225   398 607982.451   607984.033   612046.894
+939  GTR+I+R3      303591.648   399 607981.297   607982.886   612055.952
+952  GTR+F+R3      291233.429   401 583268.859   583270.464   587363.939
+961  GTR+F+I+R3    291229.283   402 583262.566   583264.179   587367.858
+Akaike Information Criterion:           TVM+F+I+R3
+Corrected Akaike Information Criterion: TVM+F+I+R3
+Bayesian Information Criterion:         TPM2u+F+R3
+Best-fit model: TPM2u+F+R3 chosen according to BIC
+
+All model information printed to dataset2_west_africa.aln.model.gz
+CPU time for ModelFinder: 502.212 seconds (0h:8m:22s)
+Wall-clock time for ModelFinder: 185.572 seconds (0h:3m:5s)
+
+NOTE: 108 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -291244.430
+2. Current log-likelihood: -291244.170
+3. Current log-likelihood: -291243.975
+Optimal log-likelihood: -291243.881
+Rate parameters:  A-C: 1.57243  A-G: 6.40689  A-T: 1.57243  C-G: 1.00000  C-T: 6.40689  G-T: 1.00000
+Base frequencies:  A: 0.336  C: 0.165  G: 0.165  T: 0.334
+Site proportion and rates:  (0.642,0.000) (0.351,1.254) (0.006,89.199)
+Parameters optimization took 3 rounds (0.595 sec)
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 0.07377 secs using 396.3% CPU
+Computing ML distances took 0.074720 sec (of wall-clock time) 0.295322 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 0.00018692 secs using 329% CPU
+Constructing RapidNJ tree: done in 0.00853682 secs using 126.2% CPU
+Computing RapidNJ tree took 0.008754 sec (of wall-clock time) 0.011429 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -291496.052
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 1.552 second
+Computing log-likelihood of 98 initial trees ... 3.852 seconds
+Current best score: -291233.053
+
+Do NNI search on 20 best initial trees
+Optimizing NNI: done in 0.869673 secs using 246% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -291227.515
+Optimizing NNI: done in 0.887193 secs using 246.5% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 2: -291224.556
+Optimizing NNI: done in 0.287057 secs using 251.5% CPU
+Optimizing NNI: done in 0.964176 secs using 251.7% CPU
+Optimizing NNI: done in 1.01693 secs using 246.1% CPU
+Optimizing NNI: done in 0.917801 secs using 247.8% CPU
+Optimizing NNI: done in 0.848389 secs using 244.8% CPU
+Optimizing NNI: done in 0.8889 secs using 246.3% CPU
+Optimizing NNI: done in 1.11234 secs using 247.3% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 9: -291223.492
+Optimizing NNI: done in 0.827935 secs using 247% CPU
+Iteration 10 / LogL: -291232.987 / Time: 0h:3m:21s
+Optimizing NNI: done in 1.00625 secs using 246.9% CPU
+Optimizing NNI: done in 0.831884 secs using 246% CPU
+Optimizing NNI: done in 0.824172 secs using 246.8% CPU
+Optimizing NNI: done in 0.748521 secs using 245.8% CPU
+Optimizing NNI: done in 0.859445 secs using 248.6% CPU
+Optimizing NNI: done in 0.671383 secs using 245.9% CPU
+Optimizing NNI: done in 0.977779 secs using 247.7% CPU
+Optimizing NNI: done in 1.04328 secs using 248.4% CPU
+Optimizing NNI: done in 1.04433 secs using 245.6% CPU
+Optimizing NNI: done in 1.07145 secs using 247.5% CPU
+Iteration 20 / LogL: -291234.828 / Time: 0h:3m:30s
+Finish initializing candidate tree set (20)
+Current best tree score: -291223.492 / CPU time: 24.081
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Optimizing NNI: done in 1.02235 secs using 243.3% CPU
+Optimizing NNI: done in 1.18057 secs using 249.8% CPU
+Optimizing NNI: done in 1.13261 secs using 250.9% CPU
+Optimizing NNI: done in 0.909976 secs using 241.7% CPU
+Optimizing NNI: done in 0.848658 secs using 243.2% CPU
+Optimizing NNI: done in 0.865899 secs using 247.4% CPU
+Optimizing NNI: done in 1.02334 secs using 243.1% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 27: -291222.886
+Optimizing NNI: done in 1.07196 secs using 242.3% CPU
+Optimizing NNI: done in 0.968007 secs using 242.6% CPU
+Optimizing NNI: done in 0.926458 secs using 240.2% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 30: -291221.317
+Iteration 30 / LogL: -291221.317 / Time: 0h:3m:41s (0h:2m:2s left)
+Optimizing NNI: done in 1.17688 secs using 243.6% CPU
+Optimizing NNI: done in 1.00373 secs using 245.6% CPU
+Optimizing NNI: done in 0.860357 secs using 243.5% CPU
+Optimizing NNI: done in 0.984764 secs using 241.1% CPU
+Optimizing NNI: done in 0.93175 secs using 242% CPU
+Optimizing NNI: done in 1.19201 secs using 245.1% CPU
+Optimizing NNI: done in 0.980521 secs using 242.5% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 37: -291220.779
+Optimizing NNI: done in 1.14655 secs using 241.6% CPU
+Optimizing NNI: done in 0.834563 secs using 243.7% CPU
+Optimizing NNI: done in 0.881782 secs using 243.4% CPU
+Iteration 40 / LogL: -291223.687 / Time: 0h:3m:51s (0h:1m:54s left)
+Optimizing NNI: done in 0.999998 secs using 240.9% CPU
+Optimizing NNI: done in 0.905525 secs using 240.1% CPU
+Optimizing NNI: done in 1.13151 secs using 241.3% CPU
+Optimizing NNI: done in 0.829683 secs using 241.9% CPU
+Optimizing NNI: done in 0.823026 secs using 240.4% CPU
+Optimizing NNI: done in 1.13283 secs using 247.1% CPU
+Optimizing NNI: done in 0.990773 secs using 241.7% CPU
+Optimizing NNI: done in 0.888839 secs using 241% CPU
+Optimizing NNI: done in 1.05584 secs using 242.6% CPU
+Optimizing NNI: done in 0.939875 secs using 242.8% CPU
+Iteration 50 / LogL: -291221.925 / Time: 0h:4m:1s (0h:1m:38s left)
+Optimizing NNI: done in 0.995846 secs using 248.7% CPU
+Optimizing NNI: done in 0.864946 secs using 249.6% CPU
+Optimizing NNI: done in 1.09085 secs using 251.7% CPU
+Optimizing NNI: done in 0.870092 secs using 251% CPU
+Optimizing NNI: done in 0.911903 secs using 249.9% CPU
+Optimizing NNI: done in 1.02701 secs using 252.1% CPU
+Optimizing NNI: done in 1.07393 secs using 245.1% CPU
+Optimizing NNI: done in 1.14984 secs using 243.4% CPU
+Optimizing NNI: done in 0.861196 secs using 241.1% CPU
+Optimizing NNI: done in 0.954743 secs using 240.7% CPU
+Iteration 60 / LogL: -291273.867 / Time: 0h:4m:11s (0h:1m:25s left)
+Optimizing NNI: done in 1.06203 secs using 243.4% CPU
+Optimizing NNI: done in 1.21027 secs using 242% CPU
+Optimizing NNI: done in 0.986332 secs using 241.8% CPU
+Optimizing NNI: done in 1.12718 secs using 243.9% CPU
+Optimizing NNI: done in 0.983297 secs using 241.4% CPU
+Optimizing NNI: done in 0.861972 secs using 240.3% CPU
+Optimizing NNI: done in 0.926748 secs using 246.7% CPU
+Optimizing NNI: done in 0.995686 secs using 242.1% CPU
+Optimizing NNI: done in 1.00747 secs using 241.6% CPU
+Optimizing NNI: done in 1.01545 secs using 242.7% CPU
+Iteration 70 / LogL: -291227.609 / Time: 0h:4m:21s (0h:1m:13s left)
+Optimizing NNI: done in 1.21776 secs using 243.1% CPU
+Optimizing NNI: done in 0.906362 secs using 240.1% CPU
+Optimizing NNI: done in 1.08479 secs using 242.4% CPU
+Optimizing NNI: done in 1.14576 secs using 242.6% CPU
+Optimizing NNI: done in 0.993332 secs using 241.4% CPU
+Optimizing NNI: done in 1.03364 secs using 242.7% CPU
+Optimizing NNI: done in 1.02096 secs using 244.5% CPU
+Optimizing NNI: done in 1.03791 secs using 243.1% CPU
+Optimizing NNI: done in 0.961194 secs using 242.5% CPU
+Optimizing NNI: done in 1.27172 secs using 246.8% CPU
+Iteration 80 / LogL: -291224.377 / Time: 0h:4m:32s (0h:1m:2s left)
+Optimizing NNI: done in 1.03404 secs using 253.6% CPU
+Optimizing NNI: done in 1.18279 secs using 253.7% CPU
+Optimizing NNI: done in 1.07872 secs using 250.6% CPU
+Optimizing NNI: done in 0.915352 secs using 250% CPU
+Optimizing NNI: done in 0.72158 secs using 248.7% CPU
+Optimizing NNI: done in 1.04298 secs using 244.2% CPU
+Optimizing NNI: done in 0.908694 secs using 247.3% CPU
+Optimizing NNI: done in 1.12029 secs using 243.2% CPU
+Optimizing NNI: done in 1.19576 secs using 242.8% CPU
+Optimizing NNI: done in 0.890418 secs using 240.9% CPU
+Iteration 90 / LogL: -291226.595 / Time: 0h:4m:42s (0h:0m:51s left)
+Optimizing NNI: done in 1.05507 secs using 241.4% CPU
+Optimizing NNI: done in 1.18599 secs using 243.2% CPU
+Optimizing NNI: done in 1.23872 secs using 244.3% CPU
+Optimizing NNI: done in 1.04453 secs using 244.1% CPU
+Optimizing NNI: done in 0.942587 secs using 243.4% CPU
+Optimizing NNI: done in 1.08917 secs using 245.9% CPU
+Optimizing NNI: done in 0.976042 secs using 243.9% CPU
+Optimizing NNI: done in 1.07605 secs using 247% CPU
+Optimizing NNI: done in 0.930459 secs using 242.3% CPU
+Optimizing NNI: done in 1.2369 secs using 242.8% CPU
+Iteration 100 / LogL: -291287.416 / Time: 0h:4m:53s (0h:0m:40s left)
+Optimizing NNI: done in 0.973157 secs using 243.5% CPU
+Optimizing NNI: done in 1.04381 secs using 242.4% CPU
+Optimizing NNI: done in 1.01234 secs using 244.1% CPU
+Optimizing NNI: done in 0.991443 secs using 243.3% CPU
+Optimizing NNI: done in 0.894561 secs using 240.8% CPU
+Optimizing NNI: done in 0.973154 secs using 244% CPU
+Optimizing NNI: done in 0.919704 secs using 245.1% CPU
+Optimizing NNI: done in 0.978719 secs using 242.7% CPU
+Optimizing NNI: done in 1.14757 secs using 249.7% CPU
+Optimizing NNI: done in 1.0046 secs using 251.3% CPU
+Iteration 110 / LogL: -291300.773 / Time: 0h:5m:3s (0h:0m:29s left)
+Optimizing NNI: done in 0.883829 secs using 249.2% CPU
+Optimizing NNI: done in 1.00433 secs using 251.5% CPU
+Optimizing NNI: done in 0.880266 secs using 249.7% CPU
+Optimizing NNI: done in 1.08884 secs using 250% CPU
+Optimizing NNI: done in 0.977151 secs using 240.6% CPU
+Optimizing NNI: done in 0.954838 secs using 240.4% CPU
+Optimizing NNI: done in 0.985971 secs using 244.4% CPU
+Optimizing NNI: done in 0.887059 secs using 242.8% CPU
+Optimizing NNI: done in 1.07971 secs using 243.1% CPU
+Optimizing NNI: done in 1.01632 secs using 242.5% CPU
+Iteration 120 / LogL: -291285.398 / Time: 0h:5m:13s (0h:0m:18s left)
+Optimizing NNI: done in 0.983825 secs using 241.7% CPU
+Optimizing NNI: done in 0.927956 secs using 240.3% CPU
+Optimizing NNI: done in 1.01376 secs using 242% CPU
+Optimizing NNI: done in 1.04579 secs using 243.8% CPU
+Optimizing NNI: done in 0.886366 secs using 241.5% CPU
+Optimizing NNI: done in 0.890769 secs using 242.2% CPU
+Optimizing NNI: done in 0.909956 secs using 240.3% CPU
+Optimizing NNI: done in 1.16663 secs using 246.1% CPU
+Optimizing NNI: done in 0.931383 secs using 240.3% CPU
+Optimizing NNI: done in 1.2353 secs using 244.1% CPU
+Iteration 130 / LogL: -291222.858 / Time: 0h:5m:23s (0h:0m:7s left)
+Optimizing NNI: done in 0.868189 secs using 240.1% CPU
+Optimizing NNI: done in 0.914571 secs using 242.7% CPU
+Optimizing NNI: done in 1.08728 secs using 242% CPU
+Optimizing NNI: done in 1.09164 secs using 245.1% CPU
+Optimizing NNI: done in 0.965123 secs using 241.7% CPU
+Optimizing NNI: done in 1.14294 secs using 245.2% CPU
+Optimizing NNI: done in 0.913993 secs using 243% CPU
+Optimizing NNI: done in 0.891143 secs using 243.1% CPU
+TREE SEARCH COMPLETED AFTER 138 ITERATIONS / Time: 0h:5m:31s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -291220.779
+2. Current log-likelihood: -291220.751
+Optimal log-likelihood: -291220.744
+Rate parameters:  A-C: 1.47540  A-G: 6.28009  A-T: 1.47540  C-G: 1.00000  C-T: 6.28009  G-T: 1.00000
+Base frequencies:  A: 0.336  C: 0.165  G: 0.165  T: 0.334
+Site proportion and rates:  (0.642,0.000) (0.351,1.250) (0.006,88.143)
+Parameters optimization took 2 rounds (0.366 sec)
+BEST SCORE FOUND : -291220.744
+Ancestral state probabilities printed to dataset2_west_africa.aln.state
+Total tree length: 0.013
+
+Total number of iterations: 138
+CPU time used for tree search: 352.853 sec (0h:5m:52s)
+Wall-clock time used for tree search: 144.570 sec (0h:2m:24s)
+Total CPU time used: 892.763 sec (0h:14m:52s)
+Total wall-clock time used: 430.934 sec (0h:7m:10s)
+
+Analysis results written to: 
+  IQ-TREE report:                dataset2_west_africa.aln.iqtree
+  Maximum-likelihood tree:       dataset2_west_africa.aln.treefile
+  Likelihood distances:          dataset2_west_africa.aln.mldist
+  Ancestral state:               dataset2_west_africa.aln.state
+  Screen log file:               dataset2_west_africa.aln.log
+
+Date and Time: Sun May 24 04:17:35 2026

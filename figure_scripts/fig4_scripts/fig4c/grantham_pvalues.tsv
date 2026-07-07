@@ -1,0 +1,19 @@
+dataset	shape	n_mut	n_unm	mean_mut	mean_unm	mean_diff	mwu_p	tt_p	perm_p
+dataset1	stem=5,loop=3	1	24	56	61.2917	-5.29167			
+dataset1	stem=6,loop=3	0	5		20.4				
+dataset1	stem=7,loop=3	0	8		34.5				
+dataset1	stem=5,loop=4	0	27		47.7037				
+dataset1	stem=6,loop=4	0	7		74.4286				
+dataset1	all_combined	1	73	56	54.3562	1.64384			
+dataset2_west_africa	stem=5,loop=3	4	21	44.25	64.2857	-20.0357	0.522924	0.446614	0.513
+dataset2_west_africa	stem=6,loop=3	1	4	0	25.5	-25.5			
+dataset2_west_africa	stem=7,loop=3	4	4	19.75	49.25	-29.5	0.45677	0.448229	0.542857
+dataset2_west_africa	stem=5,loop=4	3	24	0	53.6667	-53.6667	0.0590633	0.000197567	0.112821
+dataset2_west_africa	stem=6,loop=4	2	5	0	104.2	-104.2	0.143152	0.0322312	0.285714
+dataset2_west_africa	all_combined	14	60	18.2857	62.8	-44.5143	0.00311485	0.00030293	0.0032
+dataset3_gisaid	stem=5,loop=3	6	19	70.8333	58	12.8333	0.771572	0.654178	0.596
+dataset3_gisaid	stem=6,loop=3	1	4	0	25.5	-25.5			
+dataset3_gisaid	stem=7,loop=3	3	5	7.66667	50.6	-42.9333	0.124253	0.167967	0.142857
+dataset3_gisaid	stem=5,loop=4	2	25	0	51.52	-51.52	0.135146	0.000216545	0.31339
+dataset3_gisaid	stem=6,loop=4	2	5	105.5	62	43.5	0.530335	0.548887	0.571429
+dataset3_gisaid	all_combined	14	60	47.0714	56.0833	-9.0119	0.371381	0.611995	0.6192

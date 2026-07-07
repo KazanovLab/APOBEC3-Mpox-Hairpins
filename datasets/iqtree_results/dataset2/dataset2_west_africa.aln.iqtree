@@ -1,0 +1,620 @@
+IQ-TREE 3.0.1 built May  5 2025
+
+Input file name: dataset2_west_africa.aln
+Type of analysis: ModelFinder + tree reconstruction
+Random seed number: 534840
+
+REFERENCES
+----------
+
+To cite IQ-TREE 3 please use:
+
+Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Hector Banos, Andrew J. Roger,
+Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W. Hahn,
+Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025)
+IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
+Submitted.
+
+Please also cite the following paper(s) for the feature(s) that you used:
+
+To cite ModelFinder please use: 
+
+Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler,
+and Lars S Jermiin (2017) ModelFinder: Fast model selection for
+accurate phylogenetic estimates. Nature Methods, 14:587–589.
+https://doi.org/10.1038/nmeth.4285
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 196 sequences with 201223 nucleotide sites
+Number of constant sites: 199325 (= 99.0568% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 199325 (= 99.0568% of all sites)
+Number of parsimony informative sites: 765
+Number of distinct site patterns: 5673
+
+ModelFinder
+-----------
+
+Best-fit model according to BIC: TPM2u+F+R3
+
+List of models sorted by BIC scores: 
+
+Model                  LogL         AIC      w-AIC        AICc     w-AICc         BIC      w-BIC
+TPM2u+F+R3      -291243.672  583283.344 - 8.25e-06  583284.925 - 8.36e-06  587347.787 +     0.59
+TPM3u+F+R3      -291245.065  583286.131 - 2.05e-06  583287.712 - 2.07e-06  587350.574 +    0.147
+TPM2u+F+I+R3    -291239.192  583276.384 - 0.000268  583277.973 -  0.00027  587351.039 +    0.116
+TVM+F+R3        -291233.428  583266.855 -   0.0314  583268.453 -   0.0316  587351.723 +   0.0825
+TPM3u+F+I+R3    -291240.241  583278.481 - 9.39e-05  583280.071 - 9.47e-05  587353.137 -   0.0407
+TVM+F+I+R3      -291229.340  583260.680 +    0.688  583262.286 +    0.689  587355.760 -    0.011
+HKY+F+R3        -291254.336  583302.673 - 5.24e-10  583304.247 - 5.33e-10  587356.904 -  0.00619
+K3Pu+F+R3       -291249.400  583294.801 - 2.68e-08  583296.382 - 2.72e-08  587359.244 -  0.00192
+HKY+F+I+R3      -291249.490  583294.981 - 2.45e-08  583296.562 - 2.48e-08  587359.424 -  0.00175
+TIM2+F+R3       -291243.527  583285.055 - 3.51e-06  583286.644 - 3.54e-06  587359.710 -  0.00152
+TIM3+F+R3       -291244.731  583287.462 - 1.05e-06  583289.051 - 1.06e-06  587362.117 - 0.000456
+K3Pu+F+I+R3     -291244.883  583287.766 - 9.04e-07  583289.356 - 9.12e-07  587362.422 - 0.000392
+TIM2+F+I+R3     -291239.114  583278.228 - 0.000107  583279.825 - 0.000107  587363.095 -  0.00028
+GTR+F+R3        -291233.430  583268.859 -   0.0115  583270.464 -   0.0115  587363.939 - 0.000184
+TIM3+F+I+R3     -291240.164  583280.328 - 3.73e-05  583281.926 - 3.75e-05  587365.196 - 9.79e-05
+GTR+F+I+R3      -291229.283  583262.566 +    0.268  583264.179 +    0.267  587367.858 - 2.59e-05
+TN+F+R3         -291254.344  583304.688 - 1.91e-10  583306.269 - 1.94e-10  587369.131 - 1.37e-05
+TIM+F+R3        -291249.410  583296.820 - 9.78e-09  583298.410 - 9.86e-09  587371.476 - 4.24e-06
+TN+F+I+R3       -291249.464  583296.927 - 9.27e-09  583298.517 - 9.35e-09  587371.583 - 4.02e-06
+TIM+F+I+R3      -291244.805  583289.610 -  3.6e-07  583291.207 - 3.61e-07  587374.477 - 9.45e-07
+F81+F+R3        -291947.991  584687.982 -   8e-311  584689.547 - 8.17e-311  588732.001 - 1.56e-301
+F81+F+I+R3      -291944.876  584683.752 - 6.63e-310  584685.326 - 6.75e-310  588737.983 - 7.83e-303
+TVM+R3          -303593.303  607980.606 -        0  607982.179 -        0  612034.837 -        0
+TVMe+R3         -303593.337  607980.675 -        0  607982.248 -        0  612034.906 -        0
+TVMe+R3         -303593.337  607980.675 -        0  607982.248 -        0  612034.906 -        0
+TVM+I+R3        -303591.726  607979.452 -        0  607981.033 -        0  612043.895 -        0
+TVMe+I+R3       -303591.906  607979.812 -        0  607981.394 -        0  612044.256 -        0
+TVMe+I+R3       -303591.906  607979.812 -        0  607981.394 -        0  612044.256 -        0
+GTR+R3          -303593.226  607982.451 -        0  607984.033 -        0  612046.894 -        0
+SYM+R3          -303593.245  607982.489 -        0  607984.071 -        0  612046.933 -        0
+SYM+R3          -303593.245  607982.489 -        0  607984.071 -        0  612046.933 -        0
+GTR+I+R3        -303591.648  607981.297 -        0  607982.886 -        0  612055.952 -        0
+SYM+I+R3        -303591.682  607981.364 -        0  607982.954 -        0  612056.020 -        0
+SYM+I+R3        -303591.682  607981.364 -        0  607982.954 -        0  612056.020 -        0
+TPM2u+R3        -303657.948  608105.895 -        0  608107.453 -        0  612139.702 -        0
+TPM2+R3         -303657.956  608105.912 -        0  608107.470 -        0  612139.719 -        0
+TPM2+R3         -303657.956  608105.912 -        0  608107.470 -        0  612139.719 -        0
+TPM3u+R3        -303661.218  608112.435 -        0  608113.993 -        0  612146.242 -        0
+TPM3+R3         -303661.287  608112.573 -        0  608114.131 -        0  612146.380 -        0
+TPM3+R3         -303661.287  608112.573 -        0  608114.131 -        0  612146.380 -        0
+TPM2u+I+R3      -303656.104  608104.208 -        0  608105.773 -        0  612148.227 -        0
+TPM2+I+R3       -303656.110  608104.219 -        0  608105.785 -        0  612148.238 -        0
+TPM2+I+R3       -303656.110  608104.219 -        0  608105.785 -        0  612148.238 -        0
+TIM2+R3         -303657.933  608107.865 -        0  608109.431 -        0  612151.884 -        0
+TIM2e+R3        -303658.793  608109.587 -        0  608111.152 -        0  612153.606 -        0
+TIM2e+R3        -303658.793  608109.587 -        0  608111.152 -        0  612153.606 -        0
+TPM3u+I+R3      -303659.267  608110.534 -        0  608112.099 -        0  612154.553 -        0
+TPM3+I+R3       -303659.337  608110.674 -        0  608112.240 -        0  612154.693 -        0
+TPM3+I+R3       -303659.337  608110.674 -        0  608112.240 -        0  612154.693 -        0
+TIM3+R3         -303660.999  608113.999 -        0  608115.564 -        0  612158.018 -        0
+TIM3e+R3        -303661.001  608114.002 -        0  608115.568 -        0  612158.021 -        0
+TIM3e+R3        -303661.001  608114.002 -        0  608115.568 -        0  612158.021 -        0
+TIM2+I+R3       -303656.096  608106.192 -        0  608107.766 -        0  612160.424 -        0
+TIM2e+I+R3      -303656.780  608107.560 -        0  608109.133 -        0  612161.791 -        0
+TIM2e+I+R3      -303656.780  608107.560 -        0  608109.133 -        0  612161.791 -        0
+TIM3+I+R3       -303659.135  608112.270 -        0  608113.843 -        0  612166.501 -        0
+TIM3e+I+R3      -303659.160  608112.319 -        0  608113.893 -        0  612166.550 -        0
+TIM3e+I+R3      -303659.160  608112.319 -        0  608113.893 -        0  612166.550 -        0
+K3Pu+R3         -303712.508  608215.015 -        0  608216.573 -        0  612248.822 -        0
+K3P+R3          -303712.535  608215.070 -        0  608216.627 -        0  612248.876 -        0
+K3P+R3          -303712.535  608215.070 -        0  608216.627 -        0  612248.876 -        0
+K3Pu+I+R3       -303710.148  608212.296 -        0  608213.861 -        0  612256.315 -        0
+K3P+I+R3        -303710.337  608212.674 -        0  608214.240 -        0  612256.693 -        0
+K3P+I+R3        -303710.337  608212.674 -        0  608214.240 -        0  612256.693 -        0
+HKY+R3          -303723.328  608234.656 -        0  608236.206 -        0  612258.250 -        0
+K2P+R3          -303723.349  608234.697 -        0  608236.247 -        0  612258.292 -        0
+K2P+R3          -303723.349  608234.697 -        0  608236.247 -        0  612258.292 -        0
+TIM+R3          -303712.460  608216.919 -        0  608218.485 -        0  612260.938 -        0
+TIMe+R3         -303712.644  608217.287 -        0  608218.853 -        0  612261.306 -        0
+TIMe+R3         -303712.644  608217.287 -        0  608218.853 -        0  612261.306 -        0
+HKY+I+R3        -303720.993  608231.986 -        0  608233.544 -        0  612265.793 -        0
+K2P+I+R3        -303721.006  608232.013 -        0  608233.571 -        0  612265.820 -        0
+K2P+I+R3        -303721.006  608232.013 -        0  608233.571 -        0  612265.820 -        0
+TIM+I+R3        -303710.121  608214.243 -        0  608215.816 -        0  612268.474 -        0
+TIMe+I+R3       -303710.237  608214.473 -        0  608216.047 -        0  612268.705 -        0
+TIMe+I+R3       -303710.237  608214.473 -        0  608216.047 -        0  612268.705 -        0
+TN+R3           -303723.322  608236.644 -        0  608238.202 -        0  612270.451 -        0
+TNe+R3          -303723.358  608236.715 -        0  608238.273 -        0  612270.522 -        0
+TNe+R3          -303723.358  608236.715 -        0  608238.273 -        0  612270.522 -        0
+TN+I+R3         -303720.973  608233.945 -        0  608235.511 -        0  612277.964 -        0
+TNe+I+R3        -303720.981  608233.962 -        0  608235.528 -        0  612277.981 -        0
+TNe+I+R3        -303720.981  608233.962 -        0  608235.528 -        0  612277.981 -        0
+F81+R3          -304375.348  609536.696 -        0  609538.238 -        0  613550.078 -        0
+JC+R3           -304375.427  609536.854 -        0  609538.396 -        0  613550.236 -        0
+JC+R3           -304375.427  609536.854 -        0  609538.396 -        0  613550.236 -        0
+F81+I+R3        -304373.092  609534.183 -        0  609535.733 -        0  613557.778 -        0
+JC+I+R3         -304373.160  609534.320 -        0  609535.870 -        0  613557.915 -        0
+JC+I+R3         -304373.160  609534.320 -        0  609535.870 -        0  613557.915 -        0
+JC+R4           -304375.495  609540.991 -        0  609542.549 -        0  613574.798 -        0
+JC+I+R4         -304373.192  609538.383 -        0  609539.949 -        0  613582.402 -        0
+JC+I            -304418.208  609616.416 -        0  609617.935 -        0  613599.162 -        0
+JC+I+R2         -304416.179  609616.357 -        0  609617.892 -        0  613619.528 -        0
+JC+I+G4         -304658.730  610099.460 -        0  610100.986 -        0  614092.418 -        0
+JC+R2           -305163.913  611109.826 -        0  611111.352 -        0  615102.784 -        0
+JC+G4           -305445.022  611670.045 -        0  611671.563 -        0  615652.791 -        0
+JC              -306232.741  613243.482 -        0  613244.993 -        0  617216.016 -        0
+
+AIC, w-AIC   : Akaike information criterion scores and weights.
+AICc, w-AICc : Corrected AIC scores and weights.
+BIC, w-BIC   : Bayesian information criterion scores and weights.
+
+Plus signs denote the 95% confidence sets.
+Minus signs denote significant exclusion.
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: TPM2u+F+R3
+
+Rate parameter R:
+
+  A-C: 1.4754
+  A-G: 6.2801
+  A-T: 1.4754
+  C-G: 1.0000
+  C-T: 6.2801
+  G-T: 1.0000
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.3357
+  pi(C) = 0.1652
+  pi(G) = 0.1649
+  pi(T) = 0.3341
+
+Rate matrix Q:
+
+  A   -0.8654     0.119    0.5057    0.2407
+  C    0.2418    -1.347   0.08053     1.024
+  G     1.029   0.08067    -1.273    0.1631
+  T    0.2418    0.5066   0.08053   -0.8289
+
+Model of rate heterogeneity: FreeRate with 3 categories
+Site proportion and rates:  (0.6425,5.92e-16) (0.3512,1.25) (0.006366,88.14)
+
+ Category  Relative_rate  Proportion
+  1         5.92e-16       0.6425
+  2         1.25           0.3512
+  3         88.14          0.006366
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -291220.7441 (s.e. 618.4697)
+Unconstrained log-likelihood (without tree): -685069.0431
+Number of free parameters (#branches + #model parameters): 398
+Akaike information criterion (AIC) score: 583237.4881
+Corrected Akaike information criterion (AICc) score: 583239.0696
+Bayesian information criterion (BIC) score: 587301.9314
+
+Total tree length (sum of branch lengths): 0.0126
+Sum of internal branch lengths: 0.0041 (32.2790% of tree length)
+
+WARNING: 90 near-zero internal branches (<0.0000) should be treated with caution
+         Such branches are denoted by '**' in the figure below
+
+NOTE: Tree is UNROOTED although outgroup taxon 'NC_063383.1' is drawn at root
+
++**NC_063383.1
+| (Node1)
+|                               +--KJ642617_CladeIIb_Nigeria_SouthEast_1971_04_Abia
+|                          +----| (Node11)
+|                          |    |                 +--PP860029_CladeIIb_Cameroon_NorthWest_2022_11
+|                          |    |              +**| (Node17)
+|                          |    |              |  +**PP860025_CladeIIb_Cameroon_NorthWest_2022_11
+|                          |    |           +**| (Node16)
+|                          |    |           |  +**PP860033_CladeIIb_Cameroon_SouthWest_2022
+|                          |    |        +--| (Node15)
+|                          |    |        |  +**PP860027_CladeIIb_Cameroon_SouthWest_2022_10
+|                          |    |     +--| (Node14)
+|                          |    |     |  |  +--PP860030_CladeIIb_Cameroon_SouthWest_2022_09
+|                          |    |     |  +**| (Node18)
+|                          |    |     |     |  +--PP852990_CladeIIb_Nigeria_SouthSouth_2022_09_Akwalbom
+|                          |    |     |     +--| (Node19)
+|                          |    |     |        +--PP852957_CladeIIb_Nigeria_SouthSouth_2022_01_Akwalbom
+|                          |    |  +--| (Node13)
+|                          |    |  |  +--PP860031_CladeIIb_Cameroon_Centre_2021_07
+|                          |    +--| (Node12)
+|                          |       |     +--PP860026_CladeIIb_Cameroon_NorthWest_2018_05
+|                          |       +-----| (Node20)
+|                          |             |  +**PP860028_CladeIIb_Cameroon_SouthWest_2022_10
+|                          |             +--| (Node21)
+|                          |                +**PP860032_CladeIIb_Cameroon_SouthWest_2022
+|                       +**| (Node10)
+|                       |  +--PP852949__CladeIIb_Nigeria_SouthEast_2022_12_Abia
+|                    +--| (Node9)
+|                    |  +--PP852947_CladeIIb_Nigeria_SouthEast_2022_01_Abia
+|                 +**| (Node8)
+|                 |  |                 +**OP535335_CladeIIb_Nigeria_SouthSouth_2017_10_Bayelsa
+|                 |  |              +**| (Node27)
+|                 |  |              |  +**OP535323_CladeIIb_Nigeria_SouthSouth_2017_10_Bayelsa
+|                 |  |           +--| (Node26)
+|                 |  |           |  |  +--OP612677_CladeIIb_Nigeria_SouthSouth_2019_03_Rivers
+|                 |  |           |  +--| (Node28)
+|                 |  |           |     |           +------PP852993_CladeIIb_Nigeria_SouthEast_2022_Ebonyi
+|                 |  |           |     |        +--| (Node32)
+|                 |  |           |     |        |  +**PP852954_CladeIIb_Nigeria_SouthEast_2023_01_Abia
+|                 |  |           |     |     +--| (Node31)
+|                 |  |           |     |     |  |  +--PP852953_CladeIIb_Nigeria_SouthEast_2022_Imo
+|                 |  |           |     |     |  +--| (Node33)
+|                 |  |           |     |     |     +-------------PP853038_CladeIIb_Nigeria_SouthSouth_2022_09_Delta
+|                 |  |           |     |  +--| (Node30)
+|                 |  |           |     |  |  +---PP853054_CladeIIb_Nigeria_SouthWest_2022_09_Ogun
+|                 |  |           |     +--| (Node29)
+|                 |  |           |        |     +--OP413718_CladeIIb_Nigeria_NorthCentral_2022_08_unknown
+|                 |  |           |        |  +--| (Node35)
+|                 |  |           |        |  |  |       +--PP853003_CladeIIb_Nigeria_SouthWest_2022_09_Ogun
+|                 |  |           |        |  |  +-------| (Node36)
+|                 |  |           |        |  |          +-----------PP852985_CladeIIb_Nigeria_SouthEast_2022_Ebonyi
+|                 |  |           |        +--| (Node34)
+|                 |  |           |           +--PP852984_CladeIIb_Nigeria_SouthEast_2022_10_Imo
+|                 |  |        +--| (Node25)
+|                 |  |        |  +--MK783033_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers
+|                 |  |     +**| (Node24)
+|                 |  |     |  |     +--MK783032_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers
+|                 |  |     |  |  +--| (Node38)
+|                 |  |     |  |  |  +**OP535320_CladeIIb_Nigeria_SouthEast_2017_11_Abia
+|                 |  |     |  +--| (Node37)
+|                 |  |     |     |  +--OP535313_CladeIIb_Nigeria_SouthSouth_2018_01_unknown
+|                 |  |     |     +--| (Node39)
+|                 |  |     |        |              +**OP612690_CladeIIb_Nigeria_SouthEast_2019_12_Imo
+|                 |  |     |        |           +**| (Node44)
+|                 |  |     |        |           |  |                                   +**PP852991_CladeIIb_Nigeria_SouthEast_2022_09_Abia
+|                 |  |     |        |           |  |                                +--| (Node55)
+|                 |  |     |        |           |  |                                |  +**PP852975_CladeIIb_Nigeria_SouthEast_2022_09_Abia
+|                 |  |     |        |           |  |                             +--| (Node54)
+|                 |  |     |        |           |  |                             |  |     +--PP853001_CladeIIb_Nigeria_NorthCentral_2022_09_FCT
+|                 |  |     |        |           |  |                             |  |  +**| (Node57)
+|                 |  |     |        |           |  |                             |  |  |  +**PP852948_CladeIIb_Nigeria_SouthEast_2023_01_Abia
+|                 |  |     |        |           |  |                             |  +**| (Node56)
+|                 |  |     |        |           |  |                             |     +**PP853009_CladeIIb_Nigeria_SouthSouth_2022_10_Rivers
+|                 |  |     |        |           |  |                          +--| (Node53)
+|                 |  |     |        |           |  |                          |  |  +--PP852997_CladeIIb_Nigeria_SouthSouth_2022_11_Edo
+|                 |  |     |        |           |  |                          |  +--| (Node58)
+|                 |  |     |        |           |  |                          |     +----------------------PP852982_CladeIIb_Nigeria_SouthEast_2022_09_Abia
+|                 |  |     |        |           |  |                       +--| (Node52)
+|                 |  |     |        |           |  |                       |  |  +--PP853055_CladeIIb_Nigeria_SouthEast_2022_09_Anambra
+|                 |  |     |        |           |  |                       |  +**| (Node59)
+|                 |  |     |        |           |  |                       |     |  +--PP853005_CladeIIb_Nigeria_SouthEast_2022_10_Imo
+|                 |  |     |        |           |  |                       |     +**| (Node60)
+|                 |  |     |        |           |  |                       |        +**PP853021_CladeIIb_Nigeria_SouthEast_2022_09_Anambra
+|                 |  |     |        |           |  |                    +**| (Node51)
+|                 |  |     |        |           |  |                    |  |  +**PP852958_CladeIIb_Nigeria_SouthSouth_2022_Edo
+|                 |  |     |        |           |  |                    |  +--| (Node61)
+|                 |  |     |        |           |  |                    |     +**PP853047_CladeIIb_Nigeria_SouthSouth_2022_10_Akwalbom
+|                 |  |     |        |           |  |                 +**| (Node50)
+|                 |  |     |        |           |  |                 |  |           +**PP853041_CladeIIb_Nigeria_SouthSouth_2022_10_Akwalbom
+|                 |  |     |        |           |  |                 |  |        +--| (Node65)
+|                 |  |     |        |           |  |                 |  |        |  +--PP852974_CladeIIb_Nigeria_SouthEast_2022_09_Anambra
+|                 |  |     |        |           |  |                 |  |     +--| (Node64)
+|                 |  |     |        |           |  |                 |  |     |  |        +--PP852966_CladeIIb_Nigeria_SouthSouth_2023_03_Rivers
+|                 |  |     |        |           |  |                 |  |     |  |     +**| (Node68)
+|                 |  |     |        |           |  |                 |  |     |  |     |  +**PP852963_CladeIIb_Nigeria_SouthSouth_2023_03_Rivers
+|                 |  |     |        |           |  |                 |  |     |  |  +**| (Node67)
+|                 |  |     |        |           |  |                 |  |     |  |  |  |  +**PP852968_CladeIIb_Nigeria_SouthEast_2023_03_Enugu
+|                 |  |     |        |           |  |                 |  |     |  |  |  +--| (Node69)
+|                 |  |     |        |           |  |                 |  |     |  |  |     +**PP852960_CladeIIb_Nigeria_SouthEast_2023_02_Enugu
+|                 |  |     |        |           |  |                 |  |     |  +--| (Node66)
+|                 |  |     |        |           |  |                 |  |     |     +--PP852952_CladeIIb_Nigeria_NorthEast_2022_01_Borno
+|                 |  |     |        |           |  |                 |  |  +**| (Node63)
+|                 |  |     |        |           |  |                 |  |  |  |              +**PP852967_CladeIIb_Nigeria_SouthEast_2023_03_Abia
+|                 |  |     |        |           |  |                 |  |  |  |           +**| (Node74)
+|                 |  |     |        |           |  |                 |  |  |  |           |  +--PP852970_CladeIIb_Nigeria_SouthSouth_2023_05_Rivers
+|                 |  |     |        |           |  |                 |  |  |  |        +**| (Node73)
+|                 |  |     |        |           |  |                 |  |  |  |        |  +--PP852959_CladeIIb_Nigeria_SouthSouth_2023_02_Akwalbom
+|                 |  |     |        |           |  |                 |  |  |  |     +**| (Node72)
+|                 |  |     |        |           |  |                 |  |  |  |     |  +**PP852961_CladeIIb_Nigeria_SouthSouth_2023_02_CrossRiver
+|                 |  |     |        |           |  |                 |  |  |  |  +--| (Node71)
+|                 |  |     |        |           |  |                 |  |  |  |  |  +--PP852969_CladeIIb_Nigeria_SouthEast_2023_04_Imo
+|                 |  |     |        |           |  |                 |  |  |  +**| (Node70)
+|                 |  |     |        |           |  |                 |  |  |     +--PP852962_CladeIIb_Nigeria_SouthSouth_2023_03_Rivers
+|                 |  |     |        |           |  |                 |  +**| (Node62)
+|                 |  |     |        |           |  |                 |     |     +**PP853048_CladeIIb_Nigeria_SouthEast_2022_10_Imo
+|                 |  |     |        |           |  |                 |     |  +--| (Node76)
+|                 |  |     |        |           |  |                 |     |  |  |  +**PP852988_CladeIIb_Nigeria_SouthEast_2022_09_Anambra
+|                 |  |     |        |           |  |                 |     |  |  +**| (Node77)
+|                 |  |     |        |           |  |                 |     |  |     +**PP853036_CladeIIb_Nigeria_SouthWest_2022_09_Lagos
+|                 |  |     |        |           |  |                 |     +**| (Node75)
+|                 |  |     |        |           |  |                 |        +--PP852981_CladeIIb_Nigeria_SouthEast_2022_09_Imo
+|                 |  |     |        |           |  |              +--| (Node49)
+|                 |  |     |        |           |  |              |  +-------PP852973_CladeIIb_Nigeria_SouthSouth_2022_09_Rivers
+|                 |  |     |        |           |  |           +**| (Node48)
+|                 |  |     |        |           |  |           |  |     +--PP853027_CladeIIb_Nigeria_SouthSouth_2022_09_Akwalbom
+|                 |  |     |        |           |  |           |  |  +**| (Node79)
+|                 |  |     |        |           |  |           |  |  |  |  +--PP852980_CladeIIb_Nigeria_NorthCentral_2022_09_FCT
+|                 |  |     |        |           |  |           |  |  |  +**| (Node80)
+|                 |  |     |        |           |  |           |  |  |     |        +**PP853035_CladeIIb_Nigeria_NorthWest_2022_10_Kaduna
+|                 |  |     |        |           |  |           |  |  |     |     +--| (Node83)
+|                 |  |     |        |           |  |           |  |  |     |     |  +--PP852950_CladeIIb_Nigeria_SouthSouth_2023_01_Akwalbom
+|                 |  |     |        |           |  |           |  |  |     |  +--| (Node82)
+|                 |  |     |        |           |  |           |  |  |     |  |  +--ON676707_CladeIIb_Nigeria_SouthSouth_2021_07_unknown
+|                 |  |     |        |           |  |           |  |  |     +--| (Node81)
+|                 |  |     |        |           |  |           |  |  |        +--PP852983_CladeIIb_Nigeria_SouthEast_2022_10_Enugu
+|                 |  |     |        |           |  |           |  +**| (Node78)
+|                 |  |     |        |           |  |           |     |  +**PP853051_CladeIIb_Nigeria_SouthWest_2022_09_Lagos
+|                 |  |     |        |           |  |           |     +--| (Node84)
+|                 |  |     |        |           |  |           |        +--PP852951_CladeIIb_Nigeria_NorthEast_2023_01_Borno
+|                 |  |     |        |           |  |     +-----| (Node47)
+|                 |  |     |        |           |  |     |     |        +**PP852992_CladeIIb_Nigeria_SouthSouth_2022_10_Bayelsa
+|                 |  |     |        |           |  |     |     |     +**| (Node87)
+|                 |  |     |        |           |  |     |     |     |  |  +**PP853018_CladeIIb_Nigeria_SouthWest_2022_09_Lagos
+|                 |  |     |        |           |  |     |     |     |  +**| (Node88)
+|                 |  |     |        |           |  |     |     |     |     +--PP852946_CladeIIb_Nigeria_SouthSouth_2022_12_Bayelsa
+|                 |  |     |        |           |  |     |     |  +--| (Node86)
+|                 |  |     |        |           |  |     |     |  |  |     +**PP853008_CladeIIb_Nigeria_SouthWest_2022_09_Lagos
+|                 |  |     |        |           |  |     |     |  |  |  +**| (Node90)
+|                 |  |     |        |           |  |     |     |  |  |  |  +--PP852976_CladeIIb_Nigeria_SouthSouth_2022_10_Bayelsa
+|                 |  |     |        |           |  |     |     |  |  +--| (Node89)
+|                 |  |     |        |           |  |     |     |  |     +--PP852965_CladeIIb_Nigeria_SouthSouth_2023_03_Bayelsa
+|                 |  |     |        |           |  |     |     +**| (Node85)
+|                 |  |     |        |           |  |     |        |     +--PP853024_CladeIIb_Nigeria_SouthSouth_2022_10_Edo
+|                 |  |     |        |           |  |     |        |  +--| (Node92)
+|                 |  |     |        |           |  |     |        |  |  |  +**PP853046_CladeIIb_Nigeria_SouthWest_2022_09_Lagos
+|                 |  |     |        |           |  |     |        |  |  +**| (Node93)
+|                 |  |     |        |           |  |     |        |  |     +**PP853049_CladeIIb_Nigeria_SouthWest_2022_09_Lagos
+|                 |  |     |        |           |  |     |        +**| (Node91)
+|                 |  |     |        |           |  |     |           |  +--PP852964_CladeIIb_Nigeria_NorthCentral_2023_03_Niger
+|                 |  |     |        |           |  |     |           +--| (Node94)
+|                 |  |     |        |           |  |     |              +--PP853030_CladeIIb_Nigeria_SouthWest_2022_09_Lagos
+|                 |  |     |        |           |  |  +**| (Node46)
+|                 |  |     |        |           |  |  |  |    +--PP853019_CladeIIb_Nigeria_SouthSouth_2022_10_Rivers
+|                 |  |     |        |           |  |  |  +----| (Node95)
+|                 |  |     |        |           |  |  |       +--EPIISL13983888_CladeIIb_SouthWest_2022_07_uknown
+|                 |  |     |        |           |  +**| (Node45)
+|                 |  |     |        |           |     +**OP612689_CladeIIb_Nigeria_SouthSouth_2019_12_Rivers
+|                 |  |     |        |        +**| (Node43)
+|                 |  |     |        |        |  |                 +**PP852956_CladeIIb_Nigeria_SouthSouth_2022_Edo
+|                 |  |     |        |        |  |              +--| (Node101)
+|                 |  |     |        |        |  |              |  +**PP852955_CladeIIb_Nigeria_SouthSouth_2022_Edo
+|                 |  |     |        |        |  |           +**| (Node100)
+|                 |  |     |        |        |  |           |  |  +--OP450997_CladeIIb_Nigeria_SouthSouth_2022_07_unknown
+|                 |  |     |        |        |  |           |  +**| (Node102)
+|                 |  |     |        |        |  |           |     +--PP853016_CladeIIb_Nigeria_SouthWest_2022_09_Lagos
+|                 |  |     |        |        |  |        +--| (Node99)
+|                 |  |     |        |        |  |        |  +--PP852977_CladeIIb_Nigeria_NorthCentral_2022_11_Nasarawa
+|                 |  |     |        |        |  |     +**| (Node98)
+|                 |  |     |        |        |  |     |  |     +--OR113690_CladeIIb_Nigeria_SouthWest_2023_04
+|                 |  |     |        |        |  |     |  |  +--| (Node104)
+|                 |  |     |        |        |  |     |  |  |  |     +------------PP853022_CladeIIb_Nigeria_SouthSouth_2022_10_Rivers
+|                 |  |     |        |        |  |     |  |  |  |  +**| (Node106)
+|                 |  |     |        |        |  |     |  |  |  |  |  +**PP853042_CladeIIb_Nigeria_SouthEast_2022_10_Anambra
+|                 |  |     |        |        |  |     |  |  |  +**| (Node105)
+|                 |  |     |        |        |  |     |  |  |     +**PP853029_CladeIIb_Nigeria_SouthSouth_2022_10_Bayelsa
+|                 |  |     |        |        |  |     |  +--| (Node103)
+|                 |  |     |        |        |  |     |     +--OP331336_CladeIIb_Nigeria_SouthWest_2022_06_unknown
+|                 |  |     |        |        |  |  +--| (Node97)
+|                 |  |     |        |        |  |  |  +--------------------------PP852999_CladeIIb_Nigeria_SouthEast_2022_10_Imo
+|                 |  |     |        |        |  +--| (Node96)
+|                 |  |     |        |        |     |        +**PP852972_CladeIIb_Nigeria_NorthCentral_2023_05_FCT
+|                 |  |     |        |        |     |     +--| (Node109)
+|                 |  |     |        |        |     |     |  +**PP852971_CladeIIb_Nigeria_NorthCentral_2023_05_FCT
+|                 |  |     |        |        |     |  +**| (Node108)
+|                 |  |     |        |        |     |  |  |  +-----------PP853012_CladeIIb_Nigeria_SouthWest_2022_09_Rivers
+|                 |  |     |        |        |     |  |  +**| (Node110)
+|                 |  |     |        |        |     |  |     +----PP852987_CladeIIb_Nigeria_SouthWest_2022_09_Lagos
+|                 |  |     |        |        |     +--| (Node107)
+|                 |  |     |        |        |        +------PP853052_CladeIIb_Nigeria_NorthWest_2022_09_Kaduna
+|                 |  |     |        |     +**| (Node42)
+|                 |  |     |        |     |  |  +--OP612691_CladeIIb_Nigeria_SouthSouth_2020_01_unknown
+|                 |  |     |        |     |  +--| (Node111)
+|                 |  |     |        |     |     |        +--ON674051_CladeIIb_Nigeria_SouthEast_2022_05_unknown
+|                 |  |     |        |     |     |     +**| (Node114)
+|                 |  |     |        |     |     |     |  +--EPIISL13953610_CladeIIb_Nigeria_SouthEast_2022_07_unknown
+|                 |  |     |        |     |     |  +--| (Node113)
+|                 |  |     |        |     |     |  |  |  +**OP331335_CladeIIb_Nigeria_SouthEast_2022_06_unknown
+|                 |  |     |        |     |     |  |  +--| (Node115)
+|                 |  |     |        |     |     |  |     +**OP605572_CladeIIb_Nigeria_SouthEast_2022_07
+|                 |  |     |        |     |     +--| (Node112)
+|                 |  |     |        |     |        +--PP853026_CladeIIb_Nigeria_NorthCentral_2022_09_Kogi
+|                 |  |     |        |  +**| (Node41)
+|                 |  |     |        |  |  |                           +**PP852995_CladeIIb_Nigeria_SouthSouth_2022_08_Delta
+|                 |  |     |        |  |  |                        +--| (Node124)
+|                 |  |     |        |  |  |                        |  +--PP853033_CladeIIb_Nigeria_SouthEast_2022_Ebonyi
+|                 |  |     |        |  |  |                     +--| (Node123)
+|                 |  |     |        |  |  |                     |  |  +--PP853044_CladeIIb_Nigeria_SouthSouth_2022_08_Delta
+|                 |  |     |        |  |  |                     |  +**| (Node125)
+|                 |  |     |        |  |  |                     |     +--PP853025_CladeIIb_Nigeria_SouthSouth_2022_10_Bayelsa
+|                 |  |     |        |  |  |                  +**| (Node122)
+|                 |  |     |        |  |  |                  |  +--PP852979_CladeIIb_Nigeria_SouthEast_2022_09_Anambra
+|                 |  |     |        |  |  |               +**| (Node121)
+|                 |  |     |        |  |  |               |  |  +**PP852996_CladeIIb_Nigeria_SouthEast_2022_09_Abia
+|                 |  |     |        |  |  |               |  +--| (Node126)
+|                 |  |     |        |  |  |               |     +**PP853040_CladeIIb_Nigeria_SouthWest_2022_09_Lagos
+|                 |  |     |        |  |  |            +**| (Node120)
+|                 |  |     |        |  |  |            |  +--PP853013_CladeIIb_Nigeria_SouthWest_2022_09_Lagos
+|                 |  |     |        |  |  |         +**| (Node119)
+|                 |  |     |        |  |  |         |  +--PP853031_CladeIIb_Nigeria_SouthSouth_2022_09_Delta
+|                 |  |     |        |  |  |      +**| (Node118)
+|                 |  |     |        |  |  |      |  +--PP853023_CladeIIb_Nigeria_SouthEast_2022_09_Imo
+|                 |  |     |        |  |  |  +---| (Node117)
+|                 |  |     |        |  |  |  |   |  +--PP853053_CladeIIb_Nigeria_SouthSouth_2022_10_Bayelsa
+|                 |  |     |        |  |  |  |   +**| (Node127)
+|                 |  |     |        |  |  |  |      |  +----PP853043_CladeIIb_Nigeria_NorthWest_2022_10_Kaduna
+|                 |  |     |        |  |  |  |      +**| (Node128)
+|                 |  |     |        |  |  |  |         +--PP852978_CladeIIb_Nigeria_SouthWest_2022_09_Kwara
+|                 |  |     |        |  |  +--| (Node116)
+|                 |  |     |        |  |     |     +--EPIISL15008577_CladeIIb_NorthCentral_2022_08_unknown
+|                 |  |     |        |  |     |  +--| (Node130)
+|                 |  |     |        |  |     |  |  +--PP853037_CladeIIb_Nigeria_NorthCentral_2022_09_FCT
+|                 |  |     |        |  |     +--| (Node129)
+|                 |  |     |        |  |        +---ON675438_CladeIIb_Nigeria_SouthSouth_2022_05_unknown
+|                 |  |     |        +--| (Node40)
+|                 |  |     |           |                +-----PP853032_CladeIIb_Nigeria_SouthSouth_2022_09_Bayelsa
+|                 |  |     |           |             +--| (Node134)
+|                 |  |     |           |             |  +------PP853028_CladeIIb_Nigeria_NorthCentral_2022_10_Nasarawa
+|                 |  |     |           |          +--| (Node133)
+|                 |  |     |           |          |  |  +--PP853020_CladeIIb_Nigeria_NorthCentral_2022_10_Plateau
+|                 |  |     |           |          |  +--| (Node135)
+|                 |  |     |           |          |     +--PP853004_CladeIIb_Nigeria_NorthEast_2022_10_Gombe
+|                 |  |     |           |       +**| (Node132)
+|                 |  |     |           |       |  |        +-----PP853014_CladeIIb_Nigeria_SouthSouth_2022_10_Rivers
+|                 |  |     |           |       |  |     +--| (Node138)
+|                 |  |     |           |       |  |     |  |  +--PP853002_CladeIIb_Nigeria_NorthCentral_2022_10_FCT
+|                 |  |     |           |       |  |     |  +--| (Node139)
+|                 |  |     |           |       |  |     |     |  +------PP853015_CladeIIb_Nigeria_NorthWest_2022_11_Kano
+|                 |  |     |           |       |  |     |     +--| (Node140)
+|                 |  |     |           |       |  |     |        +--PP853045_CladeIIb_Nigeria_SouthEast_2022_09_Anambra
+|                 |  |     |           |       |  |  +--| (Node137)
+|                 |  |     |           |       |  |  |  |   +--PP852998_CladeIIb_Nigeria_SouthSouth_2022_09_Bayelsa
+|                 |  |     |           |       |  |  |  +---| (Node141)
+|                 |  |     |           |       |  |  |      +--------PP853017_CladeIIb_Nigeria_SouthSouth_2022_10_Edo
+|                 |  |     |           |       |  +**| (Node136)
+|                 |  |     |           |       |     +------PP853006_CladeIIb_Nigeria_SouthSouth_2022_09_Bayelsa
+|                 |  |     |           +-------| (Node131)
+|                 |  |     |                   |      +--PP852994_CladeIIb_Nigeria_SouthWest_2022_09_Lagos
+|                 |  |     |                   |   +**| (Node143)
+|                 |  |     |                   |   |  |     +--PP853010_CladeIIb_Nigeria_SouthWest_2022_10_Ondo
+|                 |  |     |                   |   |  |  +**| (Node145)
+|                 |  |     |                   |   |  |  |  +--PP853000_CladeIIb_Nigeria_SouthEast_2022_10_Imo
+|                 |  |     |                   |   |  +--| (Node144)
+|                 |  |     |                   |   |     +------------PP853011_CladeIIb_Nigeria_SouthWest_2022_10_Ogun
+|                 |  |     |                   +---| (Node142)
+|                 |  |     |                       |  +--PP853050_CladeIIb_Nigeria_NorthCentral_2022_09_Plateau
+|                 |  |     |                       +--| (Node146)
+|                 |  |     |                          +--------PP853007_CladeIIb_Nigeria_SouthEast_2022_09_Imo
+|                 |  |  +**| (Node23)
+|                 |  |  |  |  +**OP535336_CladeIIb_Nigeria_SouthEast_2017_10_Enugu
+|                 |  |  |  +--| (Node147)
+|                 |  |  |     |  +--OP535319_CladeIIb_Nigeria_SouthSouth_2017_12_CrossRiver
+|                 |  |  |     +**| (Node148)
+|                 |  |  |        +**OP535339_CladeIIb_Nigeria_SouthEast_2017_10_Enugu
+|                 |  +**| (Node22)
+|                 |     |           +**OP535341_CladeIIb_Nigeria_SouthSouth_2017_10_Bayelsa
+|                 |     |        +**| (Node152)
+|                 |     |        |  +--MK783030_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers
+|                 |     |     +--| (Node151)
+|                 |     |     |  +--OP535337_CladeIIb_Nigeria_SouthSouth_2017_10_Bayelsa
+|                 |     |  +**| (Node150)
+|                 |     |  |  |  +--OP535322_CladeIIb_Nigeria_SouthSouth_2017_10_Edo
+|                 |     |  |  +--| (Node153)
+|                 |     |  |     +--OP535338_CladeIIb_Nigeria_SouthSouth_2017_10_Akwalbom
+|                 |     +--| (Node149)
+|                 |        |        +--OP612678_CladeIIb_Nigeria_SouthSouth_2019_11_Rivers
+|                 |        |     +--| (Node156)
+|                 |        |     |  +--OP612675_CladeIIb_Nigeria_SouthSouth_2019_01_Bayelsa
+|                 |        |  +**| (Node155)
+|                 |        |  |  |  +--OP612684_CladeIIb_Nigeria_SouthWest_2019_05_Lagos
+|                 |        |  |  +--| (Node157)
+|                 |        |  |     +--OP612680_CladeIIb_Nigeria_SouthWest_2019_04_Lagos
+|                 |        +--| (Node154)
+|                 |           |        +--OP535325_CladeIIb_Nigeria_SouthSouth_2018_06
+|                 |           |     +**| (Node160)
+|                 |           |     |  +**OP535327_CladeIIb_Nigeria_SouthSouth_2018_03_Rivers
+|                 |           |  +**| (Node159)
+|                 |           |  |  +**OP535328_CladeIIb_Nigeria_SouthSouth_2018_03_Rivers
+|                 |           +**| (Node158)
+|                 |              +**OP535329_CladeIIb_Nigeria_SouthSouth_2018_03_Rivers
+|              +**| (Node7)
+|              |  |                           +--OP612674_CladeIIb_Nigeria_SouthSouth_2019_01_Bayelsa
+|              |  |                   +-------| (Node166)
+|              |  |                   |       +--MT903341_CladeIIb_Nigeria_SouthSouth_2018_08_Bayelsa
+|              |  |                +**| (Node165)
+|              |  |                |  |  +--OP612682_CladeIIb_Nigeria_SouthSouth_2019_04_Bayelsa
+|              |  |                |  +--| (Node167)
+|              |  |                |     +--OP612688_CladeIIb_Nigeria_SouthWest_2019_10_Oyo
+|              |  |             +**| (Node164)
+|              |  |             |  |     +--OP612683_CladeIIb_Nigeria_SouthSouth_2019_04_Delta
+|              |  |             |  |  +**| (Node169)
+|              |  |             |  |  |  +--OL504741_CladeIIb_Nigeria_SouthSouth_2019_12_unknown
+|              |  |             |  +--| (Node168)
+|              |  |             |     +**OP612685_CladeIIb_Nigeria_SouthSouth_2019_05_Delta
+|              |  |          +**| (Node163)
+|              |  |          |  +--OP612681_CladeIIb_Nigeria_SouthSouth_2019_04_Bayelsa
+|              |  |       +**| (Node162)
+|              |  |       |  +--MN648051_CladeIIb_Nigeria_SouthSouth_2018_10_unknown
+|              |  +-------| (Node161)
+|              |          |           +**OP612686_CladeIIb_Nigeria_SouthWest_2019_05_Lagos
+|              |          |        +**| (Node173)
+|              |          |        |  |         +**PP852944_CladeIIb_Nigeria_SouthEast_2022_09_Anambra
+|              |          |        |  |      +--| (Node175)
+|              |          |        |  |      |  |     +**PP852945_CladeIIb_Nigeria_SouthWest_2022_09_Lagos
+|              |          |        |  |      |  |  +--| (Node177)
+|              |          |        |  |      |  |  |  +**ON563414_CladeIIb_Nigeria_SouthSouth_2022_05_unknown
+|              |          |        |  |      |  +**| (Node176)
+|              |          |        |  |      |     +---------------------------------PP852989_CladeIIb_Nigeria_NorthCentral_2022_09_kwara
+|              |          |        |  +------| (Node174)
+|              |          |        |         +--ON676708_CladeIIb_Nigeria_SouthSouth_2021_11_unknown
+|              |          |     +--| (Node172)
+|              |          |     |  +--OP612687_CladeIIb_Nigeria_SouthEast_2019_07_Enugu
+|              |          |  +**| (Node171)
+|              |          |  |  |     +--MT903343_CladeIIb_Nigeria_SouthSouth_2018_09_unkwnon
+|              |          |  |  |  +--| (Node179)
+|              |          |  |  |  |  +**MT903345_CladeIIb_Nigeria_SouthSouth_2018_09_unknown
+|              |          |  |  +**| (Node178)
+|              |          |  |     +**MT903344_CladeIIb_Nigeria_SouthSouth_2018_09_unknown
+|              |          +--| (Node170)
+|              |             +--OP612679_CladeIIb_Nigeria_SouthSouth_2019_03_Delta
+|           +**| (Node6)
+|           |  |        +**MK783027_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers
+|           |  |     +**| (Node182)
+|           |  |     |  +**MK783031_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers
+|           |  |  +**| (Node181)
+|           |  |  |  +**MK783028_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers
+|           |  +--| (Node180)
+|           |     +--MK783029_CladeIIb_Nigeria_SouthSouth_2017_12_Rivers
+|        +--| (Node5)
+|        |  |           +**OP535340_CladeIIb_Nigeria_SouthSouth_2017_10_Akwalbom
+|        |  |        +**| (Node186)
+|        |  |        |  +--OP535326_CladeIIb_Nigeria_SoythWest_2018_06_Oyo
+|        |  |     +**| (Node185)
+|        |  |     |  |  +**MT903339_CladeIIb_Nigeria_SouthSouth_2018_Delta
+|        |  |     |  +**| (Node187)
+|        |  |     |     |  +**OP535312_CladeIIb_Nigeria_SouthSouth_2018_02_Rivers
+|        |  |     |     +--| (Node188)
+|        |  |     |        |  +--OP535314_CladeIIb_Nigeria_SouthSouth_2018_01_Rivers
+|        |  |     |        +**| (Node189)
+|        |  |     |           +**OP535334_CladeIIb_Nigeria_SouthSouth_2018_02_Rivers
+|        |  |  +**| (Node184)
+|        |  |  |  +--OP535318_CladeIIb_Nigeria_NorthCentral_2017_12_Benue
+|        |  +--| (Node183)
+|        |     |     +--OP535315_CladeIIb_Nigeria_SouthEast_2018_02_Imo
+|        |     |  +--| (Node191)
+|        |     |  |  +**OP535316_CladeIIb_Nigeria_SouthEast_2018_02_Imo
+|        |     +--| (Node190)
+|        |        |  +**OP535330_CladeIIb_Nigeria_SouthEast_2018_02_Imo
+|        |        +**| (Node192)
+|        |           +**OP535324_CladeIIb_Nigeria_SouthEast_2018_02_Imo
+|     +--| (Node4)
+|     |  +---OP535317_CladeIIb_Nigeria_SouthWest_2018_01_Lagos
+|  +--| (Node3)
+|  |  +**MT903338_CladeIIb_Nigeria_SouthWest_2018_Lagos
++**| (Node2)
+|  |     +**OP535331_CladeIIb_Nigeria_SouthWest_2018_01_Oyo
+|  |  +**| (Node194)
+|  |  |  +--OP535333_CladeIIb_Nigeria_SouthWest_2018_01_Oyo
+|  +**| (Node193)
+|     +**OP535332_CladeIIb_Nigeria_SouthWest_2018_01_Oyo
+|
++**NC_063383_CladeIIb_Nigeria_SouthSouth_2018_08_Rivers
+
+Tree in newick format:
+
+(NC_063383.1:0.0000004922,((((((((((KJ642617_CladeIIb_Nigeria_SouthEast_1971_04_Abia:0.0000500768,((((((PP860029_CladeIIb_Cameroon_NorthWest_2022_11:0.0000149764,PP860025_CladeIIb_Cameroon_NorthWest_2022_11:0.0000049106)Node17:0.0000004922,PP860033_CladeIIb_Cameroon_SouthWest_2022:0.0000004922)Node16:0.0000004922,PP860027_CladeIIb_Cameroon_SouthWest_2022_10:0.0000049106)Node15:0.0000795270,(PP860030_CladeIIb_Cameroon_SouthWest_2022_09:0.0000744048,(PP852990_CladeIIb_Nigeria_SouthSouth_2022_09_Akwalbom:0.0000300983,PP852957_CladeIIb_Nigeria_SouthSouth_2022_01_Akwalbom:0.0000196429)Node19:0.0000401001)Node18:0.0000045775)Node14:0.0000599298,PP860031_CladeIIb_Cameroon_Centre_2021_07:0.0000741156)Node13:0.0000053927,(PP860026_CladeIIb_Cameroon_NorthWest_2018_05:0.0000596299,(PP860028_CladeIIb_Cameroon_SouthWest_2022_10:0.0000004922,PP860032_CladeIIb_Cameroon_SouthWest_2022:0.0000004922)Node21:0.0000747660)Node20:0.0001390005)Node12:0.0000304519)Node11:0.0001020858,PP852949__CladeIIb_Nigeria_SouthEast_2022_12_Abia:0.0000196429)Node10:0.0000004922,PP852947_CladeIIb_Nigeria_SouthEast_2022_01_Abia:0.0000200497)Node9:0.0000406718,((((((OP535335_CladeIIb_Nigeria_SouthSouth_2017_10_Bayelsa:0.0000004922,OP535323_CladeIIb_Nigeria_SouthSouth_2017_10_Bayelsa:0.0000004922)Node27:0.0000004922,(OP612677_CladeIIb_Nigeria_SouthSouth_2019_03_Rivers:0.0000147320,((((PP852993_CladeIIb_Nigeria_SouthEast_2022_Ebonyi:0.0001451046,PP852954_CladeIIb_Nigeria_SouthEast_2023_01_Abia:0.0000049106)Node32:0.0000058988,(PP852953_CladeIIb_Nigeria_SouthEast_2022_Imo:0.0000052207,PP853038_CladeIIb_Nigeria_SouthSouth_2022_09_Delta:0.0002957887)Node33:0.0000150447)Node31:0.0000353616,PP853054_CladeIIb_Nigeria_SouthWest_2022_09_Ogun:0.0000863380)Node30:0.0000092561,((OP413718_CladeIIb_Nigeria_NorthCentral_2022_08_unknown:0.0000392209,(PP853003_CladeIIb_Nigeria_SouthWest_2022_09_Ogun:0.0000163995,PP852985_CladeIIb_Nigeria_SouthEast_2022_Ebonyi:0.0002570292)Node36:0.0001786335)Node35:0.0000313673,PP852984_CladeIIb_Nigeria_SouthEast_2022_10_Imo:0.0000604665)Node34:0.0000670929)Node29:0.0000509089)Node28:0.0000302570)Node26:0.0000098213,MK783033_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers:0.0000403934)Node25:0.0000652090,((MK783032_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers:0.0000147320,OP535320_CladeIIb_Nigeria_SouthEast_2017_11_Abia:0.0000049106)Node38:0.0000249127,(OP535313_CladeIIb_Nigeria_SouthSouth_2018_01_unknown:0.0000671168,(((((OP612690_CladeIIb_Nigeria_SouthEast_2019_12_Imo:0.0000004922,(((((((((((PP852991_CladeIIb_Nigeria_SouthEast_2022_09_Abia:0.0000004922,PP852975_CladeIIb_Nigeria_SouthEast_2022_09_Abia:0.0000004922)Node55:0.0000098213,((PP853001_CladeIIb_Nigeria_NorthCentral_2022_09_FCT:0.0000251248,PP852948_CladeIIb_Nigeria_SouthEast_2023_01_Abia:0.0000049106)Node57:0.0000004922,PP853009_CladeIIb_Nigeria_SouthSouth_2022_10_Rivers:0.0000004922)Node56:0.0000004922)Node54:0.0000098213,(PP852997_CladeIIb_Nigeria_SouthSouth_2022_11_Edo:0.0000103244,PP852982_CladeIIb_Nigeria_SouthEast_2022_09_Abia:0.0004725100)Node58:0.0000098213)Node53:0.0000252239,(PP853055_CladeIIb_Nigeria_SouthEast_2022_09_Anambra:0.0000202945,(PP853005_CladeIIb_Nigeria_SouthEast_2022_10_Imo:0.0000350572,PP853021_CladeIIb_Nigeria_SouthEast_2022_09_Anambra:0.0000049106)Node60:0.0000049106)Node59:0.0000004922)Node52:0.0000200488,(PP852958_CladeIIb_Nigeria_SouthSouth_2022_Edo:0.0000004922,PP853047_CladeIIb_Nigeria_SouthSouth_2022_10_Akwalbom:0.0000004922)Node61:0.0000550935)Node51:0.0000047239,((((PP853041_CladeIIb_Nigeria_SouthSouth_2022_10_Akwalbom:0.0000049106,PP852974_CladeIIb_Nigeria_SouthEast_2022_09_Anambra:0.0000098214)Node65:0.0000147320,(((PP852966_CladeIIb_Nigeria_SouthSouth_2023_03_Rivers:0.0000252184,PP852963_CladeIIb_Nigeria_SouthSouth_2023_03_Rivers:0.0000012578)Node68:0.0000048882,(PP852968_CladeIIb_Nigeria_SouthEast_2023_03_Enugu:0.0000049106,PP852960_CladeIIb_Nigeria_SouthEast_2023_02_Enugu:0.0000004922)Node69:0.0000098936)Node67:0.0000049009,PP852952_CladeIIb_Nigeria_NorthEast_2022_01_Borno:0.0000199785)Node66:0.0000149231)Node64:0.0000201249,(((((PP852967_CladeIIb_Nigeria_SouthEast_2023_03_Abia:0.0000049521,PP852970_CladeIIb_Nigeria_SouthSouth_2023_05_Rivers:0.0000151622)Node74:0.0000046478,PP852959_CladeIIb_Nigeria_SouthSouth_2023_02_Akwalbom:0.0000151755)Node73:0.0000004922,PP852961_CladeIIb_Nigeria_SouthSouth_2023_02_CrossRiver:0.0000004922)Node72:0.0000004922,PP852969_CladeIIb_Nigeria_SouthEast_2023_04_Imo:0.0000202373)Node71:0.0000253518,PP852962_CladeIIb_Nigeria_SouthSouth_2023_03_Rivers:0.0000350807)Node70:0.0000049106)Node63:0.0000004922,((PP853048_CladeIIb_Nigeria_SouthEast_2022_10_Imo:0.0000046290,(PP852988_CladeIIb_Nigeria_SouthEast_2022_09_Anambra:0.0000049106,PP853036_CladeIIb_Nigeria_SouthWest_2022_09_Lagos:0.0000049106)Node77:0.0000049004)Node76:0.0000150991,PP852981_CladeIIb_Nigeria_SouthEast_2022_09_Imo:0.0000252315)Node75:0.0000012187)Node62:0.0000004922)Node50:0.0000004922,PP852973_CladeIIb_Nigeria_SouthSouth_2022_09_Rivers:0.0001605199)Node49:0.0000098213,((PP853027_CladeIIb_Nigeria_SouthSouth_2022_09_Akwalbom:0.0000648358,(PP852980_CladeIIb_Nigeria_NorthCentral_2022_09_FCT:0.0000449854,(((PP853035_CladeIIb_Nigeria_NorthWest_2022_10_Kaduna:0.0000004922,PP852950_CladeIIb_Nigeria_SouthSouth_2023_01_Akwalbom:0.0000201997)Node83:0.0000600693,ON676707_CladeIIb_Nigeria_SouthSouth_2021_07_unknown:0.0000435834)Node82:0.0000067240,PP852983_CladeIIb_Nigeria_SouthEast_2022_10_Enugu:0.0000251413)Node81:0.0000426541)Node80:0.0000013699)Node79:0.0000004922,(PP853051_CladeIIb_Nigeria_SouthWest_2022_09_Lagos:0.0000049106,PP852951_CladeIIb_Nigeria_NorthEast_2023_01_Borno:0.0000203504)Node84:0.0000201448)Node78:0.0000014235)Node48:0.0000004922,(((PP852992_CladeIIb_Nigeria_SouthSouth_2022_10_Bayelsa:0.0000004922,(PP853018_CladeIIb_Nigeria_SouthWest_2022_09_Lagos:0.0000004922,PP852946_CladeIIb_Nigeria_SouthSouth_2022_12_Bayelsa:0.0000201887)Node88:0.0000004922)Node87:0.0000010032,((PP853008_CladeIIb_Nigeria_SouthWest_2022_09_Lagos:0.0000004922,PP852976_CladeIIb_Nigeria_SouthSouth_2022_10_Bayelsa:0.0000098214)Node90:0.0000004922,PP852965_CladeIIb_Nigeria_SouthSouth_2023_03_Bayelsa:0.0000454634)Node89:0.0000100606)Node86:0.0000149699,((PP853024_CladeIIb_Nigeria_SouthSouth_2022_10_Edo:0.0000147320,(PP853046_CladeIIb_Nigeria_SouthWest_2022_09_Lagos:0.0000004922,PP853049_CladeIIb_Nigeria_SouthWest_2022_09_Lagos:0.0000049106)Node93:0.0000049106)Node92:0.0000097580,(PP852964_CladeIIb_Nigeria_NorthCentral_2023_03_Niger:0.0000137172,PP853030_CladeIIb_Nigeria_SouthWest_2022_09_Lagos:0.0000054057)Node94:0.0000211927)Node91:0.0000048734)Node85:0.0000048982)Node47:0.0001258182,(PP853019_CladeIIb_Nigeria_SouthSouth_2022_10_Rivers:0.0000253563,EPIISL13983888_CladeIIb_SouthWest_2022_07_uknown:0.0000304990)Node95:0.0001052129)Node46:0.0000004922,OP612689_CladeIIb_Nigeria_SouthSouth_2019_12_Rivers:0.0000049106)Node45:0.0000010896)Node44:0.0000004922,((((((PP852956_CladeIIb_Nigeria_SouthSouth_2022_Edo:0.0000004922,PP852955_CladeIIb_Nigeria_SouthSouth_2022_Edo:0.0000004922)Node101:0.0000200509,(OP450997_CladeIIb_Nigeria_SouthSouth_2022_07_unknown:0.0000252753,PP853016_CladeIIb_Nigeria_SouthWest_2022_09_Lagos:0.0000401749)Node102:0.0000045753)Node100:0.0000045940,PP852977_CladeIIb_Nigeria_NorthCentral_2022_11_Nasarawa:0.0000697380)Node99:0.0000096830,((OR113690_CladeIIb_Nigeria_SouthWest_2023_04:0.0000419945,((PP853022_CladeIIb_Nigeria_SouthSouth_2022_10_Rivers:0.0002708951,PP853042_CladeIIb_Nigeria_SouthEast_2022_10_Anambra:0.0000049106)Node106:0.0000004922,PP853029_CladeIIb_Nigeria_SouthSouth_2022_10_Bayelsa:0.0000004922)Node105:0.0000004922)Node104:0.0000099964,OP331336_CladeIIb_Nigeria_SouthWest_2022_06_unknown:0.0000448040)Node103:0.0000199990)Node98:0.0000004922,PP852999_CladeIIb_Nigeria_SouthEast_2022_10_Imo:0.0005526802)Node97:0.0000298852,(((PP852972_CladeIIb_Nigeria_NorthCentral_2023_05_FCT:0.0000004922,PP852971_CladeIIb_Nigeria_NorthCentral_2023_05_FCT:0.0000004922)Node109:0.0000403870,(PP853012_CladeIIb_Nigeria_SouthWest_2022_09_Rivers:0.0002450975,PP852987_CladeIIb_Nigeria_SouthWest_2022_09_Lagos:0.0001170191)Node110:0.0000027294)Node108:0.0000004922,PP853052_CladeIIb_Nigeria_NorthWest_2022_09_Kaduna:0.0001559096)Node107:0.0000416962)Node96:0.0000697544)Node43:0.0000010435,(OP612691_CladeIIb_Nigeria_SouthSouth_2020_01_unknown:0.0000099388,(((ON674051_CladeIIb_Nigeria_SouthEast_2022_05_unknown:0.0000100111,EPIISL13953610_CladeIIb_Nigeria_SouthEast_2022_07_unknown:0.0000746275)Node114:0.0000048985,(OP331335_CladeIIb_Nigeria_SouthEast_2022_06_unknown:0.0000049106,OP605572_CladeIIb_Nigeria_SouthEast_2022_07:0.0000004922)Node115:0.0000199344)Node113:0.0000223951,PP853026_CladeIIb_Nigeria_NorthCentral_2022_09_Kogi:0.0000553335)Node112:0.0000614539)Node111:0.0000053494)Node42:0.0000010724,(((((((((PP852995_CladeIIb_Nigeria_SouthSouth_2022_08_Delta:0.0000049106,PP853033_CladeIIb_Nigeria_SouthEast_2022_Ebonyi:0.0000098214)Node124:0.0000352403,(PP853044_CladeIIb_Nigeria_SouthSouth_2022_08_Delta:0.0000251647,PP853025_CladeIIb_Nigeria_SouthSouth_2022_10_Bayelsa:0.0000204379)Node125:0.0000010906)Node123:0.0000294839,PP852979_CladeIIb_Nigeria_SouthEast_2022_09_Anambra:0.0000202732)Node122:0.0000011105,(PP852996_CladeIIb_Nigeria_SouthEast_2022_09_Abia:0.0000049106,PP853040_CladeIIb_Nigeria_SouthWest_2022_09_Lagos:0.0000004922)Node126:0.0000098213)Node121:0.0000004922,PP853013_CladeIIb_Nigeria_SouthWest_2022_09_Lagos:0.0000201435)Node120:0.0000049126,PP853031_CladeIIb_Nigeria_SouthSouth_2022_09_Delta:0.0000298134)Node119:0.0000049106,PP853023_CladeIIb_Nigeria_SouthEast_2022_09_Imo:0.0000700165)Node118:0.0000012847,(PP853053_CladeIIb_Nigeria_SouthSouth_2022_10_Bayelsa:0.0000150578,(PP853043_CladeIIb_Nigeria_NorthWest_2022_10_Kaduna:0.0001107506,PP852978_CladeIIb_Nigeria_SouthWest_2022_09_Kwara:0.0000098715)Node128:0.0000047783)Node127:0.0000048991)Node117:0.0000847329,((EPIISL15008577_CladeIIb_NorthCentral_2022_08_unknown:0.0000423939,PP853037_CladeIIb_Nigeria_NorthCentral_2022_09_FCT:0.0000489649)Node130:0.0000454707,ON675438_CladeIIb_Nigeria_SouthSouth_2022_05_unknown:0.0000804001)Node129:0.0000224645)Node116:0.0000102847)Node41:0.0000010792,((((PP853032_CladeIIb_Nigeria_SouthSouth_2022_09_Bayelsa:0.0001376646,PP853028_CladeIIb_Nigeria_NorthCentral_2022_10_Nasarawa:0.0001472853)Node134:0.0000283754,(PP853020_CladeIIb_Nigeria_NorthCentral_2022_10_Plateau:0.0000252641,PP853004_CladeIIb_Nigeria_NorthEast_2022_10_Gombe:0.0000501394)Node135:0.0000399993)Node133:0.0000698988,(((PP853014_CladeIIb_Nigeria_SouthSouth_2022_10_Rivers:0.0001255685,(PP853002_CladeIIb_Nigeria_NorthCentral_2022_10_FCT:0.0000305585,(PP853015_CladeIIb_Nigeria_NorthWest_2022_11_Kano:0.0001572554,PP853045_CladeIIb_Nigeria_SouthEast_2022_09_Anambra:0.0000204125)Node140:0.0000097743)Node139:0.0000407718)Node138:0.0000199028,(PP852998_CladeIIb_Nigeria_SouthSouth_2022_09_Bayelsa:0.0000353578,PP853017_CladeIIb_Nigeria_SouthSouth_2022_10_Edo:0.0001814279)Node141:0.0000868553)Node137:0.0000095972,PP853006_CladeIIb_Nigeria_SouthSouth_2022_09_Bayelsa:0.0001458986)Node136:0.0000010435)Node132:0.0000014297,((PP852994_CladeIIb_Nigeria_SouthWest_2022_09_Lagos:0.0000150424,((PP853010_CladeIIb_Nigeria_SouthWest_2022_10_Ondo:0.0000653118,PP853000_CladeIIb_Nigeria_SouthEast_2022_10_Imo:0.0000402116)Node145:0.0000010435,PP853011_CladeIIb_Nigeria_SouthWest_2022_10_Ogun:0.0002649612)Node144:0.0000098213)Node143:0.0000004922,(PP853050_CladeIIb_Nigeria_NorthCentral_2022_09_Plateau:0.0000203871,PP853007_CladeIIb_Nigeria_SouthEast_2022_09_Imo:0.0001814562)Node146:0.0000248419)Node142:0.0000998319)Node131:0.0001724819)Node40:0.0000687856)Node39:0.0000257688)Node37:0.0000064153)Node24:0.0000004922,(OP535336_CladeIIb_Nigeria_SouthEast_2017_10_Enugu:0.0000004922,(OP535319_CladeIIb_Nigeria_SouthSouth_2017_12_CrossRiver:0.0000699550,OP535339_CladeIIb_Nigeria_SouthEast_2017_10_Enugu:0.0000049106)Node148:0.0000004922)Node147:0.0000396619)Node23:0.0000010435,((((OP535341_CladeIIb_Nigeria_SouthSouth_2017_10_Bayelsa:0.0000049106,MK783030_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers:0.0000147320)Node152:0.0000049202,OP535337_CladeIIb_Nigeria_SouthSouth_2017_10_Bayelsa:0.0000248784)Node151:0.0000198603,(OP535322_CladeIIb_Nigeria_SouthSouth_2017_10_Edo:0.0000196429,OP535338_CladeIIb_Nigeria_SouthSouth_2017_10_Akwalbom:0.0000255510)Node153:0.0000199733)Node150:0.0000010906,(((OP612678_CladeIIb_Nigeria_SouthSouth_2019_11_Rivers:0.0000147320,OP612675_CladeIIb_Nigeria_SouthSouth_2019_01_Bayelsa:0.0000201669)Node156:0.0000148558,(OP612684_CladeIIb_Nigeria_SouthWest_2019_05_Lagos:0.0000150816,OP612680_CladeIIb_Nigeria_SouthWest_2019_04_Lagos:0.0000096129)Node157:0.0000147110)Node155:0.0000047938,(((OP535325_CladeIIb_Nigeria_SouthSouth_2018_06:0.0000150085,OP535327_CladeIIb_Nigeria_SouthSouth_2018_03_Rivers:0.0000049106)Node160:0.0000004922,OP535328_CladeIIb_Nigeria_SouthSouth_2018_03_Rivers:0.0000004922)Node159:0.0000004922,OP535329_CladeIIb_Nigeria_SouthSouth_2018_03_Rivers:0.0000004922)Node158:0.0000004922)Node154:0.0000197244)Node149:0.0000098196)Node22:0.0000010279)Node8:0.0000010750,((((((OP612674_CladeIIb_Nigeria_SouthSouth_2019_01_Bayelsa:0.0000197022,MT903341_CladeIIb_Nigeria_SouthSouth_2018_08_Bayelsa:0.0000551726)Node166:0.0001757394,(OP612682_CladeIIb_Nigeria_SouthSouth_2019_04_Bayelsa:0.0000147320,OP612688_CladeIIb_Nigeria_SouthWest_2019_10_Oyo:0.0000501449)Node167:0.0000196429)Node165:0.0000010633,((OP612683_CladeIIb_Nigeria_SouthSouth_2019_04_Delta:0.0000196429,OL504741_CladeIIb_Nigeria_SouthSouth_2019_12_unknown:0.0000470465)Node169:0.0000014571,OP612685_CladeIIb_Nigeria_SouthSouth_2019_05_Delta:0.0000049106)Node168:0.0000053579)Node164:0.0000014066,OP612681_CladeIIb_Nigeria_SouthSouth_2019_04_Bayelsa:0.0000406026)Node163:0.0000013579,MN648051_CladeIIb_Nigeria_SouthSouth_2018_10_unknown:0.0000406042)Node162:0.0000010424,((((OP612686_CladeIIb_Nigeria_SouthWest_2019_05_Lagos:0.0000049094,((PP852944_CladeIIb_Nigeria_SouthEast_2022_09_Anambra:0.0000049106,((PP852945_CladeIIb_Nigeria_SouthWest_2022_09_Lagos:0.0000049106,ON563414_CladeIIb_Nigeria_SouthSouth_2022_05_unknown:0.0000004922)Node177:0.0000525832,PP852989_CladeIIb_Nigeria_NorthCentral_2022_09_kwara:0.0006936514)Node176:0.0000004922)Node175:0.0000630755,ON676708_CladeIIb_Nigeria_SouthSouth_2021_11_unknown:0.0000149205)Node174:0.0001425505)Node173:0.0000049623,OP612687_CladeIIb_Nigeria_SouthEast_2019_07_Enugu:0.0000400919)Node172:0.0000310545,((MT903343_CladeIIb_Nigeria_SouthSouth_2018_09_unkwnon:0.0000299711,MT903345_CladeIIb_Nigeria_SouthSouth_2018_09_unknown:0.0000004922)Node179:0.0000441980,MT903344_CladeIIb_Nigeria_SouthSouth_2018_09_unknown:0.0000004922)Node178:0.0000010742)Node171:0.0000049106,OP612679_CladeIIb_Nigeria_SouthSouth_2019_03_Delta:0.0000411414)Node170:0.0000097459)Node161:0.0001658005)Node7:0.0000012654,(((MK783027_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers:0.0000049106,MK783031_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers:0.0000049106)Node182:0.0000004922,MK783028_CladeIIb_Nigeria_SouthSouth_2017_11_Rivers:0.0000004922)Node181:0.0000012025,MK783029_CladeIIb_Nigeria_SouthSouth_2017_12_Rivers:0.0000098214)Node180:0.0000248346)Node6:0.0000011932,((((OP535340_CladeIIb_Nigeria_SouthSouth_2017_10_Akwalbom:0.0000004922,OP535326_CladeIIb_Nigeria_SoythWest_2018_06_Oyo:0.0000250503)Node186:0.0000049106,(MT903339_CladeIIb_Nigeria_SouthSouth_2018_Delta:0.0000049106,(OP535312_CladeIIb_Nigeria_SouthSouth_2018_02_Rivers:0.0000004922,(OP535314_CladeIIb_Nigeria_SouthSouth_2018_01_Rivers:0.0000245537,OP535334_CladeIIb_Nigeria_SouthSouth_2018_02_Rivers:0.0000004922)Node189:0.0000004922)Node188:0.0000202179)Node187:0.0000004922)Node185:0.0000004922,OP535318_CladeIIb_Nigeria_NorthCentral_2017_12_Benue:0.0000200592)Node184:0.0000004922,((OP535315_CladeIIb_Nigeria_SouthEast_2018_02_Imo:0.0000177864,OP535316_CladeIIb_Nigeria_SouthEast_2018_02_Imo:0.0000010150)Node191:0.0000165637,(OP535330_CladeIIb_Nigeria_SouthEast_2018_02_Imo:0.0000004922,OP535324_CladeIIb_Nigeria_SouthEast_2018_02_Imo:0.0000049106)Node192:0.0000004922)Node190:0.0000297557)Node183:0.0000151538)Node5:0.0000387484,OP535317_CladeIIb_Nigeria_SouthWest_2018_01_Lagos:0.0000998874)Node4:0.0000189224,MT903338_CladeIIb_Nigeria_SouthWest_2018_Lagos:0.0000049106)Node3:0.0000197734,((OP535331_CladeIIb_Nigeria_SouthWest_2018_01_Oyo:0.0000004922,OP535333_CladeIIb_Nigeria_SouthWest_2018_01_Oyo:0.0000585244)Node194:0.0000011995,OP535332_CladeIIb_Nigeria_SouthWest_2018_01_Oyo:0.0000004922)Node193:0.0000004922)Node2:0.0000049106,NC_063383_CladeIIb_Nigeria_SouthSouth_2018_08_Rivers:0.0000004922)Node1;
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t dataset2_west_africa.aln.treefile -m "TPM2u{1.4754,6.28009}+F{0.335701,0.165229,0.164944,0.334126}+R3{0.642454,5.92016e-16,0.35118,1.24977,0.00636585,88.1429}" --length 201223
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s dataset2_west_africa.aln --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s dataset2_west_africa.aln --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Sun May 24 04:17:35 2026
+Total CPU time used: 892.76251 seconds (0h:14m:52s)
+Total wall-clock time used: 430.9369 seconds (0h:7m:10s)
+
