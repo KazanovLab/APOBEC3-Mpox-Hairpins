@@ -33,6 +33,10 @@ Columns
                               in a stem
   9  stem_energy              NN free energy of that same hairpin; blank if not
                               in a stem
+  10 stem_hairpin_sequence    genomic sequence of that same hairpin (stem-loop-
+                              stem), loop portion enclosed in "[]"; lowercase
+                              except the row's own TC/GA motif (uppercase);
+                              empty if not in a stem
   Loop positions are split by role, per covering hairpin: "boundary" (the C of
   a TC at the loop's 3' end, or the G of a GA at the loop's 5' end -- the same
   convention as structure_type="tc_end" / load.Genome.end_targets, which
@@ -41,30 +45,36 @@ Columns
   so the two roles are tracked independently, each with its own min-loop-length
   selection (mirroring stem_length's max selection).
 
-  10 in_loop_boundary          1 if the position is a TC-3'/GA-5' loop boundary
+  11 in_loop_boundary          1 if the position is a TC-3'/GA-5' loop boundary
                               for some covering hairpin
-  11 loop_boundary_length      loop length (nt) of the hairpin achieving that
+  12 loop_boundary_length      loop length (nt) of the hairpin achieving that
                               min, among boundary-qualifying hairpins; 0 if none
-  12 loop_boundary_stem_length stem length of that same hairpin; 0 if none
-  13 loop_boundary_energy      NN free energy of that same hairpin; blank if none
-  14 in_loop_other             1 if the position is a non-boundary loop position
+  13 loop_boundary_stem_length stem length of that same hairpin; 0 if none
+  14 loop_boundary_energy      NN free energy of that same hairpin; blank if none
+  15 loop_boundary_hairpin_sequence  sequence of that same hairpin,
+                              loop in "[]", lowercase except the row's own
+                              TC/GA motif (uppercase); empty if none
+  16 in_loop_other             1 if the position is a non-boundary loop position
                               for some covering hairpin
-  15 loop_other_length         loop length (nt) of the hairpin achieving that
+  17 loop_other_length         loop length (nt) of the hairpin achieving that
                               min, among other-qualifying hairpins; 0 if none
-  16 loop_other_stem_length    stem length of that same hairpin; 0 if none
-  17 loop_other_energy         NN free energy of that same hairpin; blank if none
+  18 loop_other_stem_length    stem length of that same hairpin; 0 if none
+  19 loop_other_energy         NN free energy of that same hairpin; blank if none
+  20 loop_other_hairpin_sequence     sequence of that same hairpin,
+                              loop in "[]", lowercase except the row's own
+                              TC/GA motif (uppercase); empty if none
 
   Mutation features (three datasets):
-  18 ds1_mutation             1 if the APOBEC substitution is observed here in
+  21 ds1_mutation             1 if the APOBEC substitution is observed here in
                               dataset1
-  19 ds1_independent_events   number of independent events (0 if none)
-  20 ds2_mutation             dataset2_west_africa
-  21 ds2_independent_events
-  22 ds3_mutation             dataset3_gisaid
-  23 ds3_independent_events
-  24 any_mutation             1 if the APOBEC substitution is observed in any of
+  22 ds1_independent_events   number of independent events (0 if none)
+  23 ds2_mutation             dataset2_west_africa
+  24 ds2_independent_events
+  25 ds3_mutation             dataset3_gisaid
+  26 ds3_independent_events
+  27 any_mutation             1 if the APOBEC substitution is observed in any of
                               the three datasets
-  25 total_independent_events sum of independent events across all three datasets
+  28 total_independent_events sum of independent events across all three datasets
 
 Hairpin prediction: EMBOSS palindrome, mismatches=0, stem_min=4,
 stem_max=30 (repo default), loop_max=20. Five overlap-resolution strategies,
@@ -323,28 +333,36 @@ def mark(selected):
     the companion values are simply that hairpin's loop / stem / energy. Ties in
     the max/min are resolved first-hairpin-seen. Energy is NaN where the
     position doesn't fall in that role.
+
+    Each role also records the winning hairpin's start (0-based, -1 if none),
+    so the caller can reconstruct its exact sequence via hairpin_sequence().
     """
     BIG = np.iinfo(np.int32).max
-    stem_len  = np.zeros(N, dtype=np.int32)
-    stem_loop = np.zeros(N, dtype=np.int32)
-    stem_en   = np.full(N, np.nan, dtype=np.float64)
+    stem_len   = np.zeros(N, dtype=np.int32)
+    stem_loop  = np.zeros(N, dtype=np.int32)
+    stem_en    = np.full(N, np.nan, dtype=np.float64)
+    stem_start = np.full(N, -1, dtype=np.int32)
 
-    loopb_len  = np.full(N, BIG, dtype=np.int32)
-    loopb_stem = np.zeros(N, dtype=np.int32)
-    loopb_en   = np.full(N, np.nan, dtype=np.float64)
-    loopo_len  = np.full(N, BIG, dtype=np.int32)
-    loopo_stem = np.zeros(N, dtype=np.int32)
-    loopo_en   = np.full(N, np.nan, dtype=np.float64)
+    loopb_len   = np.full(N, BIG, dtype=np.int32)
+    loopb_stem  = np.zeros(N, dtype=np.int32)
+    loopb_en    = np.full(N, np.nan, dtype=np.float64)
+    loopb_start = np.full(N, -1, dtype=np.int32)
+    loopo_len   = np.full(N, BIG, dtype=np.int32)
+    loopo_stem  = np.zeros(N, dtype=np.int32)
+    loopo_en    = np.full(N, np.nan, dtype=np.float64)
+    loopo_start = np.full(N, -1, dtype=np.int32)
 
     for h in selected:
         for a, b in h.stem_indexes:                       # 0-based inclusive
             seg  = stem_len[a:b + 1]
             segl = stem_loop[a:b + 1]
             sege = stem_en[a:b + 1]
+            segst = stem_start[a:b + 1]
             mask = h.stem_length > seg                    # strictly greater -> new max
-            seg[mask]  = h.stem_length
-            segl[mask] = h.spacer_length
-            sege[mask] = h.score
+            seg[mask]   = h.stem_length
+            segl[mask]  = h.spacer_length
+            sege[mask]  = h.score
+            segst[mask] = h.start
 
         l, r = h.spacer_index                             # 0-based inclusive
         if r < l:
@@ -359,33 +377,61 @@ def mark(selected):
 
         for pos0 in boundary:
             if h.spacer_length < loopb_len[pos0]:
-                loopb_len[pos0]  = h.spacer_length
-                loopb_stem[pos0] = h.stem_length
-                loopb_en[pos0]   = h.score
+                loopb_len[pos0]   = h.spacer_length
+                loopb_stem[pos0]  = h.stem_length
+                loopb_en[pos0]    = h.score
+                loopb_start[pos0] = h.start
 
         for pos0 in range(l, r + 1):
             if pos0 in boundary:
                 continue
             if h.spacer_length < loopo_len[pos0]:
-                loopo_len[pos0]  = h.spacer_length
-                loopo_stem[pos0] = h.stem_length
-                loopo_en[pos0]   = h.score
+                loopo_len[pos0]   = h.spacer_length
+                loopo_stem[pos0]  = h.stem_length
+                loopo_en[pos0]    = h.score
+                loopo_start[pos0] = h.start
 
     loopb_len[loopb_len == BIG] = 0
     loopo_len[loopo_len == BIG] = 0
-    return (stem_len, stem_loop, stem_en,
-            loopb_len, loopb_stem, loopb_en,
-            loopo_len, loopo_stem, loopo_en)
+    return (stem_len, stem_loop, stem_en, stem_start,
+            loopb_len, loopb_stem, loopb_en, loopb_start,
+            loopo_len, loopo_stem, loopo_en, loopo_start)
+
+
+def hairpin_sequence(start, stem_len, loop_len, motif_pos0, nucleotide):
+    """Genomic sequence of the hairpin (start, stem_len, loop_len) 0-based,
+    with the loop portion enclosed in square brackets. Empty string if no
+    hairpin is present (start < 0). Everything is lowercased except the
+    row's own TC/GA motif (the two bases at motif_pos0-1,motif_pos0 for a
+    C-anchored row, or motif_pos0,motif_pos0+1 for a G-anchored row), which
+    is kept uppercase; the half of the motif falling outside the hairpin
+    span (if any) is simply not part of the printed string."""
+    if start < 0:
+        return ""
+    end = start + 2 * stem_len + loop_len - 1              # 0-based inclusive
+    chars = list(GENOME[start:end + 1].lower())
+    m0, m1 = (motif_pos0 - 1, motif_pos0) if nucleotide == 'C' else (motif_pos0, motif_pos0 + 1)
+    for gi in (m0, m1):
+        if start <= gi <= end:
+            chars[gi - start] = GENOME[gi]
+    full  = "".join(chars)
+    left  = full[:stem_len]
+    loop  = full[stem_len:stem_len + loop_len]
+    right = full[stem_len + loop_len:]
+    return f"{left}[{loop}]{right}"
 
 # ── assemble & write one table per strategy ──────────────────────────────────
 STRATEGIES = ["most_stable", "greedy", "max_cov", "min_cov", "all"]
 COLUMNS = [
     "position", "nucleotide", "context_pm50", "grantham", "third_nt",
     "in_stem", "stem_length", "stem_loop_length", "stem_energy",
+    "stem_hairpin_sequence",
     "in_loop_boundary", "loop_boundary_length",
     "loop_boundary_stem_length", "loop_boundary_energy",
+    "loop_boundary_hairpin_sequence",
     "in_loop_other", "loop_other_length",
     "loop_other_stem_length", "loop_other_energy",
+    "loop_other_hairpin_sequence",
     "ds1_mutation", "ds1_independent_events",
     "ds2_mutation", "ds2_independent_events",
     "ds3_mutation", "ds3_independent_events",
@@ -394,9 +440,9 @@ COLUMNS = [
 
 for strategy in STRATEGIES:
     selected = select(strategy)
-    (stem_len, stem_loop, stem_en,
-     loopb_len, loopb_stem, loopb_en,
-     loopo_len, loopo_stem, loopo_en) = mark(selected)
+    (stem_len, stem_loop, stem_en, stem_start,
+     loopb_len, loopb_stem, loopb_en, loopb_start,
+     loopo_len, loopo_stem, loopo_en, loopo_start) = mark(selected)
     out_rows = []
     for row in base_rows:
         p0 = row["_pos0"]
@@ -411,14 +457,20 @@ for strategy in STRATEGIES:
             "stem_length":      sl,
             "stem_loop_length": int(stem_loop[p0]),
             "stem_energy":      stem_en[p0],
+            "stem_hairpin_sequence": hairpin_sequence(
+                int(stem_start[p0]), sl, int(stem_loop[p0]), p0, row["nucleotide"]),
             "in_loop_boundary":          int(lb > 0),
             "loop_boundary_length":      lb,
             "loop_boundary_stem_length": int(loopb_stem[p0]),
             "loop_boundary_energy":      loopb_en[p0],
+            "loop_boundary_hairpin_sequence": hairpin_sequence(
+                int(loopb_start[p0]), int(loopb_stem[p0]), lb, p0, row["nucleotide"]),
             "in_loop_other":             int(lo > 0),
             "loop_other_length":         lo,
             "loop_other_stem_length":    int(loopo_stem[p0]),
             "loop_other_energy":         loopo_en[p0],
+            "loop_other_hairpin_sequence": hairpin_sequence(
+                int(loopo_start[p0]), int(loopo_stem[p0]), lo, p0, row["nucleotide"]),
             "ds1_mutation":            row["ds1_mutation"],
             "ds1_independent_events":  row["ds1_independent_events"],
             "ds2_mutation":            row["ds2_mutation"],

@@ -1,15 +1,5 @@
 """
-Test 17: Exclusive counting — select-first-then-filter heatmaps.
 
-Same modification as test16 vs test10, applied to test11's exclusive categories.
-
-Difference from test11
-----------------------
-In test11, hairpin detection was re-run for each (stem_len, loop_len) cell,
-so the selection step operated on a pool of single-shape hairpins —
-making selection trivial.
-
-This test reverses the order:
   1. Detect hairpins ONCE with broad parameters:
        stem_min=4, stem_max=12, gaplimit=20, mm=MM
   2. Apply the non-extendable-stem filter to the full pool.
@@ -47,7 +37,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap, TwoSlopeNorm
 from scipy.stats import binomtest
 
-# -- paths ----------------------------------------------------------------------
+# paths
 BINOMIAL_DIR = Path(__file__).parent.parent.parent.parent / "package"
 sys.path.insert(0, str(BINOMIAL_DIR))
 os.chdir(BINOMIAL_DIR)
@@ -56,7 +46,7 @@ import load
 from emboss import get_palindrome
 from functions import find_groups, max_coverage
 
-# -- command-line arguments -----------------------------------------------------
+# command-line arguments
 parser = argparse.ArgumentParser(description="Test 17: exclusive select-first heatmaps.")
 parser.add_argument("--mm", type=int, default=0,
                     help="Number of mismatches allowed in stem (default: 0)")
@@ -64,26 +54,26 @@ args = parser.parse_args()
 MM = args.mm
 print(f"Running with mismatches = {MM}")
 
-# -- broad detection parameters -------------------------------------------------
+# broad detection parameters
 DET_STEM_MIN = 4
 DET_STEM_MAX = 12
 DET_GAPLIMIT = 20
 
-# -- grid parameters ------------------------------------------------------------
+# grid parameters
 LOOP_VALUES     = [2, 3, 4, 5, 6, 7, 8, 9, 10]
 STEM_VALUES     = [4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 STRUCTURE_TYPES = ["tc_end", "c_end_excl", "spacer_interior", "stem"]
 SELECTION_TYPES = ["most_stable", "greedy", "max_cov", "min_cov", "all"]
 
-# -- genome / mutation data (loaded via load module) ---------------------------
+# genome / mutation data (loaded via load module)
 _genome_seq = load.genome.sequence
 _mut_list_APOBEC = load.mutations_list_APOBEC   # 0-based, with multiplicity
 _mut_list_APOBEC_ext = load.mutations_list_APOBEC_ext
 _mut_cnt_APOBEC    = load.mut_cnt_APOBEC
 _mut_cnt_APOBEC_ext = load.mut_cnt_APOBEC_ext
 
-# -- pre-compute genome-wide target sets (done once) ---------------------------
+# pre-compute genome-wide target sets (done once)
 print("Pre-computing genome-wide target sets...")
 _tc_pos   = set(m.end() - 1 for m in re.finditer("TC", _genome_seq))   # C of TC
 _ga_pos   = set(m.start()   for m in re.finditer("GA", _genome_seq))   # G of GA
@@ -97,7 +87,7 @@ _denom_c_not_tc = len(_c_not_tc | _g_not_ga)
 print(f"  TC+GA positions in genome    : {_denom_tc_ga}")
 print(f"  C_not_TC+G_not_GA in genome  : {_denom_c_not_tc}")
 
-# -- non-extendable-stem filter -------------------------------------------------
+# non-extendable-stem filter
 _COMPLEMENT = {'A': 'T', 'T': 'A', 'G': 'C', 'C': 'G'}
 
 def is_extendable(h):
@@ -108,7 +98,7 @@ def is_extendable(h):
     right = _genome_seq[h.end + 1].upper()
     return _COMPLEMENT.get(left) == right
 
-# -- selection helpers (mirror test11) -----------------------------------------
+# selection helpers
 _priority_is_max = False  # matches load.priority_is_max
 
 def _most_stable(group):
@@ -171,8 +161,7 @@ def _greedy_choose(hairpins_group, taken=None, skip_sort=False):
 
 def select_hairpins(hairpins, sel_type):
     """Return a list of (non-overlapping) hairpins according to sel_type.
-    Note: in test11, max_cov always uses max_coverage (not max_coverage_spacer)
-    regardless of struct_type, so we preserve that here."""
+    """
     if sel_type == "all":
         return list(hairpins)
 
@@ -257,7 +246,7 @@ def compute_exclusive(hairpins, struct_type):
 
     return hits, len(struct_targets), targets_p
 
-# -- step 1: broad hairpin detection -------------------------------------------
+# step 1: broad hairpin detection
 print(f"\nDetecting hairpins broadly "
       f"(stem={DET_STEM_MIN}-{DET_STEM_MAX}, gaplimit={DET_GAPLIMIT}, mm={MM})...")
 pa_file = get_palindrome(DET_STEM_MIN, DET_STEM_MAX, DET_GAPLIMIT, MM)
@@ -267,7 +256,7 @@ print(f"  total hairpins found: {len(all_hairpins)}")
 broad_pool = [h for h in all_hairpins if not is_extendable(h)]
 print(f"  non-extendable hairpins: {len(broad_pool)}")
 
-# -- step 2: apply selection on the full broad pool ----------------------------
+# step 2: apply selection on the full broad pool
 # Selection is struct_type-agnostic in test11 → cache one pool per sel_type.
 print("\nApplying selection on the broad pool...")
 selected_pools = {}
@@ -276,7 +265,7 @@ for sel_type in SELECTION_TYPES:
     selected_pools[sel_type] = sel
     print(f"  [{sel_type}]: {len(sel)} hairpins selected")
 
-# -- step 3: per-cell post-filter + exclusive p-value --------------------------
+# step 3: per-cell post-filter + exclusive p-value 
 # key: (sel_type, struct_type, stem_len, loop_len)
 # val: (log10p, hits, n_struct, targets_p, pvalue)
 print("\nComputing per-cell p-values...")
@@ -314,7 +303,7 @@ for sel_type in SELECTION_TYPES:
                       f"hits={hits}, tgt={n_struct}, "
                       f"p={pvalue:.5f}, -log10p={log10p:.3f}")
 
-# -- panel-level combined stats (mirror test11) --------------------------------
+# panel-level combined stats
 _GENOME_DENOM = {
     "tc_end":          _denom_tc_ga,
     "c_end_excl":      _denom_c_not_tc,
@@ -345,7 +334,7 @@ for _sel in SELECTION_TYPES:
         _lp = -math.log10(_pv) if _pv > 0 else float('inf')
         panel_stats[(_sel, _str)] = (_hits, _targets, _p0, _lp)
 
-# -- save results --------------------------------------------------------------
+# save results
 out_dir = Path(__file__).parent
 with open(out_dir / f"results_mm{MM}.pkl", "wb") as f:
     pickle.dump({
@@ -361,7 +350,7 @@ with open(out_dir / f"results_mm{MM}.pkl", "wb") as f:
     }, f)
 print(f"\nResults saved to results_mm{MM}.pkl")
 
-# -- list mutated hairpins for significant cells (p < 0.05) --------------------
+# list mutated hairpins for significant cells (p < 0.05)
 from collections import Counter
 SIG_P = 0.05
 print(f"\nListing mutated hairpins for significant cells (p < {SIG_P})...")
@@ -451,7 +440,7 @@ with open(out_tsv, "w") as f:
         f.write("# No significant cells with mutated hairpins (p < 0.05)\n")
 print(f"Saved: {out_tsv.name}  ({len(rows)} mutated hairpins across significant cells)")
 
-# -- colormap (shared across all panels) ---------------------------------------
+# colormap (shared across all panels)
 SIG_THRESH = 1.3  # -log10(0.05)
 
 finite_vals = [v[0] for v in results.values() if not math.isinf(v[0])]
@@ -470,7 +459,21 @@ norm = TwoSlopeNorm(vmin=vmin, vcenter=SIG_THRESH, vmax=vmax)
 x_labels = [str(v) for v in LOOP_VALUES]
 y_labels = [str(v) for v in STEM_VALUES]
 
-# -- helper: draw one heatmap into an axes -------------------------------------
+struct_labels = {
+    "stem": "Stem",
+    "spacer_interior": "Loop excluding TC at the 3' end",
+    "tc_end": "TC at the 3' loop end",
+    "c_end_excl": "C at the 3' loop end excluding TC"
+}
+selection_labels = {
+    "most_stable": "Most stable hairpin",
+    "greedy": "Greedy selection",
+    "max_cov": "Maximum coverage",
+    "min_cov": "Minimum coverage",
+    "all": "All hairpins"
+}
+
+# helper: draw one heatmap into an axes
 def draw_panel(ax, fig, sel_type, struct_type, fontsize_tick=7, fontsize_ann=5):
     n_rows = len(STEM_VALUES)
     n_cols = len(LOOP_VALUES)
@@ -491,11 +494,11 @@ def draw_panel(ax, fig, sel_type, struct_type, fontsize_tick=7, fontsize_ann=5):
     ax.set_ylabel("Stem length (bp)", fontsize=fontsize_tick)
     ph, pt, pp0, plp = panel_stats[(sel_type, struct_type)]
     plp_str = f"{plp:.2f}" if not math.isinf(plp) else "inf"
-    #ax.set_title(
-    #    f"{struct_type} / {sel_type}\n"
+    ax.set_title(
+        f"{struct_labels[struct_type]} / {selection_labels[sel_type]}",
     #    f"All: {ph}/{pt}  p₀={pp0:.3g}  −log₁₀p={plp_str}",
-    #    fontsize=fontsize_tick + 1, fontweight="bold"
-    #)
+        fontsize=fontsize_tick + 1 #, fontweight="bold"
+    )
 
     for r, stem_len in enumerate(STEM_VALUES):
         for c, loop_len in enumerate(LOOP_VALUES):
