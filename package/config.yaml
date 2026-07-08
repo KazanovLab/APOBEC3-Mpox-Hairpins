@@ -2,8 +2,8 @@ genome_path: "input/mpox_genome_seq.fna"
 structure_type: "tc_end" # options: hairpin, spacer, tc_end, c_end
 hairpin_selection_type: "most_stable" # options: most_stable, greedy, max_cov, min_cov, all
 #mutation_path: "datasets/dataset1.substitution_table.tsv"
-mutation_path: "datasets/dataset2_west_africa.substitution_table.tsv"
-#mutation_path: "datasets/dataset3_gisaid.substitution_table.tsv"
+#mutation_path: "datasets/dataset2_west_africa.substitution_table.tsv"
+mutation_path: "datasets/dataset3_gisaid.substitution_table.tsv"
 are_independent_events: True
 filter_looplen_lessequal: 0
 #hairpins_path: "input/palindrom_analyzer_output.txt"

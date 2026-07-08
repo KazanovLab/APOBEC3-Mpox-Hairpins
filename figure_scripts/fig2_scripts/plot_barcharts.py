@@ -9,8 +9,8 @@ import matplotlib.patches as mpatches
 import numpy as np
 from pathlib import Path
 
-#RESULTS = Path(__file__).parent.parent.parent / "binomial_test/EMBOSS/binomial_dataset2_loople0_indTrue_emboss.txt"
-RESULTS = Path(__file__).parent.parent.parent / "binomial_test/PalndromeAnalyzer/binomial_dataset2_loople0_indTrue_PA.txt"
+RESULTS = Path(__file__).parent.parent.parent / "binomial_test/EMBOSS/binomial_dataset2_loople0_indTrue_emboss.txt"
+#RESULTS = Path(__file__).parent.parent.parent / "binomial_test/PalndromeAnalyzer/binomial_dataset2_loople0_indTrue_PA.txt"
 #RESULTS = Path(__file__).parent.parent.parent / "binomial_test/EMBOSS/binomial_dataset3_loople0_indTrue_emboss.txt"
 OUT_DIR = Path(__file__).parent
 
@@ -89,7 +89,7 @@ for stype, rows in data.items():
 
     fig.tight_layout()
     #out = OUT_DIR / f"barchart_{stype}_dataset3_loople0_indTrue_emboss.png"
-    out = OUT_DIR / f"barchart_{stype}_dataset2_loople0_indTrue_PA.png"
+    out = OUT_DIR / f"barchart_{stype}_dataset2_loople0_indTrue_emboss.png"
     fig.savefig(out, dpi=200, bbox_inches="tight")
     plt.close(fig)
     print(f"Saved: {out}")
