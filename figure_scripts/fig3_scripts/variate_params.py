@@ -18,7 +18,7 @@ import io
 import contextlib
 from pathlib import Path
 
-# ── paths ─────────────────────────────────────────────────────────────────────
+# paths
 BINOMIAL_DIR = Path(__file__).parent.parent.parent / "package"
 sys.path.insert(0, str(BINOMIAL_DIR))
 
@@ -47,7 +47,7 @@ def stem_max_values(stem_min):
     """Y-axis range: stem_min .. stem_min+6 (7 values)."""
     return list(range(stem_min, stem_min + 7))
 STRUCTURE_TYPE  = "c_end"
-SELECTION_TYPE  = "all"
+SELECTION_TYPE  = "greedy"
 
 # 5 panels: (stem_min, mismatches)
 PANELS = [
