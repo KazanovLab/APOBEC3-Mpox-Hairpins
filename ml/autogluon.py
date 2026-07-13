@@ -68,7 +68,7 @@ def save_predictions_xlsx(out, target, path="predictions.xlsx"):
     return path
 
 
-mlflow.set_experiment("autogluon-ds2-s7l3")
+mlflow.set_experiment("autogluon-ds2-newenergy")
 
 with mlflow.start_run():
     mlflow.log_params({

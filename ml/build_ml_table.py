@@ -31,8 +31,12 @@ Columns
   8  stem_loop_length         loop length of the hairpin whose stem was used for
                               stem_length (i.e. the one giving the max); 0 if not
                               in a stem
-  9  stem_energy              NN free energy of that same hairpin; blank if not
-                              in a stem
+  9  stem_energy              free energy (kcal/mol) of that same hairpin, via
+                              ViennaRNA cruciform_hairpin_dG() with DNA
+                              (Mathews 2004) parameters: standard convention,
+                              more negative = more stable. ViennaRNA cannot
+                              fold a loop < 3 nt and returns the sentinel
+                              100000.0 for such hairpins. Blank if not in a stem
   10 stem_hairpin_sequence    genomic sequence of that same hairpin (stem-loop-
                               stem), loop portion enclosed in "[]"; lowercase
                               except the row's own TC/GA motif (uppercase);
@@ -50,7 +54,8 @@ Columns
   12 loop_boundary_length      loop length (nt) of the hairpin achieving that
                               min, among boundary-qualifying hairpins; 0 if none
   13 loop_boundary_stem_length stem length of that same hairpin; 0 if none
-  14 loop_boundary_energy      NN free energy of that same hairpin; blank if none
+  14 loop_boundary_energy      free energy (kcal/mol) of that same hairpin, via
+                              ViennaRNA (see stem_energy above); blank if none
   15 loop_boundary_hairpin_sequence  sequence of that same hairpin,
                               loop in "[]", lowercase except the row's own
                               TC/GA motif (uppercase); empty if none
@@ -59,7 +64,8 @@ Columns
   17 loop_other_length         loop length (nt) of the hairpin achieving that
                               min, among other-qualifying hairpins; 0 if none
   18 loop_other_stem_length    stem length of that same hairpin; 0 if none
-  19 loop_other_energy         NN free energy of that same hairpin; blank if none
+  19 loop_other_energy         free energy (kcal/mol) of that same hairpin, via
+                              ViennaRNA (see stem_energy above); blank if none
   20 loop_other_hairpin_sequence     sequence of that same hairpin,
                               loop in "[]", lowercase except the row's own
                               TC/GA motif (uppercase); empty if none
@@ -90,6 +96,33 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import RNA
+
+# ── hairpin free energy (ViennaRNA, DNA parameters) ───────────────────────────
+# Replaces the old NN-model score (package/hairpins.py::nn_energy) as the source
+# for stem_energy / loop_boundary_energy / loop_other_energy. Standard ΔG
+# convention: more negative = more stable. ViennaRNA cannot fold a hairpin loop
+# shorter than 3 nt and returns the sentinel 100000.0 for such (structurally
+# forbidden) shapes -- passed through as-is, unmodified, since it's what the
+# function returns for those inputs.
+RNA.params_load_DNA_Mathews2004()
+
+def cruciform_hairpin_dG(seq, stem_len, loop_len):
+    """ΔG (kcal/mol) of folding `seq` (stem+loop+stem, length 2*stem_len+loop_len)
+    into the fully-paired stem-loop-stem structure of the given shape."""
+    structure = "(" * stem_len + "." * loop_len + ")" * stem_len
+    assert len(seq) == len(structure), f"{len(seq)} != {len(structure)}"
+    fc = RNA.fold_compound(seq)
+    return fc.eval_structure(structure)
+
+_energy_cache = {}
+
+def hairpin_energy(h):
+    """Cached cruciform_hairpin_dG for a load.py Hairpin instance."""
+    key = (h.sequence, h.stem_length, h.spacer_length)
+    if key not in _energy_cache:
+        _energy_cache[key] = cruciform_hairpin_dG(h.sequence, h.stem_length, h.spacer_length)
+    return _energy_cache[key]
 
 # ── paths ────────────────────────────────────────────────────────────────────
 REPO         = Path(__file__).resolve().parent.parent
@@ -353,6 +386,8 @@ def mark(selected):
     loopo_start = np.full(N, -1, dtype=np.int32)
 
     for h in selected:
+        h_energy = hairpin_energy(h)
+
         for a, b in h.stem_indexes:                       # 0-based inclusive
             seg  = stem_len[a:b + 1]
             segl = stem_loop[a:b + 1]
@@ -361,7 +396,7 @@ def mark(selected):
             mask = h.stem_length > seg                    # strictly greater -> new max
             seg[mask]   = h.stem_length
             segl[mask]  = h.spacer_length
-            sege[mask]  = h.score
+            sege[mask]  = h_energy
             segst[mask] = h.start
 
         l, r = h.spacer_index                             # 0-based inclusive
@@ -379,7 +414,7 @@ def mark(selected):
             if h.spacer_length < loopb_len[pos0]:
                 loopb_len[pos0]   = h.spacer_length
                 loopb_stem[pos0]  = h.stem_length
-                loopb_en[pos0]    = h.score
+                loopb_en[pos0]    = h_energy
                 loopb_start[pos0] = h.start
 
         for pos0 in range(l, r + 1):
@@ -388,7 +423,7 @@ def mark(selected):
             if h.spacer_length < loopo_len[pos0]:
                 loopo_len[pos0]   = h.spacer_length
                 loopo_stem[pos0]  = h.stem_length
-                loopo_en[pos0]    = h.score
+                loopo_en[pos0]    = h_energy
                 loopo_start[pos0] = h.start
 
     loopb_len[loopb_len == BIG] = 0

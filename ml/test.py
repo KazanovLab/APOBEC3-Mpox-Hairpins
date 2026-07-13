@@ -1,37 +1,34 @@
-import RNA   # pip install ViennaRNA
+import RNA
+
+def _reverse_complement(s):
+    comp = {"A": "T", "T": "A", "G": "C", "C": "G",
+            "a": "t", "t": "a", "g": "c", "c": "g"}
+    return "".join(comp[b] for b in reversed(s))
 
 def cruciform_hairpin_dG(seq, stem_len, loop_len):
-    """ΔG образования шпильки (одно плечо cruciform) с ДНК-параметрами.
-    seq — участок: [стебель 5'][петля][стебель 3'], длиной 2*stem_len + loop_len.
+    """ΔG cruciform forming (one leg cruciform) with DNA parameters.
+    seq: [stem 5'][loop][stem 3'], length 2*stem_len + loop_len.
     """
-    # структура: stem_len открывающих скобок, loop_len точек, stem_len закрывающих
+    # structure: stem_len "(", loop_len "."", stem_len ")"
     structure = "(" * stem_len + "." * loop_len + ")" * stem_len
     assert len(seq) == len(structure), f"{len(seq)} != {len(structure)}"
 
-    # загрузить ДНК-параметры (Mathews 2004), а не RNA
+    # load DNA-parameters (Mathews 2004), not RNA
     RNA.params_load_DNA_Mathews2004()
 
     fc = RNA.fold_compound(seq)
-    dG = fc.eval_structure(structure)   # ккал/моль для заданной структуры
+    dG = fc.eval_structure(structure)   
     return dG
 
-seq = "gatgtcgatagacatc"
-looplen = 4
-stemlen = 6
+def linear_duplex_dG(seq):
+    """ΔG linear B-duplex sequence with complementary strand (DNA-parameters).
+    seq: whole inverted repeat [stem 5'][loop][stem 3'].
+    """
+    RNA.params_load_DNA_Mathews2004()
+    return RNA.duplexfold(seq, _reverse_complement(seq)).energy
 
-print(f"seq={seq},stemlen={stemlen},looplen={looplen}")
-print(cruciform_hairpin_dG(seq,stemlen,looplen))
-
-seq = "ttatatattctatataa"
-looplen = 3
-stemlen = 7
-
-print(f"seq={seq},stemlen={stemlen},looplen={looplen}")
-print(cruciform_hairpin_dG(seq,stemlen,looplen))
-
-seq = "tatatcatcgatata"
-looplen = 3
-stemlen = 6
-
-print(f"seq={seq},stemlen={stemlen},looplen={looplen}")
-print(cruciform_hairpin_dG(seq,stemlen,looplen))
+def cruciform_relative_dG(seq, stem_len, loop_len, junction_penalty=0.0):
+    """ΔΔG = 2*G_hairpin + G_junction - G_linear (two hairpins vs one duplex)."""
+    G_hairpin = cruciform_hairpin_dG(seq, stem_len, loop_len)
+    G_linear  = linear_duplex_dG(seq)
+    return 2 * G_hairpin + junction_penalty - G_linear
