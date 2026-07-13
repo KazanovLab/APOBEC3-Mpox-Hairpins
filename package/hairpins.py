@@ -3,6 +3,7 @@ import re
 import json
 from pathlib import Path
 from tqdm import tqdm
+import RNA
 
 _NN_COEFS_DIR = Path(__file__).parent / "nn_coefs"
 
@@ -114,6 +115,65 @@ class Hairpin:
             if self.Sequence[i] != complement[self.Opposite[ln - i - 1]]:
                 mm_cnt += 1
         return mm_cnt
+
+
+    def pin_energy(self) -> float:
+        """
+        Energy calculation based on NN model for DNA. Coefficients from NNDB https://rna.urmc.rochester.edu/NNDB/
+        Only works for hairpins with loops <= 30 nt.
+        """
+        init = 1.0
+
+        pin_energy: float = 0
+        seq = self.Sequence
+        reverse_opposite = Hairpin.reverse_complement(self.Opposite)
+        mm_positions = [
+            i
+            for i in range(self.stemlen())
+            if self.Sequence[i] != reverse_opposite[i]
+        ]
+        for i in range(self.stemlen() - 1):
+            if i in mm_positions:
+                pass
+            if i + 1 in mm_positions:
+                pass
+            else:
+                nn = seq[i] + seq[i + 1]
+                pin_energy += self.NN_coefs[nn]
+        for mm_pos in mm_positions:
+            pin_energy += init
+            pin_energy += self.MM_coefs[
+                f"{seq[mm_pos - 1] + seq[mm_pos + 1]}-{seq[mm_pos]}-{self.Opposite[-mm_pos-1]}"
+            ]
+        if self.looplen() > 1:
+            pin_energy += self.terminal_MM_coefs[
+                f"{seq[-1]}-{self.Spacer[0]}-{self.Spacer[-1]}"
+            ]
+        if self.looplen() > 2:
+            pin_energy += self.init_coefs[str(self.looplen())]
+        else:
+            pin_energy += init  # pure ad-libbing, as NN model doesn't allow for <3 nt loops
+        return pin_energy
+
+
+    def linear_energy(self) -> float:
+        """
+        Energy calculation based on NN model for DNA. Coefficients from NNDB https://rna.urmc.rochester.edu/NNDB/
+        """
+        symmetry = 0.43  # only for linear structure
+        init = 1.0
+
+        linear_seq = self.Sequence + self.Spacer + self.Opposite
+        linear_energy: float = 0
+        for i in range(len(linear_seq) - 1):
+            nn = linear_seq[i] + linear_seq[i + 1]
+            linear_energy += self.NN_coefs[nn]
+        if Hairpin.reverse_complement(linear_seq) == linear_seq:
+            linear_energy += symmetry
+        linear_energy += init
+
+        return linear_energy
+
 
     def nn_energy(self) -> float:
         """
@@ -348,3 +408,40 @@ class HairpinList(list):
             ):
                 result.append(hairpin)
         return result
+
+
+### MK energy
+
+def _reverse_complement(s):
+    comp = {"A": "T", "T": "A", "G": "C", "C": "G",
+            "a": "t", "t": "a", "g": "c", "c": "g"}
+    return "".join(comp[b] for b in reversed(s))
+
+def cruciform_hairpin_dG(seq, stem_len, loop_len):
+    """ΔG cruciform forming (one leg cruciform) with DNA parameters.
+    seq: [stem 5'][loop][stem 3'], length 2*stem_len + loop_len.
+    """
+    # structure: stem_len "(", loop_len "."", stem_len ")"
+    structure = "(" * stem_len + "." * loop_len + ")" * stem_len
+    assert len(seq) == len(structure), f"{len(seq)} != {len(structure)}"
+
+    # load DNA-parameters (Mathews 2004), not RNA
+    RNA.params_load_DNA_Mathews2004()
+
+    fc = RNA.fold_compound(seq)
+    dG = fc.eval_structure(structure)   
+    return dG
+
+def linear_duplex_dG(seq):
+    """ΔG linear B-duplex sequence with complementary strand (DNA-parameters).
+    seq: whole inverted repeat [stem 5'][loop][stem 3'].
+    """
+    RNA.params_load_DNA_Mathews2004()
+    return RNA.duplexfold(seq, _reverse_complement(seq)).energy
+
+def cruciform_relative_dG(seq, stem_len, loop_len, junction_penalty=0.0):
+    """ΔΔG = 2*G_hairpin + G_junction - G_linear (two hairpins vs one duplex)."""
+    G_hairpin = cruciform_hairpin_dG(seq, stem_len, loop_len)
+    G_linear  = linear_duplex_dG(seq)
+    return 2 * G_hairpin + junction_penalty - G_linear
+
