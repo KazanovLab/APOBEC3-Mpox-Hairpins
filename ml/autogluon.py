@@ -122,9 +122,10 @@ def _get_shap_values_tree(booster, X_trans):
     return sv
 
 
-def _get_shap_values_kernel(predictor, features, X_explain, background_n=50):
+def _get_shap_values_kernel(predictor, features, X_explain, background_n=None):
     """Model-agnostic fallback через predict_proba (медленно, но всегда работает)."""
-    background = shap.sample(X_explain, min(background_n, len(X_explain)), random_state=0)
+    n = len(X_explain) if background_n is None else min(background_n, len(X_explain))
+    background = shap.sample(X_explain, n, random_state=0)
 
     def f(X):
         return predictor.predict_proba(
