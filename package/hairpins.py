@@ -4,6 +4,10 @@ import json
 from pathlib import Path
 from tqdm import tqdm
 import RNA
+import yaml
+
+with open("config.yaml", "r") as file:
+    params = yaml.safe_load(file)
 
 _NN_COEFS_DIR = Path(__file__).parent / "nn_coefs"
 
@@ -372,7 +376,13 @@ class HairpinList(list):
         Recalculate and update Energy for each hairpin using nn_energy().
         """
         for hairpin in self:
-            hairpin.Energy = hairpin.nn_energy()
+            if params["energy"] == "cruciform":
+                hairpin.Energy = hairpin.nn_energy()
+            elif params["energy"] == "pin":
+                hairpin.Energy = hairpin.pin_energy()
+            else:
+                print("Energy value in the config file is not in {pin, cruciform}")
+                sys.exit(1)
 
     def to_palindrome_analyzer(self, filepath):
         """

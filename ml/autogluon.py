@@ -27,7 +27,7 @@ feature_set1 = ["grantham",
 
 print(df[feature_set1].dtypes)
 
-target = "any_mutation"
+target = "ds2_mutation"
 #preset = "interpretable"
 preset = "medium"
 metric = "roc_auc"
@@ -142,6 +142,7 @@ def shap_explain_autogluon(
     max_explain=200,
     top_k_dependence=4,
     log_to_mlflow=True,
+    use_kernel=False
 ):
     """
     predictor       — обученный TabularPredictor
@@ -166,7 +167,7 @@ def shap_explain_autogluon(
     X_used = None
 
     # --- попытка 1: быстрый TreeExplainer на трансформированных признаках ---
-    if model_name is not None:
+    if model_name is not None and not use_kernel:
         try:
             booster = predictor._trainer.load_model(model_name).model
             X_trans = predictor.transform_features(X_raw, model=model_name) \
@@ -332,5 +333,5 @@ with mlflow.start_run():
     mlflow.log_figure(fig2, "roc_curve.png")
     plt.close(fig2)
 
-    shap_explain_autogluon(predictor, df)
+    shap_explain_autogluon(predictor, df, use_kernel=True)
 
