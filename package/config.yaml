@@ -11,4 +11,4 @@ stem_min_length: 6
 stem_max_length: 30
 loop_length: 10
 number_mismatches: 1
-energy: pin # {pin, cruciform}
+energy: "pin" # {pin, cruciform}

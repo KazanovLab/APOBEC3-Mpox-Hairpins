@@ -1,0 +1,37 @@
+energy	dataset	shape	n_mut_hp	n_unm_hp	n_mut_obs	mean_mut	mean_unm	mean_diff	mw_p	tt_p	perm_p
+old	dataset1	stem=5,loop=3	1	24	1	10.8	9.88333				
+old	dataset1	stem=6,loop=3	0	5	0		10.12				
+old	dataset1	stem=7,loop=3	0	8	0		9.5875				
+old	dataset1	stem=5,loop=4	0	27	0		10.8074				
+old	dataset1	stem=6,loop=4	0	7	0		10.9				
+old	dataset1	all_combined	1	73	1	10.8	10.3274				
+old	dataset2_west_africa	stem=5,loop=3	4	21	5	10.94	9.77619	1.16381	0.0164207	0.0655818	0.0068
+old	dataset2_west_africa	stem=6,loop=3	1	4	3	11.4	9.8	1.6	0.0356983	0.00053093	0.0571429
+old	dataset2_west_africa	stem=7,loop=3	4	4	9	9.76667	9.525	0.241667	0.12798	0.220781	0.262937
+old	dataset2_west_africa	stem=5,loop=4	3	24	6	12.2	10.6708	1.52917	0.000398567	6.5708e-05	0.0002
+old	dataset2_west_africa	stem=6,loop=4	2	5	2	10.5	11.06	-0.56	0.54659	0.365229	0.380952
+old	dataset2_west_africa	all_combined	14	60	25	10.84	10.255	0.585	0.0254118	0.0206476	0.0048
+old	dataset3_gisaid	stem=5,loop=3	6	19	8	9.875	9.91579	-0.0407895	0.956938	0.886237	0.9632
+old	dataset3_gisaid	stem=6,loop=3	1	4	7	11.4	9.8	1.6	0.00277503	0.00053093	0.00606061
+old	dataset3_gisaid	stem=7,loop=3	3	5	6	9.8	9.46	0.34	0.288618	0.0936824	0.151515
+old	dataset3_gisaid	stem=5,loop=4	2	25	2	11.3	10.768	0.532	0.81616	0.734366	0.34188
+old	dataset3_gisaid	stem=6,loop=4	2	5	2	11.05	10.84	0.21	0.84073	0.676725	0.857143
+old	dataset3_gisaid	all_combined	14	60	25	10.492	10.3267	0.165333	0.534813	0.433568	0.3976
+new	dataset1	stem=5,loop=3	1	24	1	-0.5	-0.9625				
+new	dataset1	stem=6,loop=3	0	5	0		-1.98				
+new	dataset1	stem=7,loop=3	0	8	0		-2.9625				
+new	dataset1	stem=5,loop=4	0	27	0		-1.33333				
+new	dataset1	stem=6,loop=4	0	7	0		-3.04286				
+new	dataset1	all_combined	1	73	1	-0.5	-1.68904				
+new	dataset2_west_africa	stem=5,loop=3	4	21	5	-1.14	-0.919048	-0.220952	0.252853	0.413312	0.5902
+new	dataset2_west_africa	stem=6,loop=3	1	4	3	-2.2	-1.925	-0.275	0.696466	0.491725	0.8
+new	dataset2_west_africa	stem=7,loop=3	4	4	9	-3.34444	-2.55	-0.794444	0.309817	0.198984	0.296503
+new	dataset2_west_africa	stem=5,loop=4	3	24	6	-2.36667	-1.25833	-1.10833	0.00460292	0.00708665	0.0058
+new	dataset2_west_africa	stem=6,loop=4	2	5	2	-3.8	-2.74	-1.06	0.380952	0.216716	0.571429
+new	dataset2_west_africa	all_combined	14	60	25	-2.568	-1.50667	-1.06133	0.000239323	0.000788953	0.0008
+new	dataset3_gisaid	stem=5,loop=3	6	19	8	-1.3375	-0.805263	-0.532237	0.120775	0.150099	0.1406
+new	dataset3_gisaid	stem=6,loop=3	1	4	7	-2.2	-1.925	-0.275	0.47086	0.491725	0.557576
+new	dataset3_gisaid	stem=7,loop=3	3	5	6	-3.73333	-2.5	-1.23333	0.118154	0.102212	0.0822511
+new	dataset3_gisaid	stem=5,loop=4	2	25	2	-2.35	-1.252	-1.098	0.0778838	0.216751	0.0854701
+new	dataset3_gisaid	stem=6,loop=4	2	5	2	-3.9	-2.7	-1.2	0.571429	0.542956	0.380952
+new	dataset3_gisaid	all_combined	14	60	25	-2.44	-1.49333	-0.946667	0.00107653	0.00207539	0.0026
