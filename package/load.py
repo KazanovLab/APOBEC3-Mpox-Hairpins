@@ -3,6 +3,7 @@ import re
 import os
 import pandas as pd
 from emboss import *
+from hairpins import Hairpin as NNHairpin
 
 import yaml
 
@@ -47,6 +48,16 @@ class Hairpin:
         self.end = position - 2 + self.length
         self.stem_indexes = [(self.start, self.start + self.stem_length - 1), (self.end - self.stem_length + 1, self.end)]
         self.spacer_index = (self.start + self.stem_length, self.end - self.stem_length)
+
+        seq_parts = self.palindrome.split()
+        if len(seq_parts) == 3:
+            stem_seq, spacer_seq, opposite_seq = seq_parts
+        else:
+            stem_seq, opposite_seq = seq_parts
+            spacer_seq = ""
+        energy_hairpin = NNHairpin(self.start, stem_seq, spacer_seq, opposite_seq, Energy=0.0)
+        self.cruciform_energy = energy_hairpin.nn_energy()
+        self.pin_energy = energy_hairpin.pin_energy()
 
     def __eq__(self, other):
         return self.palindrome == other.palindrome and self.start == other.start and self.end == other.end
