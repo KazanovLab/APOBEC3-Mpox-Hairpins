@@ -183,7 +183,7 @@ shared_cols = [
     "is_unwound",
     "hairpin_start_1b", "hairpin_end_1b",
     "loop_start_1b", "loop_end_1b",
-    "hairpin_length", "energy",
+    "hairpin_length", "energy","cruciform_energy","pin_energy",
     "sequence",
     "loop_5p_dinuc", "loop_3p_dinuc", "tc_3p", "ga_5p",
 ]
@@ -203,7 +203,7 @@ with open(out_tsv, "w") as f:
             r["k"], int(r["k"] > 0),
             h.start + 1, h.end + 1,
             r["loop_l"] + 1, r["loop_r"] + 1,
-            h.length, h.score,
+            h.length, h.score, h.cruciform_energy, h.pin_energy,
             h.sequence,
             r["loop_5p"], r["loop_3p"],
             int(r["loop_3p"] == "TC"), int(r["loop_5p"] == "GA"),
