@@ -1,135 +1,32 @@
 #!/usr/bin/env python3
 """
-Build a per-motif ML feature table for every TC / GA (APOBEC-signature) site in
-the mpox reference genome (NC_063383.1).
+Builds the feature table for the ML analysis: one row per APOBEC-signature
+site (TC or GA) in the mpox reference genome NC_063383.1.
 
-One row per motif occurrence:
-  - a "TC" motif is anchored on the C nucleotide (the edited base, C->T);
-  - a "GA" motif is anchored on the G nucleotide (edited base on the opposite
-    strand, read there as C->T, i.e. G->A on the reference).
+GA sites are reverse-complemented, so every row reads as a TC motif and the
+C is always the edited base. Positions are 1-based.
 
-Columns
-  1  position                 1-based position of the C (TC) or G (GA)
-  2  nucleotide               C or G
-  3  context_pm50             +/-50 nt window around the position (101 nt);
-                              reverse-complemented when the anchor is G, so the
-                              motif is always presented in TC orientation.
-                              All bases lowercased except the central TC motif.
-  4  grantham                 Grantham score of the APOBEC substitution
-                              (C->T for TC, G->A for GA): 0 for intergenic /
-                              synonymous, matrix value for missense, 215 for
-                              nonsense / stop-loss
-  5  third_nt                 third base of the T-C-N triplet (base 3' of the C
-                              in TC orientation): genome[C+1] for TC,
-                              complement(genome[G-1]) for GA
-  minus1_nt                 base immediately 5' of the T in TC orientation
-                              (context_pm50 index 48; the base 5' of the T)
-  is_YTCA                    1 if minus1_nt is a pyrimidine (C/T) and third_nt
-                              is A -- APOBEC3A-preferred tetranucleotide motif
-  is_RTCA                    1 if minus1_nt is a purine (A/G) and third_nt is A
-                              -- APOBEC3B-preferred tetranucleotide motif
-  is_TCW                     1 if third_nt is A or T -- classic APOBEC
-                              mutation-signature context (COSMIC signatures 2/13)
+Each row gets:
+  - sequence context: +/-50 nt window, the neighbouring bases, and the APOBEC
+    motif flags (TCW, YTCA, RTCA)
+  - Grantham score of the C->T substitution (0 if synonymous or intergenic,
+    215 for nonsense)
+  - hairpin features, if the site falls inside a predicted hairpin: stem and
+    loop lengths, six energy metrics.
+    Loop positions are split into two - "boundary" (the C right at the
+    3' end of the loop) and "other".
+  - whether the site is actually mutated, in each of the three datasets and
+    in any of them, plus the number of independent events.
 
-  Hairpin features (one output file per overlap-resolution strategy):
-  in_stem                    1 if the position lies in a hairpin stem
-  stem_length                stem length (bp); for the "all" strategy the max
-                              stem length over all overlapping hairpins covering
-                              the position; 0 if not in a stem
-  stem_loop_length           loop length of the hairpin whose stem was used for
-                              stem_length (i.e. the one giving the max); 0 if not
-                              in a stem
-  stem_<metric>              six energy metrics of that same hairpin (see
-                              "Energy metrics" below); blank if not in a stem
-  stem_unpaired_prob         ViennaRNA partition-function probability that this
-                              exact position is unpaired, within that same
-                              hairpin's own folding ensemble (not just its single
-                              MFE structure) -- a continuous accessibility proxy,
-                              varies position-to-position within the stem arm
-                              (unlike the energy metrics, one value per hairpin);
-                              blank if not in a stem
-  stem_hairpin_sequence      genomic sequence of that same hairpin (stem-loop-
-                              stem), loop portion enclosed in "[]"; lowercase
-                              except the row's own TC/GA motif (uppercase);
-                              empty if not in a stem
+Hairpins predicted using EMBOSS (no mismatches, stem 4-30 nt, loop up to
+20 nt). Hairpins overlap, so a position can belong to several hairpins; five
+strategies for selecting hairpins give five output files:
+ml_table_{most_stable,greedy,max_cov,min_cov,all}.tsv
 
-  Loop positions are split by role, per covering hairpin: "boundary" (the C of
-  a TC at the loop's 3' end, or the G of a GA at the loop's 5' end -- the same
-  convention as structure_type="tc_end" / load.Genome.end_targets, which
-  excludes loops shorter than 2 nt) vs. "other" (every other loop position). A
-  position can be boundary for one overlapping hairpin and other for another,
-  so the two roles are tracked independently, each with its own min-loop-length
-  selection (mirroring stem_length's max selection).
-
-  in_loop_boundary            1 if the position is a TC-3'/GA-5' loop boundary
-                              for some covering hairpin
-  loop_boundary_length        loop length (nt) of the hairpin achieving that
-                              min, among boundary-qualifying hairpins; 0 if none
-  loop_boundary_stem_length   stem length of that same hairpin; 0 if none
-  loop_boundary_<metric>      six energy metrics of that same hairpin; blank if none
-  loop_boundary_unpaired_prob ViennaRNA ensemble unpaired probability at this
-                              position, within that same hairpin; blank if none
-  loop_boundary_hairpin_sequence  sequence of that same hairpin,
-                              loop in "[]", lowercase except the row's own
-                              TC/GA motif (uppercase); empty if none
-  in_loop_other                1 if the position is a non-boundary loop position
-                              for some covering hairpin
-  loop_other_length            loop length (nt) of the hairpin achieving that
-                              min, among other-qualifying hairpins; 0 if none
-  loop_other_stem_length       stem length of that same hairpin; 0 if none
-  loop_other_<metric>          six energy metrics of that same hairpin; blank if none
-  loop_other_unpaired_prob     ViennaRNA ensemble unpaired probability at this
-                              position, within that same hairpin; blank if none
-  loop_other_hairpin_sequence  sequence of that same hairpin,
-                              loop in "[]", lowercase except the row's own
-                              TC/GA motif (uppercase); empty if none
-
-  Energy metrics (six per role: stem_*, loop_boundary_*, loop_other_*), all
-  computed on the role's winning hairpin, from package/hairpins.py:
-    <role>_pin_energy             Hairpin.pin_energy() -- repo's original custom
-                                   NN-model stacking energy of the self-paired
-                                   stem (the "folded/cruciform arm" term)
-    <role>_linear_energy          Hairpin.linear_energy() -- same custom NN model,
-                                   stacking energy of the same stretch treated as
-                                   one continuous strand (the "linear/duplex
-                                   reference" term)
-    <role>_nn_energy              Hairpin.nn_energy() = 2*pin_energy - linear_energy
-                                   (the repo's original combined score; positive,
-                                   LOWER = more stable in this convention)
-    <role>_cruciform_hairpin_dG   cruciform_hairpin_dG() -- ViennaRNA analog of
-                                   pin_energy: DNA (Mathews 2004) ΔG (kcal/mol) of
-                                   the folded hairpin arm alone. Standard
-                                   convention: more negative = more stable.
-                                   ViennaRNA cannot fold a loop < 3 nt and returns
-                                   the sentinel 100000.0 for such hairpins,
-                                   passed through as-is.
-    <role>_linear_duplex_dG       linear_duplex_dG() -- ViennaRNA analog of
-                                   linear_energy: ΔG of the same sequence
-                                   duplexed with its own reverse complement
-                                   (RNA.duplexfold), i.e. staying normal B-form
-                                   duplex instead of extruding.
-    <role>_cruciform_relative_dG  2*cruciform_hairpin_dG - linear_duplex_dG --
-                                   ViennaRNA analog of nn_energy (junction_penalty
-                                   =0.0); inherits the 100000.0 sentinel from
-                                   cruciform_hairpin_dG when loop < 3 nt.
-
-  Mutation features (three datasets):
-  ds1_mutation             1 if the APOBEC substitution is observed here in
-                              dataset1
-  ds1_independent_events   number of independent events (0 if none)
-  ds2_mutation             dataset2_west_africa
-  ds2_independent_events
-  ds3_mutation             dataset3_gisaid
-  ds3_independent_events
-  any_mutation             1 if the APOBEC substitution is observed in any of
-                              the three datasets
-  total_independent_events sum of independent events across all three datasets
-
-Hairpin prediction: EMBOSS palindrome, mismatches=0, stem_min=4,
-stem_max=30 (repo default), loop_max=20. Five overlap-resolution strategies,
-one TSV each: most_stable, greedy, max_cov, min_cov, all.
-
-Output: ml/ml_table_<strategy>.tsv
+Energy metrics come from two approaches: nearest-neighbour model
+(pin/linear/nn_energy, where lower = more stable) and the ViennaRNA equivalents
+(*_dG, where more negative = more stable). ViennaRNA can't fold loops shorter
+than 3 nt and returns 100000.0.
 """
 
 import sys
@@ -140,20 +37,18 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-# ── paths ────────────────────────────────────────────────────────────────────
+# paths
 REPO         = Path(__file__).resolve().parent.parent
 PACKAGE      = REPO / "package"
 DATASETS_DIR = REPO / "datasets"
 GTF          = PACKAGE / "input" / "GCF_014621545.1_ASM1462154v1_genomic.gtf"
 OUT_DIR      = Path(__file__).resolve().parent
 
-# import the package modules; they read config.yaml / nn_coefs/ via relative
-# paths, so we must chdir into package/ first.
 sys.path.insert(0, str(PACKAGE))
 os.chdir(PACKAGE)
 
 import load
-# keep every detected hairpin, including loop-length-0 perfect palindromes
+# keep all detected hairpins, including loop-length-0 palindromes
 load.params["filter_looplen_lessequal"] = -1
 from emboss import get_palindrome
 from functions import find_groups, max_coverage
@@ -164,24 +59,16 @@ GENOME = load.genome.sequence.upper()
 N = len(GENOME)
 print(f"Genome: {load.genome.name.strip()}  length={N}")
 
-# ── hairpin free energy: six values per hairpin ───────────────────────────────
-# Three from the repo's original custom NN-model formula (package/hairpins.py):
-#   pin_energy    -- stacking energy of the self-paired stem (folded/cruciform arm)
-#   linear_energy -- stacking energy of the same stretch treated as one continuous
-#                    strand (the formula's "linear/duplex" reference term)
-#   nn_energy     -- 2*pin_energy - linear_energy (the original combined score)
-# Three analogs from ViennaRNA (DNA/Mathews-2004 parameters):
-#   cruciform_hairpin_dG  -- ΔG of the folded hairpin arm (fc.eval_structure)
-#   linear_duplex_dG      -- ΔG of the same sequence duplexed with its own
-#                             reverse complement (RNA.duplexfold): staying normal
-#                             B-form duplex instead of extruding
-#   cruciform_relative_dG -- 2*cruciform_hairpin_dG - linear_duplex_dG (ViennaRNA
-#                             analog of nn_energy; junction_penalty=0.0). Computed
-#                             directly from the other two rather than calling
-#                             hairpins.cruciform_relative_dG(), which would redundantly
-#                             re-run both underlying RNA calls itself.
+# Six energy values per hairpin: the same three quantities computed twice, once
+# with the nearest-neighbour model (package/hairpins.py) and once
+# with ViennaRNA. In each pair: the folded hairpin arm (single-stranded DNA), the same
+# stretch left as a normal duplex (double-stranded DNA), and the difference between them 
+# (2*folded - linear).
+#   NN model:  pin_energy   linear_energy   nn_energy     (lower = more stable)
+#   ViennaRNA:  cruciform_hairpin_dG  linear_duplex_dG  cruciform_relative_dG
+#                                                        (more negative = more stable)
 # ViennaRNA cannot fold a hairpin loop shorter than 3 nt and returns the sentinel
-# 100000.0 for such (structurally forbidden) shapes -- passed through as-is.
+# 100000.0 for such (structurally forbidden) shapes.
 ENERGY_METRICS = ["pin_energy", "linear_energy", "nn_energy",
                    "cruciform_hairpin_dG", "linear_duplex_dG", "cruciform_relative_dG"]
 
@@ -207,12 +94,6 @@ def hairpin_energies(h):
         }
     return _energy_cache[key]
 
-# ── ensemble (partition-function) unpaired probability ────────────────────────
-# The MFE-based in_stem/in_loop split is a single snapshot structure. The
-# partition-function ensemble gives, per position, the probability of being
-# unpaired across ALL foldings of the hairpin's own sequence -- a continuous,
-# more direct proxy for actual ssDNA accessibility (what APOBEC3 needs) than a
-# binary stem/loop assignment.
 import RNA
 RNA.params_load_DNA_Mathews2004()
 
@@ -242,7 +123,7 @@ _COMP = str.maketrans("ACGT", "TGCA")
 def rc(s):   return s.translate(_COMP)[::-1]
 def comp(b): return b.translate(_COMP)
 
-# ── Grantham scoring (codon logic + matrix copied from fig4c) ─────────────────
+# Grantham scoring
 CODON_TABLE = {
     'TTT':'F','TTC':'F','TTA':'L','TTG':'L','CTT':'L','CTC':'L','CTA':'L','CTG':'L',
     'ATT':'I','ATC':'I','ATA':'I','ATG':'M','GTT':'V','GTC':'V','GTA':'V','GTG':'V',
@@ -338,7 +219,7 @@ def grantham_for_position(pos_1, mut_base):
             scores.append(0)
     return max(scores)
 
-# ── motif sites ──────────────────────────────────────────────────────────────
+# motif sites
 # TC -> anchor on C (edited base);  GA -> anchor on G (edited base on opp strand)
 c_sites = [(m.end() - 1, 'C') for m in re.finditer("TC", GENOME)]
 g_sites = [(m.start(), 'G') for m in re.finditer("GA", GENOME)]
@@ -367,10 +248,6 @@ def third_nt(pos0, base):
 
 # APOBEC3A/3B tetranucleotide motif preference: A3A prefers YTCA (Y=C/T),
 # A3B prefers RTCA (R=A/G); TCW (W=A/T) is the classic APOBEC mutation-signature
-# context (Alexandrov COSMIC signatures 2/13). minus1_nt is read directly off the
-# already-TC-oriented context_pm50 string (index 48, one base 5' of the T) rather
-# than re-deriving genome indexing, since the RC-for-G-anchored-sites logic is
-# already handled there.
 def classify_motif(context, third_nt_base):
     minus1 = context[48].upper()
     is_ytca = int(minus1 in ('C', 'T') and third_nt_base == 'A')
@@ -378,7 +255,7 @@ def classify_motif(context, third_nt_base):
     is_tcw  = int(third_nt_base in ('A', 'T'))
     return minus1, is_ytca, is_rtca, is_tcw
 
-# strategy-independent columns (positions 1-5 + mutation columns)
+# strategy-independent columns
 print("Computing motif-level features (context / grantham / third_nt)...")
 base_rows = []
 for pos0, base in sites:
@@ -400,7 +277,7 @@ for pos0, base in sites:
         "_pos0":        pos0,
     })
 
-# ── mutation datasets ────────────────────────────────────────────────────────
+# mutation datasets
 DATASETS = [
     ("ds1", DATASETS_DIR / "dataset1.substitution_table.tsv"),
     ("ds2", DATASETS_DIR / "dataset2_west_africa.substitution_table.tsv"),
@@ -432,7 +309,7 @@ for row in base_rows:
     row["any_mutation"] = any_mut
     row["total_independent_events"] = total_events
 
-# ── hairpin prediction ───────────────────────────────────────────────────────
+# hairpin prediction
 STEM_MIN, STEM_MAX, LOOP_MAX, MM = 4, 30, 20, 0
 print(f"\nHairpin detection: EMBOSS palindrome stem={STEM_MIN}-{STEM_MAX}, "
       f"loop_max={LOOP_MAX}, mismatches={MM}")
@@ -454,37 +331,18 @@ def select(strategy):
 def mark(selected):
     """Per-position hairpin features.
 
-    stem_len      : max stem length over hairpins whose stem covers the position
-    stem_loop     : loop length of the hairpin that achieves that stem max
-    stem_en       : dict of {metric_name: array} -- all six energy metrics (see
-                    ENERGY_METRICS) of the hairpin that achieves that stem max
-    stem_unpaired : ViennaRNA partition-function probability that this exact
-                    position is unpaired, within that same winning hairpin's
-                    own sequence (varies position-to-position within the arm,
-                    unlike the energy metrics which are one value per hairpin)
+    A position can be covered by several overlapping hairpins -
+    the same position can be a loop boundary in one hairpin and a plain loop
+    position in another:
 
-    Loop positions are split into two disjoint roles per covering hairpin:
-      - "boundary": the position is the C of a TC dinucleotide at the loop's
-        3' end, or the G of a GA dinucleotide at the loop's 5' end (the exact
-        convention used elsewhere in this repo for structure_type="tc_end",
-        see load.Genome.end_targets). Loops shorter than 2 nt never qualify,
-        matching that convention.
-      - "other": every other position covered by the hairpin's loop.
-    A position can be "boundary" for one overlapping hairpin and "other" for
-    another, so the two roles are tracked independently:
-      loopb_len / loopb_stem / loopb_en : min loop length (+ companions) over
-                                           hairpins where this is a boundary pos
-      loopo_len / loopo_stem / loopo_en : min loop length (+ companions) over
-                                           hairpins where this is a non-boundary
-                                           loop position
+      stem_*  : position located in a stem
+      loopb_* : loop "boundary" - the C of a TC at the loop's 3' end, or the
+                G of a GA at its 5' end (structure_type="tc_end" convention,
+                see load.Genome.end_targets)                                
+      loopo_* : any other loop position
 
-    For single-selection strategies at most one hairpin covers a position, so
-    the companion values are simply that hairpin's loop / stem / energies. Ties
-    in the max/min are resolved first-hairpin-seen. Energies are NaN where the
-    position doesn't fall in that role.
-
-    Each role also records the winning hairpin's start (0-based, -1 if none),
-    so the caller can reconstruct its exact sequence via hairpin_sequence().
+    *_unpaired is the exception: it is a ViennaRNA ensemble probability for
+    this exact position, so unlike the energies it varies along the hairpin.
     """
     BIG = np.iinfo(np.int32).max
 
@@ -566,13 +424,6 @@ def mark(selected):
 
 
 def hairpin_sequence(start, stem_len, loop_len, motif_pos0, nucleotide):
-    """Genomic sequence of the hairpin (start, stem_len, loop_len) 0-based,
-    with the loop portion enclosed in square brackets. Empty string if no
-    hairpin is present (start < 0). Everything is lowercased except the
-    row's own TC/GA motif (the two bases at motif_pos0-1,motif_pos0 for a
-    C-anchored row, or motif_pos0,motif_pos0+1 for a G-anchored row), which
-    is kept uppercase; the half of the motif falling outside the hairpin
-    span (if any) is simply not part of the printed string."""
     if start < 0:
         return ""
     end = start + 2 * stem_len + loop_len - 1              # 0-based inclusive
@@ -587,7 +438,7 @@ def hairpin_sequence(start, stem_len, loop_len, motif_pos0, nucleotide):
     right = full[stem_len + loop_len:]
     return f"{left}[{loop}]{right}"
 
-# ── assemble & write one table per strategy ──────────────────────────────────
+# assemble & write one table per strategy
 STRATEGIES = ["most_stable", "greedy", "max_cov", "min_cov", "all"]
 ENERGY_COLS_STEM          = [f"stem_{m}"          for m in ENERGY_METRICS]
 ENERGY_COLS_LOOP_BOUNDARY = [f"loop_boundary_{m}" for m in ENERGY_METRICS]

@@ -36,8 +36,12 @@ parser = argparse.ArgumentParser(description="Energy (ΔG) boundary boxplots —
 parser.add_argument("--dataset", default="2",
                     choices=list(_DATASET_ALIASES.keys()),
                     help="Which dataset row(s) to plot. Default: 2 (dataset2_west_africa).")
+parser.add_argument("--energy_type", default="hairpin",
+                    choices=["cruciform", "hairpin"],
+                    help="Which energy column to plot: 'cruciform' (cruciform_energy) or 'hairpin' (pin_energy). Default: hairpin.")
 args = parser.parse_args()
 DATASET_SEL = _DATASET_ALIASES[args.dataset]
+ENERGY_COL = {"cruciform": "cruciform_energy", "hairpin": "pin_energy"}[args.energy_type]
 
 # inputs
 TSV          = Path(__file__).parent.parent.parent.parent / "hairpins/hairpins_loop3_or_4_stem_ge5_mm0.tsv"
@@ -132,9 +136,9 @@ def draw_panel(ax, sub, dataset_tag, title):
     mut_df, unm_df = sub[mut_mask], sub[~mut_mask]
     mut_obs = obs[mut_mask]
 
-    mut_scores = [e for e, n in zip(mut_df["energy"].values, mut_obs.values)
+    mut_scores = [e for e, n in zip(mut_df[ENERGY_COL].values, mut_obs.values)
                   for _ in range(int(n))]
-    unm_scores = unm_df["energy"].tolist()
+    unm_scores = unm_df[ENERGY_COL].tolist()
 
     n_mut_hp, n_mut_obs = len(mut_df), int(mut_obs.sum())
     n_unm_hp = len(unm_df)
@@ -151,7 +155,7 @@ def draw_panel(ax, sub, dataset_tag, title):
     rng = np.random.default_rng(0)
     for (_, row), n in zip(mut_df.iterrows(), mut_obs):
         jitter = rng.uniform(-0.12, 0.12)
-        ax.scatter(1 + jitter, row["energy"],
+        ax.scatter(1 + jitter, row[ENERGY_COL],
                    color=colors[0], alpha=0.85,
                    s=20 + 25 * int(n), zorder=3, edgecolors="white")
     for sc in unm_scores:
@@ -160,7 +164,7 @@ def draw_panel(ax, sub, dataset_tag, title):
 
     ax.set_xticks([1, 2]); ax.set_xticklabels(labels, fontsize=11)
     ax.set_xlabel("Hairpins", fontsize=12)
-    ax.set_ylabel("Energy (ΔG)", fontsize=12)
+    ax.set_ylabel(f"{args.energy_type.capitalize()} energy (ΔG)", fontsize=12)
 
 # select dataset rows for the figure
 if DATASET_SEL == "all":
@@ -182,7 +186,7 @@ for ri, (ds, _) in enumerate(DATASETS_TO_PLOT):
     draw_panel(axes[ri, n_cols - 1], df, ds, f"{ds}\nAll combined")
 
 plt.tight_layout()
-out_stem = f"energy_boxplot_{fig_tag}_boundary"
+out_stem = f"energy_boxplot_{fig_tag}_boundary_{args.energy_type}"
 for ext in ("pdf", "png"):
     plt.savefig(f"{out_stem}.{ext}", dpi=600, bbox_inches="tight")
 plt.close()
@@ -194,9 +198,9 @@ def collect_stats(sub, dataset_tag):
     mut_mask = obs > 0
     mut_df, unm_df = sub[mut_mask], sub[~mut_mask]
     mut_obs = obs[mut_mask]
-    mut_scores = [e for e, n in zip(mut_df["energy"].values, mut_obs.values)
+    mut_scores = [e for e, n in zip(mut_df[ENERGY_COL].values, mut_obs.values)
                   for _ in range(int(n))]
-    unm_scores = unm_df["energy"].tolist()
+    unm_scores = unm_df[ENERGY_COL].tolist()
     st = run_stats(mut_scores, unm_scores)
     st["n_mut_hp"]  = int(len(mut_df))
     st["n_unm_hp"]  = int(len(unm_df))
@@ -215,7 +219,7 @@ def fmt(v):
         return f"{v:.6g}"
     return str(v)
 
-out_tsv = "energy_pvalues.tsv"
+out_tsv = f"energy_pvalues_{args.energy_type}.tsv"
 with open(out_tsv, "w") as f:
     f.write("\t".join(cols) + "\n")
     for ds, _ in DATASETS:
