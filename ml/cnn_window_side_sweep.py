@@ -11,7 +11,7 @@ from cnn_full_dataset import make_cnn
 # How far from the edited C does the sequence signal improve prediction
 # Run on the flatten variant, not on avgpool2. 
 
-K_VALUES = [0, 1, 2, 3, 4, 5]
+K_VALUES = list(range(16))      # 0..15
 POOLING = "flatten"
 OUT_PNG = "roc_auc_vs_window_side.png"
 OUT_CSV = "cnn_window_side_sweep_summary.csv"
@@ -57,7 +57,7 @@ def main():
     summary = collect()
     summary.to_csv(os.path.join(RESULTS_DIR, OUT_CSV), index=False)
 
-    fig, ax = plt.subplots(figsize=(7.0, 4.8))
+    fig, ax = plt.subplots(figsize=(14.0, 4.8))
     for name, colour, style, marker, bounds in SERIES:
         sub = summary[summary.series == name].sort_values("k")
         ax.plot(sub.k, sub.roc_auc, color=colour, linestyle=style, marker=marker,
