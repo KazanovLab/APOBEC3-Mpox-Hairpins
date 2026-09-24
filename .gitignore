@@ -5,3 +5,4 @@ ml/mlruns
 *.tsv
 *.csv
 *.pdf
+__pycache__/
