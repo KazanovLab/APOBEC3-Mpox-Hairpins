@@ -4,3 +4,4 @@ ml/mlruns
 *.png
 *.tsv
 *.csv
+*.pdf
