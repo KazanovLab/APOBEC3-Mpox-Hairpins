@@ -1,3 +1,6 @@
 .DS_Store
 ml/AutogluonModels
 ml/mlruns
+*.png
+*.tsv
+*.csv
