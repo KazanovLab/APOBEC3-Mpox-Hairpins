@@ -1,4 +1,5 @@
 import os
+import numpy as np
 import pandas as pd
 from sklearn import set_config
 from sklearn.linear_model import LogisticRegression
@@ -139,12 +140,6 @@ summary = pd.DataFrame(summary_rows).sort_values("roc_auc", ascending=False)
 summary.to_csv(out_path("classic_ml_summary_full_dataset.csv"), index=False)
 print(f"\n{summary.to_string(index=False)}")
 
-# --- grouped bar chart: the two feature sets side by side, one pair per model ---
-# The y axis starts at 0.5 rather than 0: for ROC-AUC the no-information point is
-# chance, not zero, so a bar from 0 would spend most of its length on a range no
-# classifier can fall into. The axis break is marked by the dashed chance line.
-# same blue/red pair as the matched-pairs figures, where the variant carrying
-# the hairpin information is the red one
 BAR_COLORS = {"noloop": "#2a78d6", "loopboundary": "#e34948"}
 Y_FLOOR = 0.5
 
@@ -154,9 +149,6 @@ x = range(len(pivot))
 width = 0.38
 
 fig, ax = plt.subplots(figsize=(5.2, 4.6))
-# the two bars of a pair are often within 0.001 of each other, so their labels
-# would sit at the same height and collide; the second series is nudged 1 mm to
-# the right. bar_label offsets are in points, hence 72/25.4 per mm.
 MM = 72 / 25.4
 LABEL_DX = {"noloop": 0.0, "loopboundary": MM}
 for offset, tag in ((-width / 2, "noloop"), (width / 2, "loopboundary")):
@@ -182,4 +174,67 @@ plt.close(fig)
 delta = (pivot["loopboundary"] - pivot["noloop"]).sort_values()
 print("\nchange in ROC-AUC from adding the hairpin features:")
 print(delta.round(4).to_string())
+
+N_BOOT = 2000
+EQUIV_MARGIN = 0.01
+BOOT_SEED = 1
+
+preds = {(m, t): pd.read_csv(out_path(f"predictions_{m}_{t}.csv"))["pred_prob"].values
+         for m in make_models(y).keys() for t in FEATURE_SETS}
+rng = np.random.default_rng(BOOT_SEED)
+boot_idx = rng.integers(0, len(y), size=(N_BOOT, len(y)))
+
+test_rows = []
+for model_name in make_models(y).keys():
+    base, other = preds[(model_name, "noloop")], preds[(model_name, "loopboundary")]
+    deltas = np.array([roc_auc_score(y[i], other[i]) - roc_auc_score(y[i], base[i])
+                       for i in boot_idx])
+    lo, hi = np.percentile(deltas, [2.5, 97.5])
+    p = 2 * min((deltas <= 0).mean(), (deltas >= 0).mean())
+    test_rows.append({
+        "model": model_name,
+        "delta_auc": pivot.loc[model_name, "loopboundary"] - pivot.loc[model_name, "noloop"],
+        "ci_low": lo, "ci_high": hi, "p_boot": max(p, 1 / N_BOOT),
+        "equivalent": bool(lo > -EQUIV_MARGIN and hi < EQUIV_MARGIN),
+    })
+
+tests = pd.DataFrame(test_rows)
+order = np.argsort(tests["p_boot"].values)          # Holm over the 8 comparisons
+adj, running = np.empty(len(tests)), 0.0
+for rank, i in enumerate(order):
+    running = max(running, (len(tests) - rank) * tests["p_boot"].values[i])
+    adj[i] = min(running, 1.0)
+tests["p_holm"] = adj
+tests.to_csv(out_path("delta_auc_loopboundary_vs_noloop.csv"), index=False)
+
+print(f"\npaired bootstrap, hairpin features vs none ({N_BOOT} resamples, "
+      f"equivalence margin +/-{EQUIV_MARGIN}):")
+print(tests.round(4).to_string(index=False))
+print(f"\n  significantly better after Holm: "
+      f"{int(((tests.p_holm < 0.05) & (tests.delta_auc > 0)).sum())}/{len(tests)}")
+print(f"  significantly worse after Holm:  "
+      f"{int(((tests.p_holm < 0.05) & (tests.delta_auc < 0)).sum())}/{len(tests)}")
+print(f"  equivalent at +/-{EQUIV_MARGIN}:         {int(tests.equivalent.sum())}/{len(tests)}")
+
+fig, ax = plt.subplots(figsize=(6.5, 4))
+ax.axvspan(-EQUIV_MARGIN, EQUIV_MARGIN, color="lightgrey", alpha=0.45, zorder=0,
+           label=f"equivalence margin ±{EQUIV_MARGIN}")
+ax.axvline(0, color="#4a4a4a", linestyle="--", linewidth=0.8, zorder=1)
+ypos = np.arange(len(tests))[::-1]
+for yp, (_, row) in zip(ypos, tests.iterrows()):
+    ax.plot([row.ci_low, row.ci_high], [yp, yp], color=BAR_COLORS["loopboundary"],
+            linewidth=1.6, solid_capstyle="butt", zorder=2)
+    ax.plot(row.delta_auc, yp, "o", color=BAR_COLORS["loopboundary"], markersize=6,
+            markeredgecolor="white", markeredgewidth=0.9, zorder=3)
+ax.set_yticks(ypos)
+ax.set_yticklabels(tests.model, fontsize=8)
+ax.set_xlabel("ΔROC-AUC from adding the hairpin features (paired bootstrap, 95% CI)",
+              fontsize=8.5)
+ax.legend(fontsize=7, frameon=False, loc="lower left")
+ax.grid(axis="x", color="lightgrey", linewidth=0.4, zorder=0)
+ax.set_axisbelow(True)
+fig.tight_layout()
+fig.savefig(out_path("delta_auc_loopboundary_vs_noloop.png"), dpi=600, bbox_inches="tight")
+plt.close(fig)
+
 print(f"\nsaved to {RESULTS_DIR}/")
