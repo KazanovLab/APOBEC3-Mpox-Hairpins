@@ -1,12 +1,11 @@
 """
-Number of hairpins produced by EMBOSS palindrome vs stem_max_length.
+Number of strucutes produced by EMBOSS palindrome vs stem_max_length.
 
-Loops stem_max_length from 30 to 50, all other parameters taken from
+Loops stem_max_length from 6 to 50, all other parameters taken from
 binomial/config.yaml. For each value:
   - Method 1: count hairpins via HairpinList.from_emboss()  (hairpins.py)
   - Method 2: convert to PA file, then count via load_hairpins() (load.py)
-If counts differ, a diagnostic message is printed but plotting proceeds
-using Method 1 counts.
+If counts differ, a diagnostic message is printed.
 """
 
 import sys
@@ -148,7 +147,7 @@ ax2.tick_params(axis="y", labelcolor="#D74050", labelsize=10)
 ax2.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, _: f"{x:.0f}%"))
 
 ax.set_xlabel("Maximum stem length (bp)", fontsize=12)
-ax.set_ylabel("Number of hairpins", fontsize=12, color="#3389C0")
+ax.set_ylabel("Number of structures", fontsize=12, color="#3389C0")
 #ax.set_title("EMBOSS palindrome hairpin count vs maximum stem length\n"
 #             f"(stem_min={STEM_MIN}, loop={LOOP_LENGTH}, mismatches={NUM_MISMATCHES})",
 #              fontsize=11)
