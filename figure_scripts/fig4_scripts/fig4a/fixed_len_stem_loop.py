@@ -305,17 +305,17 @@ x_labels = [str(v) for v in LOOP_VALUES]
 y_labels = [str(v) for v in STEM_VALUES]
 
 struct_labels = {
-    "hairpin": "Whole hairpin",
+    "hairpin": "Whole structure",
     "spacer": "Hairpin loop",
     "tc_end": "TC at the 3' loop end",
     "c_end": "C at the 3' loop end"
 }
 selection_labels = {
-    "most_stable": "Most stable hairpin",
+    "most_stable": "Most stable structure",
     "greedy": "Greedy selection",
     "max_cov": "Maximum coverage",
     "min_cov": "Minimum coverage",
-    "all": "All hairpins"
+    "all": "All structures"
 }
 
 # draw one heatmap into an axes
