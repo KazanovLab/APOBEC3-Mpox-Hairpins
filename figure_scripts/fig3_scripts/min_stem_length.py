@@ -1,5 +1,5 @@
 """
-Hairpin count and genome coverage vs minimum stem length
+Structure count and genome coverage vs minimum stem length
 for both mismatch=0 and mismatch=1 on the same plot.
 
 All other parameters taken from binomial/config.yaml (stem_max=30, loop=10).
@@ -137,7 +137,7 @@ for mm in mismatch_values:
     bars = ax.bar(
         np.array(xi_idx) + offsets[(mm, "count")], counts, width=bar_w,
         color=colors[(mm, "count")], alpha=0.88,
-        label=f"Hairpin no., mism.={mm}",
+        label=f"Structure no., mism.={mm}",
     )
     ax2.bar(
         np.array(xi_idx) + offsets[(mm, "cov")], coverages, width=bar_w,
@@ -161,7 +161,7 @@ for mm in mismatch_values:
 
 ax.set_xticks(x)
 ax.set_xticklabels([f"{v}" for v in stem_min_values], fontsize=11)
-ax.set_ylabel("Number of hairpins", fontsize=12, color="#3389C0")
+ax.set_ylabel("Number of structures", fontsize=12, color="#3389C0")
 ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda v, _: f"{int(v):,}"))
 ax.tick_params(axis="y", labelsize=10)
 ax.set_ylim(0, max(all_counts) * 1.18)
