@@ -6,3 +6,4 @@ ml/mlruns
 *.csv
 *.pdf
 __pycache__/
+*.txt
