@@ -163,7 +163,7 @@ def draw_panel(ax, sub, dataset_tag, title):
         ax.scatter(2 + jitter, sc, color=colors[1], alpha=0.65, s=20, zorder=3, edgecolors="white")
 
     ax.set_xticks([1, 2]); ax.set_xticklabels(labels, fontsize=11)
-    ax.set_xlabel("Hairpins", fontsize=12)
+    ax.set_xlabel("Stem-loop structures", fontsize=12)
     ax.set_ylabel(f"{args.energy_type.capitalize()} energy (ΔG)", fontsize=12)
 
 # select dataset rows for the figure
