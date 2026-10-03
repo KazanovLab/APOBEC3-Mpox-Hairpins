@@ -7,3 +7,4 @@ ml/mlruns
 *.pdf
 __pycache__/
 *.txt
+*.pkl
