@@ -291,7 +291,7 @@ def draw_panel(ax, sub, dataset_tag, title):
                        s=35, zorder=4)
 
     ax.set_xticks([1, 2]); ax.set_xticklabels(labels, fontsize=11)
-    ax.set_xlabel("Hairpins", fontsize=12)
+    ax.set_xlabel("Stem-loop structures", fontsize=12)
     ax.set_ylabel("Grantham score", fontsize=12)
     ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%d'))
     ax.grid(axis='y', linestyle='--', alpha=0.35)
