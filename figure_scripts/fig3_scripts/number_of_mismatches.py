@@ -1,5 +1,5 @@
 """
-Number of hairpins and genome coverage for mismatches = 0, 1, 2.
+Number of structures and genome coverage for mismatches = 0, 1, 2.
 
 All other parameters taken from binomial/config.yaml (stem_min=6, stem_max=30,
 loop=10). Results presented as a bar chart with a secondary y-axis for genome
@@ -113,7 +113,7 @@ fig, ax = plt.subplots(figsize=(6, 4))
 ax2 = ax.twinx()
 
 bars = ax.bar(x, counts, width=bar_w, color=color_count, alpha=0.85,
-              label="Hairpin count")
+              label="Structure count")
 ax2.bar(x + bar_w, coverages, width=bar_w, color=color_cov, alpha=0.85, 
         label="Genome coverage (%)")
 
@@ -127,7 +127,7 @@ for xi, cov in zip(x + bar_w, coverages):
 ax.set_xticks(x + bar_w / 2)
 ax.set_xticklabels(labels, fontsize=11)
 ax.set_xlabel("Number of mismatches", fontsize=12)
-ax.set_ylabel("Number of hairpins", fontsize=12, color=color_count)
+ax.set_ylabel("Number of structures", fontsize=12, color=color_count)
 ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda v, _: f"{int(v):,}"))
 ax.tick_params(axis="y", labelsize=10)
 ax.set_ylim(0, max(counts) * 1.15)
