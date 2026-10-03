@@ -1,5 +1,5 @@
 """
-Number of hairpins produced by EMBOSS palindrome vs loop_length.
+Number of structures produced by EMBOSS palindrome vs loop_length.
 
 Loops loop_length from 2 to 50, all other parameters taken from
 binomial/config.yaml. For each value, hairpins are counted by parsing
@@ -117,7 +117,7 @@ ax2.tick_params(axis="y", labelcolor="#D74050", labelsize=10)
 ax2.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, _: f"{x:.0f}%"))
 
 ax.set_xlabel("Maximum loop length (nt)", fontsize=12)
-ax.set_ylabel("Number of hairpins", fontsize=12, color="#3389C0")
+ax.set_ylabel("Number of structures", fontsize=12, color="#3389C0")
 #ax.set_title("EMBOSS palindrome hairpin count vs maximum loop length\n"
 #             f"(stem_min={STEM_MIN}, stem_max={STEM_MAX}, mismatches={NUM_MISMATCHES})",
 #             fontsize=11)
