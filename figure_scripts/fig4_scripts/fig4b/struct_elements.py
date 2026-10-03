@@ -11,7 +11,10 @@
 Structure types (exclusive, no overlap):
   tc_end          — TC/GA at spacer boundary
   c_end_excl      — C/G at spacer boundary NOT in TC/GA context
-  spacer_interior — TC/GA in interior spacer positions [l+1, r-1]
+  spacer_interior — TC/GA anywhere in the loop [l, r] that is NOT a tc_end
+                    target. tc_end is orientation-specific (C of TC at r,
+                    G of GA at l), so boundary targets of the opposite
+                    orientation (C of TC at l, G of GA at r) belong here.
   stem            — TC/GA in stem arm positions only
 
 Denominators:
@@ -44,7 +47,7 @@ os.chdir(BINOMIAL_DIR)
 
 import load
 from emboss import get_palindrome
-from functions import find_groups, max_coverage
+from functions import find_groups, max_coverage_spacer
 
 # command-line arguments
 parser = argparse.ArgumentParser(description="Test 17: exclusive select-first heatmaps.")
@@ -173,7 +176,12 @@ def select_hairpins(hairpins, sel_type):
         elif sel_type == "greedy":
             choice = _greedy_choose(group)
         elif sel_type == "max_cov":
-            choice = max_coverage(group)
+            # All four columns here describe loop elements or the stem of a
+            # loop-centric decomposition, so maximum coverage is measured on
+            # total loop length, matching fixed_len_stem_loop.py for every
+            # column except its "Whole structure" one (which uses
+            # max_coverage, i.e. total hairpin length).
+            choice = max_coverage_spacer(group)
         elif sel_type == "min_cov":
             choice = _min_coverage(group)
         else:
@@ -182,6 +190,39 @@ def select_hairpins(hairpins, sel_type):
     return selected
 
 # -- exclusive target computation (identical to test11) ------------------------
+def _tc_end_targets(hairpins):
+    """Orientation-specific 3'-loop-end targets: C of TC at r, G of GA at l."""
+    targets = set()
+    for h in hairpins:
+        if h.spacer_length < 2:
+            continue
+        l, r = h.spacer_index
+        if r in _tc_pos:
+            targets.add(r)
+        if l in _ga_pos:
+            targets.add(l)
+    return targets
+
+
+def _spacer_rest_targets(hairpins):
+    """Loop targets that are not 3'-loop-end targets.
+
+    The whole loop [l, r] is scanned, boundaries included, and the tc_end
+    set is subtracted. Boundary targets in the opposite orientation
+    (C of TC at l, G of GA at r) are not tc_end targets, so they land here
+    instead of being dropped. Subtraction is done on the unions over the
+    whole cell, which also keeps the two categories mutually exclusive when
+    overlapping hairpins disagree on whether a position is a boundary.
+    """
+    loop_targets = set()
+    for h in hairpins:
+        l, r = h.spacer_index
+        for pos in range(l, r + 1):
+            if pos in _tc_pos or pos in _ga_pos:
+                loop_targets.add(pos)
+    return loop_targets - _tc_end_targets(hairpins)
+
+
 def compute_exclusive(hairpins, struct_type):
     """
     Return (hits, n_struct_targets, targets_p) for the given exclusive struct_type.
@@ -191,15 +232,7 @@ def compute_exclusive(hairpins, struct_type):
     targets_p   — n_struct / genome_denominator
     """
     if struct_type == "tc_end":
-        struct_targets = set()
-        for h in hairpins:
-            if h.spacer_length < 2:
-                continue
-            l, r = h.spacer_index
-            if r in _tc_pos:
-                struct_targets.add(r)
-            if l in _ga_pos:
-                struct_targets.add(l)
+        struct_targets = _tc_end_targets(hairpins)
         targets_p = len(struct_targets) / _denom_tc_ga if _denom_tc_ga else 0.0
 
     elif struct_type == "c_end_excl":
@@ -215,12 +248,7 @@ def compute_exclusive(hairpins, struct_type):
         targets_p = len(struct_targets) / _denom_c_not_tc if _denom_c_not_tc else 0.0
 
     elif struct_type == "spacer_interior":
-        struct_targets = set()
-        for h in hairpins:
-            l, r = h.spacer_index
-            for pos in range(l + 1, r):   # interior: [l+1, r-1]
-                if pos in _tc_pos or pos in _ga_pos:
-                    struct_targets.add(pos)
+        struct_targets = _spacer_rest_targets(hairpins)
         targets_p = len(struct_targets) / _denom_tc_ga if _denom_tc_ga else 0.0
 
     elif struct_type == "stem":
@@ -360,9 +388,12 @@ _mut_set_APOBEC    = set(_mut_counts_APOBEC)
 _mut_counts_APOBEC_ext = Counter(_mut_list_APOBEC_ext)
 _mut_set_APOBEC_ext    = set(_mut_counts_APOBEC_ext)
 
-def hairpin_mutations_excl(h, struct_type):
+def hairpin_mutations_excl(h, struct_type, rest_targets=None):
     """Return sorted list of mutation positions (0-based, unique) that hit
-    this hairpin under struct_type (test17 exclusive definitions)."""
+    this hairpin under struct_type (test17 exclusive definitions).
+
+    rest_targets — for spacer_interior, the cell-level target set from
+    _spacer_rest_targets(cell); required so the listing matches the heatmap."""
     hits = []
     if struct_type == "tc_end":
         if h.spacer_length < 2:
@@ -381,9 +412,11 @@ def hairpin_mutations_excl(h, struct_type):
         if l in _g_not_ga and l in _mut_set_APOBEC_ext:
             hits.append(l)
     elif struct_type == "spacer_interior":
+        if rest_targets is None:
+            raise ValueError("spacer_interior needs rest_targets")
         l, r = h.spacer_index
-        for pos in range(l + 1, r):
-            if (pos in _tc_pos or pos in _ga_pos) and pos in _mut_set_APOBEC:
+        for pos in range(l, r + 1):
+            if pos in rest_targets and pos in _mut_set_APOBEC:
                 hits.append(pos)
     elif struct_type == "stem":
         ls, le = h.stem_indexes[0]
@@ -403,8 +436,9 @@ for (sel_type, struct_type, stem_len, loop_len), (log10p, hits_cnt, n_struct, tp
     pool = selected_pools[sel_type]
     cell = [h for h in pool
             if h.stem_length == stem_len and h.spacer_length == loop_len]
+    _rest = _spacer_rest_targets(cell) if struct_type == "spacer_interior" else None
     for h in cell:
-        muts = hairpin_mutations_excl(h, struct_type)
+        muts = hairpin_mutations_excl(h, struct_type, _rest)
         if struct_type == "c_end_excl":
             mut_sum = sum(_mut_counts_APOBEC_ext[m] for m in muts)
         else:
@@ -466,11 +500,11 @@ struct_labels = {
     "c_end_excl": "C at the 3' loop end excluding TC"
 }
 selection_labels = {
-    "most_stable": "Most stable hairpin",
+    "most_stable": "Most stable structure",
     "greedy": "Greedy selection",
     "max_cov": "Maximum coverage",
     "min_cov": "Minimum coverage",
-    "all": "All hairpins"
+    "all": "All structures"
 }
 
 # helper: draw one heatmap into an axes
